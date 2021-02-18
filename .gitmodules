@@ -1,3 +1,6 @@
 [submodule "llvm-project"]
 	path = llvm-project
 	url = https://github.com/chaosdefinition/llvm-project.git
+[submodule "newlib-cygwin"]
+	path = newlib-cygwin
+	url = https://github.com/chaosdefinition/newlib-cygwin.git
