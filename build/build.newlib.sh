@@ -137,6 +137,7 @@ mkdir -p "$NEWLIB_BUILD" && cd "$NEWLIB_BUILD"
 "$NEWLIB_SRC/configure" --target="$TARGET"                                  \
                         --srcdir="$NEWLIB_SRC"                              \
                         --prefix="$NEWLIB_INSTALL"                          \
+                        --disable-newlib-supplied-syscalls                  \
                         --with-cpu=armv8m                                   \
                         --with-mode=thumb
 
