@@ -1,0 +1,18 @@
+# Hidden configuration files
+.settings
+.cproject
+cproject_*
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/cjpeg-rose7-preset/
+/core/
+/linear_alg-mid-100x100-sp/
+/loops-all-mid-10k-sp/
+/nnet_test/
+/parser-125k/
+/radix2-big-64k/
+/sha-test/
+/zip-test/
