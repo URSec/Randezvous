@@ -1,0 +1,30 @@
+REM ----------------------------------------------------------------------
+REM i.MX RT600 Rev B0 Preconnect Script
+REM ----------------------------------------------------------------------
+ProbeList
+p% = ProbeFirstFound
+ProbeOpenByIndex p%
+WireSWDConnect p%
+APList p%
+REM ----------------------------------------------------------------------
+REM Debug Mailbox AP Index is 2
+REM ----------------------------------------------------------------------
+SelectProbeCore p% 2
+REM ----------------------------------------------------------------------
+REM DEBUG_SESSION_REQ: 7
+REM ----------------------------------------------------------------------
+r% = 7
+REM ----------------------------------------------------------------------
+PRINT "Issuing Debug Session Request... ";r%
+DebugMailboxReq this r%
+CoreList p%
+SelectProbeCore p% 0
+REM ----------------------------------------------------------------------
+REM Setup FlexSPI Flash reset info for BootROM
+REM WARNING: GPIO PORT and PIN must match the actual board configuration!!
+REM ----------------------------------------------------------------------
+PRINT "Using PIO2_12 pin for FlexSPI flash reset"
+REM SHADOW_OTP BOOT_CFG[1] = (1 << 14) | (PORT << 15) | (PIN << 18)
+POKE32 this 0x40130184 0x00314000
+REM ----------------------------------------------------------------------
+REM ProbeCloseByIndex p%
