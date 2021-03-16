@@ -121,8 +121,19 @@ SECTIONS
         *(vtable)
         *(.ctors)
         *(.dtors)
-        *(.init_array)
-        *(.fini_array)
+
+        PROVIDE_HIDDEN (__preinit_array_start = .);
+        KEEP(*(.preinit_array))
+        PROVIDE_HIDDEN (__preinit_array_end = .);
+
+        PROVIDE_HIDDEN (__init_array_start = .);
+        KEEP(*(.init_array))
+        PROVIDE_HIDDEN (__init_array_end = .);
+
+        PROVIDE_HIDDEN (__fini_array_start = .);
+        KEEP(*(.fini_array))
+        PROVIDE_HIDDEN (__fini_array_end = .);
+
         *(.ramfunc*)
         *(RamFunction)
         KEEP(*(CodeQuickAccess))
