@@ -1,0 +1,7 @@
+# Hidden configuration files
+.settings
+.cproject
+cproject_*
+
+# Compilation results
+/mimxrt685s/
