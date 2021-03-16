@@ -46,7 +46,7 @@ char **environ = __env;
 int __attribute__((weak))
 _system(const char *s)
 {
- 	if (s == NULL)
+	if (s == NULL)
 		return 0;
 
 	errno = ENOSYS;
