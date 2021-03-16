@@ -176,6 +176,7 @@ _open(const char *path, int flags, ...)
 	return -1;
 }
 
+#if 0 // Use the one in libmimxrt685s.a
 extern int __io_putchar(int ch) __attribute__((weak));
 
 int __attribute__((weak))
@@ -189,6 +190,7 @@ _write(int file, const void *data, size_t len)
 	}
 	return len;
 }
+#endif
 
 off_t __attribute__((weak))
 _lseek(int file, off_t ptr, int dir)
@@ -196,6 +198,7 @@ _lseek(int file, off_t ptr, int dir)
 	return 0;
 }
 
+#if 0 // Use the one in libmimxrt685s.a
 extern int __io_getchar(void) __attribute__((weak));
 
 int __attribute__((weak))
@@ -210,6 +213,7 @@ _read(int file, void *buf, size_t len)
 
 	return len;
 }
+#endif
 
 int __attribute__((weak))
 _wait(int *status)

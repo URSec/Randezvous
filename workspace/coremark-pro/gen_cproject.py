@@ -59,9 +59,25 @@ libraries = {
             compiler_rt_path + '/lib/baremetal',
         ],
     },
-    'power_hardabi': {
+    'mimxrt685s': {
+        'defines': [
+            'CPU_MIMXRT685SFVKB',
+            'CPU_MIMXRT685SFVKB_cm33',
+            'SDK_DEBUGCONSOLE=0',
+            'SDK_DEBUGCONSOLE_UART',
+        ],
+        'includes': [
+            '${workspace_loc:/mimxrt685s/CMSIS}',
+            '${workspace_loc:/mimxrt685s/board}',
+            '${workspace_loc:/mimxrt685s/component/lists}',
+            '${workspace_loc:/mimxrt685s/component/uart}',
+            '${workspace_loc:/mimxrt685s/device}',
+            '${workspace_loc:/mimxrt685s/drivers}',
+            '${workspace_loc:/mimxrt685s/flash_config}',
+            '${workspace_loc:/mimxrt685s/utilities}',
+        ],
         'library_paths': [
-            '${ProjDirPath}/libs',
+            '${workspace_loc:/mimxrt685s/mimxrt685s}',
         ],
     },
 }
@@ -71,41 +87,6 @@ libraries = {
 # Dict of common components that are used.
 #
 components = {
-    'HAL': {
-        'defines': [
-            'BOOT_HEADER_ENABLE=1',
-            'CPU_MIMXRT685SFVKB',
-            'CPU_MIMXRT685SFVKB_cm33',
-            'NDEBUG',
-            'PRINTF_FLOAT_ENABLE=1',
-            'SDK_DEBUGCONSOLE=0',
-            'SDK_DEBUGCONSOLE_UART',
-            'SERIAL_PORT_TYPE_UART=1',
-            '__MCUXPRESSO',
-            '__USE_CMSIS',
-        ],
-        'includes': [
-            '${ProjDirPath}/CMSIS',
-            '${ProjDirPath}/board',
-            '${ProjDirPath}/component/lists',
-            '${ProjDirPath}/component/serial_manager',
-            '${ProjDirPath}/component/uart',
-            '${ProjDirPath}/device',
-            '${ProjDirPath}/drivers',
-            '${ProjDirPath}/flash_config',
-            '${ProjDirPath}/utilities',
-        ],
-        'directories': {
-            'CMSIS': '',
-            'board': '',
-            'component': '',
-            'device': '',
-            'drivers': '',
-            'flash_config': '',
-            'startup': '',
-            'utilities': '',
-        },
-    },
 }
 
 

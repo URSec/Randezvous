@@ -1,4 +1,10 @@
+#include "board.h"
+#include "pin_mux.h"
 #include "fsl_device_registers.h"
+
+//=============================================================================
+// RTC
+//=============================================================================
 
 void RTC_Init(void)
 {
@@ -13,4 +19,27 @@ uint32_t RTC_GetTick(void)
 	uint32_t subsecs = RTC->SUBSEC;
 
 	return seconds * 1000 + subsecs * 1000 / 32768;
+}
+
+//=============================================================================
+// Initialization
+//=============================================================================
+
+/*
+ * Initialization routine called before .data and .bss are initialized.
+ */
+void SystemInitHook(void)
+{
+}
+
+/*
+ * Initialization routine called after .data and .bss are initialized.
+ */
+void __attribute__((constructor)) Init(void)
+{
+	BOARD_InitBootPins();
+	BOARD_InitBootClocks();
+	BOARD_InitDebugConsole();
+
+	RTC_Init();
 }
