@@ -6,6 +6,7 @@ PROJECTS=(
     "beebs"
     "coremark-pro"
     "mimxrt685s"
+    "tests"
 )
 
 #
