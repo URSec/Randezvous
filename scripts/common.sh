@@ -96,7 +96,8 @@ compile() {
     fi
 
     local elf="$PROJ_DIR/$2/$2.axf"
-    rm -rf "$elf"
+    local lib="$PROJ_DIR/$2/lib$2.a"
+    rm -rf "$elf" "$lib"
 
     # Do compile
     local eclipse_args=(
@@ -108,15 +109,20 @@ compile() {
     )
     echo "Compiling $2 for $1 ......"
     "$ECLIPSE" ${eclipse_args[@]} $PROJ/$2 >& "$debug_dir/build-$2.log"
-    if [[ ! -x "$elf" ]]; then
+    if [[ ! -x "$elf" ]] && [[ ! -f "$lib" ]]; then
         echo "Compiling $2 failed!"
         echo "Check $debug_dir/build-$2.log for details"
         exit 1
     fi
 
     # Copy the generated ELF binary to the debug directory
-    echo "Copying $2.elf to debug/$PROJ-$1 ......"
-    cp "$elf" "$debug_dir/$2.axf"
+    if [[ -x "$elf" ]]; then
+        echo "Copying $2.axf to debug/$PROJ-$1 ......"
+        cp "$elf" "$debug_dir"
+    else
+        echo "Copying lib$2.a to debug/$PROJ-$1 ......"
+        cp "$lib" "$debug_dir"
+    fi
 
     echo "Done compiling $2 for $1"
     echo
