@@ -22,6 +22,9 @@ CONFIGURATIONS=(
 # Entrance of the script.
 #
 case $1 in
+"debug" )
+    debug $2 $3
+    ;;
 "run" )
     if (( $# == 2 )); then
         for program in ${PROGRAMS[@]}; do

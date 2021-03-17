@@ -252,3 +252,114 @@ run() {
         echo
     done
 }
+
+#
+# Debug an already compiled benchmark program.
+#
+# $1: the configuration to use.
+# $2: the program to run.
+#
+debug() {
+    # Find IDE if we have not done so
+    if [[ -z "$FLASH_TOOL" ]] || [[ -z "$FLASH_SERVER" ]]; then
+        find_ide
+    fi
+
+    # Check if necessary variables are defined
+    if [[ -z "$CONFIGURATIONS" ]] || [[ -z "$PROGRAMS" ]] ||
+       [[ -z "$PROJ" ]] || [[ -z "$PROJ_DIR" ]]; then
+        echo "One or more necessary variables undefined!"
+        exit 1
+    fi
+    # Check if the configuration name is valid
+    if [[ ! " ${CONFIGURATIONS[@]} " =~ " $1 " ]]; then
+        echo "Configuration must be one of the following:"
+        echo "${CONFIGURATIONS[@]}"
+        exit 1
+    fi
+
+    # Check if the program name is valid
+    if [[ ! " ${PROGRAMS[@]} " =~ " $2 " ]]; then
+        echo "Program must be one of the following:"
+        echo "${PROGRAMS[@]}"
+        exit 1
+    fi
+
+    # Check if the ELF binary is there
+    local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
+    local elf="$debug_dir/$2.axf"
+    if [[ ! -x "$elf" ]]; then
+        echo "No $elf found!"
+        echo "Try to compile first!"
+        exit 1
+    fi
+
+    # Check if arm-none-eabi-gdb is there
+    local gdb=`which arm-none-eabi-gdb 2> /dev/null`
+    if [[ -z "$gdb" ]]; then
+        echo "arm-none-eabi-gdb not found!"
+        exit 1
+    fi
+
+    # Establish a flash server
+    local flash_server_args=(
+        "--commandline"
+    )
+    local flash_server_log=`mktemp -q`
+    echo "Starting flash server ......"
+    "$FLASH_SERVER" ${flash_server_args[@]} < "$FLASH_SERVER_SCRIPT" >& "$flash_server_log"
+    if [[ -n `grep -i error "$flash_server_log"` ]]; then
+        echo "Starting flash server failed!"
+        echo "Check $flash_server_log for details"
+        exit 1
+    fi
+
+    # Construct a GDB command file on the fly
+    local flash_tool_args=(
+        "-g"
+        "-mi"
+        "-p MIMXRT685S"
+        "-x '$ROOT_DIR/scripts'"
+        "--bootromstall 0x50002034"
+        "--reset="
+        "-probehandle=1"
+        "-coreindex=0"
+        "-cache=disable"
+    )
+    local flash_tool_args_all="${flash_tool_args[@]}"
+    local flash_tool_log=`mktemp -q`
+    local gdb_commands=(
+        "set breakpoint pending on"
+        "set detach-on-fork on"
+        "set python print-stack none"
+        "set print object on"
+        "set print sevenbit-strings on"
+        "set host-charset UTF-8"
+        "set target-charset UTF-8"
+        "set target-wide-charset UTF-32"
+        "set dprintf-style call"
+        "set target-async on"
+        "set record full stop-at-limit off"
+        "set non-stop on"
+        "set auto-solib-add on"
+        "set pagination off"
+        "set mi-async"
+        "set remotetimeout 60000"
+        "target extended-remote | '$FLASH_TOOL' $flash_tool_args_all 2> '$flash_tool_log'"
+        "set mem inaccessible-by-default off"
+        "mon ondisconnect cont"
+        "set arm force-mode thumb"
+        "set remote hardware-breakpoint-limit 8"
+        "mon semihost enable"
+        "load '$elf'"
+        "symbol-file '$elf'"
+    )
+    local gdb_commands_file=`mktemp -q`
+    for cmd in "${gdb_commands[@]}"; do
+        echo "$cmd" >> "$gdb_commands_file"
+    done
+
+    # Run GDB
+    echo "Starting GDB ......"
+    "$gdb" -x "$gdb_commands_file"
+}
