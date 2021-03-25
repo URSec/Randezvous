@@ -1,0 +1,10 @@
+# Hidden configuration files
+.settings
+.cproject
+cproject_*
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/mbedtls-benchmark/
