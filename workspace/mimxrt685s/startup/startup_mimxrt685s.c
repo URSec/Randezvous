@@ -23,9 +23,11 @@
 //*****************************************************************************
 extern "C" {
     extern void __libc_init_array(void);
+    extern void __libc_fini_array(void);
 }
 #else
 extern void __libc_init_array(void);
+extern void __libc_fini_array(void);
 #endif
 
 #define WEAK __attribute__ ((weak))
@@ -447,6 +449,11 @@ void ResetISR_C(void) {
 #else
     main();
 #endif
+
+    //
+    // Call C++ library finalization
+    //
+    __libc_fini_array();
 
     //
     // main() shouldn't return, but if it does, we'll just enter an infinite loop
