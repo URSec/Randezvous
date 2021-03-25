@@ -36,10 +36,10 @@ case $1 in
 "run" )
     if (( $# == 2 )); then
         for program in ${PROGRAMS[@]}; do
-            run $2 $program "Done:"
+            run $2 $program "Bye!"
         done
     else
-        run $2 $3 "Done:"
+        run $2 $3 "Bye!"
     fi
     ;;
 * )

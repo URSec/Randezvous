@@ -113,10 +113,10 @@ case $1 in
             if [[ " ${PROGRAMS_EXCLUDED[@]} " =~ " $prog " ]]; then
                 continue
             fi
-            run $2 $prog "Finished"
+            run $2 $prog "Bye!"
         done
     else
-        run $2 $3 "Finished"
+        run $2 $3 "Bye!"
     fi
     ;;
 * )
