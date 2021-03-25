@@ -3,3 +3,9 @@ debug
 
 # Running results
 data
+
+# cscope files
+cscope.out
+cscope.files
+cscope.in.out
+cscope.po.out
