@@ -1,6 +1,8 @@
 #include "board.h"
 #include "pin_mux.h"
-#include "fsl_device_registers.h"
+#include "fsl_common.h"
+
+#include <stdio.h>
 
 //=============================================================================
 // RTC
@@ -46,4 +48,17 @@ void __attribute__((constructor)) Init(void)
 	BOARD_InitDebugConsole();
 
 	RTC_Init();
+
+	SDK_DelayAtLeastUs(2000000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
+}
+
+//=============================================================================
+// Finalization
+//=============================================================================
+
+void __attribute__((destructor)) Fini(void)
+{
+	SDK_DelayAtLeastUs(2000000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
+
+	printf("\nBye!\n");
 }
