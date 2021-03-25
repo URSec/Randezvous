@@ -331,12 +331,15 @@ def gen_core_settings_config(conf, program):
     for library in libraries:
         if 'defines' in libraries[library]:
             for define in libraries[library]['defines']:
+                define = define.replace('"', '\&quot;')
                 xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     if 'defines' in configurations[conf]:
         for define in configurations[conf]['defines']:
+            define = define.replace('"', '\&quot;')
             xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     if 'defines' in programs[program]:
         for define in programs[program]['defines']:
+            define = define.replace('"', '\&quot;')
             xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     xml += '                </option>\n'
     # Add include paths
