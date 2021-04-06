@@ -1,6 +1,7 @@
 #include "board.h"
 #include "pin_mux.h"
 #include "fsl_common.h"
+#include "fsl_trng.h"
 
 #include <stdio.h>
 
@@ -24,6 +25,20 @@ uint32_t RTC_GetTick(void)
 }
 
 //=============================================================================
+// RNG
+//=============================================================================
+
+void RNG_Init(void)
+{
+	trng_config_t trng_config;
+
+	assert(TRNG_GetDefaultConfig(&trng_config) == kStatus_Success &&
+	       "Failed to get default TRNG configuration!");
+	assert(TRNG_Init(TRNG, &trng_config) == kStatus_Success &&
+	       "Failed to initialize TRNG!");
+}
+
+//=============================================================================
 // Initialization
 //=============================================================================
 
@@ -32,6 +47,7 @@ uint32_t RTC_GetTick(void)
  */
 void SystemInitHook(void)
 {
+	RNG_Init();
 }
 
 /*
