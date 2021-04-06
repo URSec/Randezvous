@@ -6,6 +6,12 @@
 #include <stdio.h>
 
 //=============================================================================
+// Randezvous function prototypes
+//=============================================================================
+
+extern void __randezvous_shadow_stack_init(void);
+
+//=============================================================================
 // RTC
 //=============================================================================
 
@@ -48,6 +54,10 @@ void RNG_Init(void)
 void SystemInitHook(void)
 {
 	RNG_Init();
+
+#ifdef RANDEZVOUS_SS
+	__randezvous_shadow_stack_init();
+#endif
 }
 
 /*
