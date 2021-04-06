@@ -543,8 +543,11 @@ def gen_core_settings_config(conf, program):
     xml += '                <option id="com.crt.advproject.link.inimplib.' + program_id + '" name="Input Secure Gateway Import Library" superClass="com.crt.advproject.link.inimplib" useByScannerDiscovery="false"/>\n'
     # Thumb mode: true
     xml += '                <option id="com.crt.advproject.link.thumb.' + program_id + '" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>\n'
-    # Linker script path: "${ProjDirPath}/LinkerScript.ld"
-    xml += '                <option id="com.crt.advproject.link.script.' + program_id + '" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;${ProjDirPath}/LinkerScript.ld&quot;" valueType="string"/>\n'
+    # Linker script path: "${ProjDirPath}/LinkerScript.ld" or a custom one
+    linkerscript = '${ProjDirPath}/LinkerScript.ld'
+    if 'linkerscript' in configurations[conf]:
+        linkerscript = configurations[conf]['linkerscript']
+    xml += '                <option id="com.crt.advproject.link.script.' + program_id + '" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;' + linkerscript + '&quot;" valueType="string"/>\n'
     # Linker script directory: none
     xml += '                <option id="com.crt.advproject.link.scriptdir.' + program_id + '" name="Script path" superClass="com.crt.advproject.link.scriptdir" useByScannerDiscovery="false" value="" valueType="string"/>\n'
     # Manage linker script: false
