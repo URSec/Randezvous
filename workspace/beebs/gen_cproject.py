@@ -214,13 +214,7 @@ programs = {
 # Dict of configurations.
 #
 configurations = {
-    'baseline': {
-        'cflags': [
-        ],
-        'ldflags': [
-            '-Wl,-save-temps',
-        ],
-    },
+    'baseline': {},
 }
 
 
@@ -552,6 +546,7 @@ def gen_core_settings_config(conf, program):
     xml += '                <option id="gnu.c.link.option.other.' + program_id + '" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
     xml += '                  <listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--gc-sections"/>\n'
+    xml += '                  <listOptionValue builtIn="false" value="--save-temps"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--undefined=flexspi_config"/>\n'  # XXX: Hack!
     xml += '                  <listOptionValue builtIn="false" value="--undefined-glob=__aeabi_*"/>\n'  # XXX: Hack!
     xml += '                </option>\n'

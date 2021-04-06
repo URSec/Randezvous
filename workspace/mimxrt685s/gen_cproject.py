@@ -97,8 +97,7 @@ programs = {
 # Dict of configurations.
 #
 configurations = {
-    'baseline': {
-    },
+    'baseline': {},
 }
 
 
