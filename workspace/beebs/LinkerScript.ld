@@ -67,15 +67,19 @@ SECTIONS
     } > QSPI_FLASH
 
     /* MAIN TEXT SECTION */
-    .text : ALIGN(4)
+    .text : ALIGN(32)
     {
         FILL(0xff)
+        _text = .;
         *(.after_vectors*)
         *(.text*)
+        . = ALIGN(32);
+        _etext = .;
     } > QSPI_FLASH
 
-    .rodata : ALIGN(4)
+    .rodata : ALIGN(32)
     {
+        _rodata = .;
         *(.rodata .rodata.* .constdata .constdata.*)
     } > QSPI_FLASH
 
@@ -97,10 +101,10 @@ SECTIONS
     {
         __exidx_start = .;
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+        . = ALIGN(32);
         __exidx_end = .;
+        _erodata = .;
     } > QSPI_FLASH
-
-    _etext = .;
 
     /* MAIN DATA SECTION */
     .uninit_RESERVED (NOLOAD) : ALIGN(4)
@@ -112,7 +116,7 @@ SECTIONS
     } > SRAM AT> SRAM
 
     /* Main DATA section (SRAM) */
-    .data : ALIGN(4)
+    .data : ALIGN(32)
     {
         FILL(0xff)
         _data = .;
