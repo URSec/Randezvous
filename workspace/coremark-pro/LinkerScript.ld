@@ -217,6 +217,6 @@ SECTIONS
      * to set image to be plain load image or XIP.
      * Config : Plain load image = false
      */
-    __imghdr_loadaddress = LOADADDR(.text);
+    __imghdr_loadaddress = LOADADDR(.isr_vector);
     __imghdr_imagetype = 4;
 }
