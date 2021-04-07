@@ -549,7 +549,7 @@ def gen_core_settings_config(conf, program):
     xml += '                  <listOptionValue builtIn="false" value="--save-temps"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats-json"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--mllvm=-info-output-file=stats.json"/>\n'
+    xml += '                  <listOptionValue builtIn="false" value="--mllvm=-info-output-file=&quot;${BuildArtifactFileBaseName}.json&quot;"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--undefined=flexspi_config"/>\n'  # XXX: Hack!
     xml += '                  <listOptionValue builtIn="false" value="--undefined-glob=__aeabi_*"/>\n'  # XXX: Hack!
     xml += '                </option>\n'
