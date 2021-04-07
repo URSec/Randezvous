@@ -52,6 +52,7 @@ typedef enum {
 	RN_Code = 0,
 	RN_Rodata,
 	RN_Ram,
+	RN_Peripherals,
 	NumRNs,
 } MPU_RegionNumber;
 
@@ -98,7 +99,7 @@ void MPU_Init(void)
 	MPU->MAIR1 = 0x04040404U;
 
 	/*
-	 * Set up MPU region 0 for text.
+	 * Set up an MPU region for text.
 	 *
 	 * Base:  _text
 	 * Limit: _etext - 1
@@ -117,7 +118,7 @@ void MPU_Init(void)
 		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
 
 	/*
-	 * Set up MPU region 1 for rodata.
+	 * Set up an MPU region for rodata.
 	 *
 	 * Base:  _rodata
 	 * Limit: _erodata - 1
@@ -136,7 +137,7 @@ void MPU_Init(void)
 		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
 
 	/*
-	 * Set up MPU region 2 for RAM.
+	 * Set up an MPU region for RAM.
 	 *
 	 * Base:  _data
 	 * Limit: _vStackTop - 1
@@ -154,9 +155,27 @@ void MPU_Init(void)
 		    ((0U << MPU_RLAR_AttrIndx_Pos) & MPU_RLAR_AttrIndx_Msk) |
 		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
 
+	/*
+	 * Set up an MPU region for peripherals.
+	 *
+	 * Base:  0x40000000
+	 * Limit: 0xDFFFFFFF
+	 * Share: Non-shareable
+	 * AP:    Privileged read-write
+	 * XN:    True
+	 * Attr:  1
+	 */
+	MPU->RNR = RN_Peripherals;
+	MPU->RBAR = (0x40000000U & MPU_RBAR_BASE_Msk) |
+		    ((0U << MPU_RBAR_SH_Pos) & MPU_RBAR_SH_Msk) |
+		    ((0U << MPU_RBAR_AP_Pos) & MPU_RBAR_AP_Msk) |
+		    ((1U << MPU_RBAR_XN_Pos) & MPU_RBAR_XN_Msk);
+	MPU->RLAR = (0xDFFFFFFFU & MPU_RLAR_LIMIT_Msk) |
+		    ((1U << MPU_RLAR_AttrIndx_Pos) & MPU_RLAR_AttrIndx_Msk) |
+		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
+
 	/* Set MPU control register: Enable MPU */
-	MPU->CTRL = ((1U << MPU_CTRL_PRIVDEFENA_Pos) & MPU_CTRL_PRIVDEFENA_Msk) |
-		    ((1U << MPU_CTRL_HFNMIENA_Pos) & MPU_CTRL_HFNMIENA_Msk) |
+	MPU->CTRL = ((1U << MPU_CTRL_HFNMIENA_Pos) & MPU_CTRL_HFNMIENA_Msk) |
 		    ((1U << MPU_CTRL_ENABLE_Pos) & MPU_CTRL_ENABLE_Msk);
 
 	/* Force memory writes before continuing */
