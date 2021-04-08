@@ -359,6 +359,9 @@ void __attribute__((constructor)) Init(void)
 
 	RTC_Init();
 
+	/* Init SysTick module */
+	SysTick_Config(CLOCK_GetFreq(kCLOCK_CoreSysClk) / 1000U);
+
 #ifdef RANDEZVOUS_PICOXOM
 	MPU_Init();
 	DWT_Init();
