@@ -280,12 +280,16 @@ void CRYPTO_InitHardware(void)
 #if defined(TRNG)
 #define TRNG0 TRNG
 #endif
+
+#if 0
         trng_config_t trngConfig;
 
         (void)TRNG_GetDefaultConfig(&trngConfig);
         /* Set sample mode of the TRNG ring oscillator to Von Neumann, for better random data.*/
         /* Initialize TRNG */
         (void)TRNG_Init(TRNG0, &trngConfig);
+#endif
+
 #elif defined(FSL_FEATURE_SOC_RNG_COUNT) && (FSL_FEATURE_SOC_RNG_COUNT > 0)
         RNGA_Init(RNG);
         RNGA_Seed(RNG, SIM->UIDL);

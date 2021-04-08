@@ -478,9 +478,12 @@ int main( int argc, char *argv[] )
     POWER_ApplyPD();
     CRYPTO_InitHardware();
 
+#if 0
     /* Init SysTick module */
     /* call CMSIS SysTick function. It enables the SysTick interrupt at low priority */
     SysTick_Config(CLOCK_GetCoreSysClkFreq() / 1000U); /* 1 ms period */
+#endif
+
 #endif
     bench_print_features();
 #if 0 /* We need to run all tests*/
