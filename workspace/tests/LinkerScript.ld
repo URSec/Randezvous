@@ -107,15 +107,6 @@ SECTIONS
     } > QSPI_FLASH
 
     /* MAIN DATA SECTION */
-    .uninit_RESERVED (NOLOAD) : ALIGN(4)
-    {
-        _start_uninit_RESERVED = .;
-        KEEP(*(.bss.$RESERVED*))
-        . = ALIGN(4);
-        _end_uninit_RESERVED = .;
-    } > SRAM AT> SRAM
-
-    /* Main DATA section (SRAM) */
     .data : ALIGN(32)
     {
         FILL(0xff)
@@ -162,19 +153,6 @@ SECTIONS
         PROVIDE(__end_bss_RAM = .);
         PROVIDE(__end_bss_SRAM = .);
         PROVIDE(end = .);
-    } > SRAM AT> SRAM
-
-    /* DEFAULT NOINIT SECTION */
-    .noinit (NOLOAD) : ALIGN(4)
-    {
-        _noinit = .;
-        PROVIDE(__start_noinit_RAM = .);
-        PROVIDE(__start_noinit_SRAM = .);
-        *(.noinit*)
-        . = ALIGN(4);
-        _end_noinit = .;
-        PROVIDE(__end_noinit_RAM = .);
-        PROVIDE(__end_noinit_SRAM = .);
     } > SRAM AT> SRAM
 
     /* Reserve and place Heap within memory map */
