@@ -97,7 +97,8 @@ compile() {
 
     local elf="$PROJ_DIR/$2/$2.axf"
     local lib="$PROJ_DIR/$2/lib$2.a"
-    rm -rf "$elf" "$lib"
+    local stats="$PROJ_DIR/$2/$2.json"
+    rm -rf "$elf" "$lib" "$stats"
 
     # Do compile
     local eclipse_args=(
@@ -122,6 +123,12 @@ compile() {
     else
         echo "Copying lib$2.a to debug/$PROJ-$1 ......"
         cp "$lib" "$debug_dir"
+    fi
+
+    # Copy the statistics file to the debug directory
+    if [[ -f "$stats" ]]; then
+        echo "Copying $2.json to debug/$PROJ-$1 ......"
+        cp "$stats" "$debug_dir"
     fi
 
     echo "Done compiling $2 for $1"
