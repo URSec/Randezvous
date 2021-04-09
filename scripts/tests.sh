@@ -7,6 +7,10 @@ PROJ_DIR="$ROOT_DIR/workspace/$PROJ"
 
 PROGRAMS=(
     "test1"
+    "test2"
+    "test3"
+    "test4"
+    "test5"
 )
 
 CONFIGURATIONS=(
