@@ -93,6 +93,9 @@ PROGRAMS_EXCLUDED=(
 
 CONFIGURATIONS=(
     "baseline"
+    "baseline-sram"
+    "randezvous"
+    "randezvous-sram"
 )
 
 #
