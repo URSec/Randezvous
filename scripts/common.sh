@@ -218,8 +218,15 @@ run() {
         local flash_server_args=(
             "--commandline"
         )
-        local flash_tool_args=(
-            "--flash-load-exec $elf"
+        local flash_tool_load_args=(
+            "--flash-load $elf"
+            "-p MIMXRT685S"
+            "-x $ROOT_DIR/scripts"
+            "--bootromstall 0x50002034"
+            "--args"
+        )
+        local flash_tool_reset_args=(
+            "--reset hard"
             "-p MIMXRT685S"
             "-x $ROOT_DIR/scripts"
             "--bootromstall 0x50002034"
@@ -234,9 +241,16 @@ run() {
             echo "Check $flash_server_log for details"
             exit 1
         fi
-        "$FLASH_TOOL" ${flash_tool_args[@]} >& "$flash_tool_log"
+        "$FLASH_TOOL" ${flash_tool_load_args[@]} >& "$flash_tool_log"
         if (( $? != 0 )); then
             echo "Programming failed!"
+            echo "Check $flash_tool_log for details"
+            exit 1
+        fi
+        echo "Resetting the board ......"
+        "$FLASH_TOOL" ${flash_tool_reset_args[@]} &>> "$flash_tool_log"
+        if (( $? != 0 )); then
+            echo "Resetting failed!"
             echo "Check $flash_tool_log for details"
             exit 1
         fi
