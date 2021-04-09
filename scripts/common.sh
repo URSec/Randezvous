@@ -111,9 +111,14 @@ compile() {
     echo "Compiling $2 for $1 ......"
     "$ECLIPSE" ${eclipse_args[@]} $PROJ/$2 >& "$debug_dir/build-$2.log"
     if [[ ! -x "$elf" ]] && [[ ! -f "$lib" ]]; then
-        echo "Compiling $2 failed!"
-        echo "Check $debug_dir/build-$2.log for details"
-        exit 1
+        # Try again; the IDE sometimes may fail for no reason, but it's
+        # unlikely to happen twice in a row
+        "$ECLIPSE" ${eclipse_args[@]} $PROJ/$2 >& "$debug_dir/build-$2.log"
+        if [[ ! -x "$elf" ]] && [[ ! -f "$lib" ]]; then
+            echo "Compiling $2 failed!"
+            echo "Check $debug_dir/build-$2.log for details"
+            exit 1
+        fi
     fi
 
     # Copy the generated ELF binary to the debug directory
