@@ -121,6 +121,9 @@ programs = {
 #
 configurations = {
     'baseline': {},
+    'baseline-sram': {
+        'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
+    },
 }
 
 
