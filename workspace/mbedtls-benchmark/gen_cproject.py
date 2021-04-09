@@ -124,6 +124,39 @@ configurations = {
     'baseline-sram': {
         'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
     },
+    'randezvous': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+            'RANDEZVOUS_SS',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-grbg',
+            '-Wl,-mllvm,-arm-randezvous-lgp',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            '-Wl,-mllvm,-arm-randezvous-ran',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+        ],
+    },
+    'randezvous-sram': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+            'RANDEZVOUS_SS',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-grbg',
+            '-Wl,-mllvm,-arm-randezvous-lgp',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            '-Wl,-mllvm,-arm-randezvous-ran',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+        ],
+        'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
+    },
 }
 
 
