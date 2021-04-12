@@ -174,10 +174,10 @@ programs = {
             '${ProjDirPath}/src/mith/al/include',
         ],
         'ldflags': [
-            # Needs more than 1.5 MB of .rodata, so make it 1920 KB
-            '-Wl,-mllvm,-arm-randezvous-max-rodata-size=0x1e0000',
-            # Shrink max text size to 832 KB
-            '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
+            # Needs more than 1.5 MB of .rodata, so make it 1600 KB
+            '-Wl,-mllvm,-arm-randezvous-max-rodata-size=0x190000',
+            # Shrink max text size to 960 KB
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0xe0000',
         ],
         'directories': {
             'src': 'benchmarks/consumer_v2/|benchmarks/core/|benchmarks/darkmark/|benchmarks/fp/fft_radix2/ref-sp/|benchmarks/fp/linpack/|benchmarks/fp/loops/|benchmarks/fp/nnet/|benchmarks/fp/preset/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/cjpeg-rose7-preset/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/|workloads/nnet_test/|workloads/parser-125k/|workloads/radix2-big-64k/jni/|workloads/sets/|workloads/sha-test/|workloads/zip-test/',
