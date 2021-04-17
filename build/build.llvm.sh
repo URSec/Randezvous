@@ -39,6 +39,7 @@ cmake -G Ninja                                                              \
       -DLLVM_TARGETS_TO_BUILD="ARM;X86"                                     \
       -DLLVM_ENABLE_ASSERTIONS=ON                                           \
       -DLLVM_OPTIMIZED_TABLEGEN=ON                                          \
+      -DLLVM_APPEND_VC_REV=OFF                                              \
       "$LLVM_SRC/llvm"
 
 ninja
