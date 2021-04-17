@@ -256,6 +256,39 @@ configurations = {
 }
 
 
+#
+# Extra settings that cannot be specified statically and need to be populated
+# by a function at runtime.
+#
+extras = {}
+
+
+#
+# Populate extra settings.
+#
+def populate_extra_settings():
+    for conf in configurations:
+        for program in programs:
+            extras[(conf, program)] = {
+                'defines': [],
+                'includes': [],
+                'cflags': [],
+                'ldflags': [],
+            }
+
+    for conf in configurations:
+        load2sram = conf.endswith('-sram')
+        clr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-clr' in configurations[conf]['ldflags']
+
+        # If using CLR and not loading text to SRAM (execute-in-place), set max
+        # text size to 7936 KB (8 MB - 256 KB)
+        if clr and not load2sram:
+            for program in programs:
+                extras[(conf, program)]['ldflags'].extend([
+                    '-Wl,-mllvm,-arm-randezvous-max-text-size=0x7c0000',
+                ])
+
+
 ###############################################################################
 
 #
@@ -520,6 +553,10 @@ def gen_core_settings_config(conf, program):
         for define in programs[program]['defines']:
             define = define.replace('"', '\&quot;')
             xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
+    if 'defines' in extras[(conf, program)]:
+        for define in extras[(conf, program)]['defines']:
+            define = define.replace('"', '\&quot;')
+            xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="BENCHMARK_NAME=\&quot;' + program + '\&quot;"/>\n'
     xml += '                </option>\n'
     # Add include paths
@@ -538,6 +575,9 @@ def gen_core_settings_config(conf, program):
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
+    if 'includes' in extras[(conf, program)]:
+        for include in extras[(conf, program)]['includes']:
+            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     # Add other C flags
     xml += '                <option id="gnu.c.compiler.option.misc.other.' + program_id + '" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf'
@@ -554,6 +594,9 @@ def gen_core_settings_config(conf, program):
             xml += ' ' + cflag
     if 'cflags' in programs[program]:
         for cflag in programs[program]['cflags']:
+            xml += ' ' + cflag
+    if 'cflags' in extras[(conf, program)]:
+        for cflag in extras[(conf, program)]['cflags']:
             xml += ' ' + cflag
     xml += '" valueType="string"/>\n'
     xml += '                <inputType id="com.crt.advproject.compiler.input.' + program_id + '" superClass="com.crt.advproject.compiler.input"/>\n'
@@ -658,6 +701,9 @@ def gen_core_settings_config(conf, program):
     if 'ldflags' in programs[program]:
         for ldflag in programs[program]['ldflags']:
             xml += ' ' + ldflag
+    if 'ldflags' in extras[(conf, program)]:
+        for ldflag in extras[(conf, program)]['ldflags']:
+            xml += ' ' + ldflag
     xml += '" valueType="string"/>\n'
     # Add library search paths
     xml += '                <option id="gnu.c.link.option.paths.' + program_id + '" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
@@ -719,6 +765,9 @@ def gen_core_settings_config(conf, program):
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
+            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
+    if 'includes' in extras[(conf, program)]:
+        for include in extras[(conf, program)]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     xml += '                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.' + program_id + '" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>\n'
@@ -860,4 +909,5 @@ def main():
 
 
 if __name__ == '__main__':
+    populate_extra_settings()
     main()

@@ -104,10 +104,6 @@ programs = {
             '${ProjDirPath}/src/mith/include',
             '${ProjDirPath}/src/mith/al/include',
         ],
-        'ldflags': [
-            # Needs more than 64 KB of .data, so make it 128 KB
-            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x20000',
-        ],
         'directories': {
             'src': 'benchmarks/core/|benchmarks/darkmark/|benchmarks/fp/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/|workloads/nnet_test/|workloads/parser-125k/|workloads/radix2-big-64k/|workloads/sets/|workloads/sha-test/|workloads/zip-test/',
         },
@@ -137,10 +133,6 @@ programs = {
             '${ProjDirPath}/src/mith/include',
             '${ProjDirPath}/src/mith/al/include',
         ],
-        'ldflags': [
-            # Needs more than 3 MB of heap, so shrink max text size to 832 KB
-            '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
-        ],
         'directories': {
             'src': 'benchmarks/consumer_v2/|benchmarks/core/|benchmarks/darkmark/|benchmarks/fp/fft_radix2/|benchmarks/fp/linpack/|benchmarks/fp/loops/ref/|benchmarks/fp/nnet/|benchmarks/fp/preset/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/cjpeg-rose7-preset/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/jni/|workloads/nnet_test/|workloads/parser-125k/|workloads/radix2-big-64k/|workloads/sets/|workloads/sha-test/|workloads/zip-test/',
         },
@@ -160,10 +152,6 @@ programs = {
             '${ProjDirPath}/src/mith/include',
             '${ProjDirPath}/src/mith/al/include',
         ],
-        'ldflags': [
-            # Needs to fit ~2000 recursions in 32 KB shadow stack
-            '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=4',
-        ],
         'directories': {
             'src': 'benchmarks/consumer_v2/|benchmarks/core/|benchmarks/darkmark/sha/|benchmarks/darkmark/zip/|benchmarks/fp/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/cjpeg-rose7-preset/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/|workloads/nnet_test/|workloads/parser-125k/parser-500k.c|workloads/radix2-big-64k/|workloads/sets/|workloads/sha-test/|workloads/zip-test/',
         },
@@ -172,12 +160,6 @@ programs = {
         'includes': [
             '${ProjDirPath}/src/mith/include',
             '${ProjDirPath}/src/mith/al/include',
-        ],
-        'ldflags': [
-            # Needs more than 1.5 MB of .rodata, so make it 1600 KB
-            '-Wl,-mllvm,-arm-randezvous-max-rodata-size=0x190000',
-            # Shrink max text size to 960 KB
-            '-Wl,-mllvm,-arm-randezvous-max-text-size=0xe0000',
         ],
         'directories': {
             'src': 'benchmarks/consumer_v2/|benchmarks/core/|benchmarks/darkmark/|benchmarks/fp/fft_radix2/ref-sp/|benchmarks/fp/linpack/|benchmarks/fp/loops/|benchmarks/fp/nnet/|benchmarks/fp/preset/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/cjpeg-rose7-preset/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/|workloads/nnet_test/|workloads/parser-125k/|workloads/radix2-big-64k/jni/|workloads/sets/|workloads/sha-test/|workloads/zip-test/',
@@ -198,10 +180,6 @@ programs = {
             '${ProjDirPath}/src/benchmarks/darkmark/zip/zlib-1.2.8',
             '${ProjDirPath}/src/mith/include',
             '${ProjDirPath}/src/mith/al/include',
-        ],
-        'ldflags': [
-            # Needs more than 3 MB of heap, so shrink max text size to 832 KB
-            '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
         ],
         'directories': {
             'src': 'benchmarks/consumer_v2/|benchmarks/core/|benchmarks/darkmark/parser/|benchmarks/darkmark/sha/|benchmarks/darkmark/zip/zlib-1.2.8/examples/|benchmarks/darkmark/zip/zlib-1.2.8/test/|benchmarks/fp/|benchmarks/libbmp/|benchmarks/libjpeg/|mith/al/fdlibm/|mith/al/prism/|mith/al/soft/|mith/al/stub/|mith/al/win32/|workloads/cjpeg-rose7-preset/|workloads/core/|workloads/linear_alg-mid-100x100-sp/|workloads/loops-all-mid-10k-sp/|workloads/nnet_test/|workloads/parser-125k/|workloads/radix2-big-64k/|workloads/sets/|workloads/sha-test/|workloads/zip-test/jni/|benchmarks/darkmark/zip/zlib-1.2.8/gzread.c|benchmarks/darkmark/zip/zlib-1.2.8/gzwrite.c',
@@ -254,6 +232,77 @@ configurations = {
         'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
     },
 }
+
+
+#
+# Extra settings that cannot be specified statically and need to be populated
+# by a function at runtime.
+#
+extras = {}
+
+
+#
+# Populate extra settings.
+#
+def populate_extra_settings():
+    for conf in configurations:
+        for program in programs:
+            extras[(conf, program)] = {
+                'defines': [],
+                'includes': [],
+                'cflags': [],
+                'ldflags': [],
+            }
+
+    for conf in configurations:
+        load2sram = conf.endswith('-sram')
+        clr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-clr' in configurations[conf]['ldflags']
+        gdlr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-gdlr' in configurations[conf]['ldflags']
+        shadow_stack = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-shadow-stack' in configurations[conf]['ldflags']
+
+        # If using CLR and not loading text to SRAM (execute-in-place), set max
+        # text size to 7936 KB (8 MB - 256 KB)
+        if clr and not load2sram:
+            for program in programs:
+                extras[(conf, program)]['ldflags'].extend([
+                    '-Wl,-mllvm,-arm-randezvous-max-text-size=0x7c0000',
+                ])
+
+        # loops-all-moid-10k-sp and zip-test need more than 3 MB of heap, so
+        # set max text size to 832 KB if using CLR and loading text to SRAM
+        if load2sram and clr:
+            extras[(conf, 'loops-all-mid-10k-sp')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
+            ])
+            extras[(conf, 'zip-test')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
+            ])
+
+        if gdlr:
+            # cjpeg-rose7-preset needs more than 64 KB of .data, so make it 128
+            # KB if using GDLR
+            extras[(conf, 'cjpeg-rose7-preset')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-data-size=0x20000',
+            ])
+            # radix2-big-64k needs more than 1.5 MB of .rodata, so make it 1600
+            # KB if using GDLR
+            extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-rodata-size=0x190000',
+            ])
+
+        # parser-125k needs to fit ~2000 recursions in 32 KB shadow stack, so
+        # set shadow stack stride length to 4 bits
+        if shadow_stack:
+            extras[(conf, 'parser-125k')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=4',
+            ])
+
+        # radix2-big-64k needs more than 1.5 MB of .rodata, so set max text
+        # size to 960 KB if using both CLR and GDLR and loading text to SRAM
+        if load2sram and clr and gdlr:
+            extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-text-size=0xe0000',
+            ])
 
 
 ###############################################################################
@@ -520,6 +569,10 @@ def gen_core_settings_config(conf, program):
         for define in programs[program]['defines']:
             define = define.replace('"', '\&quot;')
             xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
+    if 'defines' in extras[(conf, program)]:
+        for define in extras[(conf, program)]['defines']:
+            define = define.replace('"', '\&quot;')
+            xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="BENCHMARK_NAME=\&quot;' + program + '\&quot;"/>\n'
     xml += '                </option>\n'
     # Add include paths
@@ -538,6 +591,9 @@ def gen_core_settings_config(conf, program):
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
+    if 'includes' in extras[(conf, program)]:
+        for include in extras[(conf, program)]['includes']:
+            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     # Add other C flags
     xml += '                <option id="gnu.c.compiler.option.misc.other.' + program_id + '" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf'
@@ -554,6 +610,9 @@ def gen_core_settings_config(conf, program):
             xml += ' ' + cflag
     if 'cflags' in programs[program]:
         for cflag in programs[program]['cflags']:
+            xml += ' ' + cflag
+    if 'cflags' in extras[(conf, program)]:
+        for cflag in extras[(conf, program)]['cflags']:
             xml += ' ' + cflag
     xml += '" valueType="string"/>\n'
     xml += '                <inputType id="com.crt.advproject.compiler.input.' + program_id + '" superClass="com.crt.advproject.compiler.input"/>\n'
@@ -658,6 +717,9 @@ def gen_core_settings_config(conf, program):
     if 'ldflags' in programs[program]:
         for ldflag in programs[program]['ldflags']:
             xml += ' ' + ldflag
+    if 'ldflags' in extras[(conf, program)]:
+        for ldflag in extras[(conf, program)]['ldflags']:
+            xml += ' ' + ldflag
     xml += '" valueType="string"/>\n'
     # Add library search paths
     xml += '                <option id="gnu.c.link.option.paths.' + program_id + '" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
@@ -719,6 +781,9 @@ def gen_core_settings_config(conf, program):
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
+            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
+    if 'includes' in extras[(conf, program)]:
+        for include in extras[(conf, program)]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     xml += '                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.' + program_id + '" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>\n'
@@ -860,4 +925,5 @@ def main():
 
 
 if __name__ == '__main__':
+    populate_extra_settings()
     main()
