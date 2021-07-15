@@ -523,7 +523,6 @@ def gen_core_settings_config(conf, program):
     # Add Xlinker flags
     xml += '                <option id="gnu.c.link.option.other.' + program_id + '" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
     xml += '                  <listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--gc-sections"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--save-temps"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats"/>\n'
     xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats-json"/>\n'
