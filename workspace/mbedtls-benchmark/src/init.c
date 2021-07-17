@@ -10,6 +10,7 @@
 //=============================================================================
 
 extern void __randezvous_shadow_stack_init(void);
+extern void __randezvous_globalguard_getaddr(uint8_t **, uint8_t **);
 
 //=============================================================================
 // RTC
@@ -52,6 +53,10 @@ typedef enum {
 	RN_Code = 0,
 	RN_Rodata,
 	RN_Ram,
+#ifdef RANDEZVOUS_GLOBAL_GUARD
+	RN_GlobalGuard,
+	RN_Ram2,
+#endif
 	RN_Peripherals,
 	NumRNs,
 } MPU_RegionNumber;
@@ -65,6 +70,13 @@ extern uint8_t _vStackTop[];
 
 void MPU_Init(void)
 {
+#ifdef RANDEZVOUS_GLOBAL_GUARD
+	uint8_t * _globalguard;
+	uint8_t * _eglobalguard;
+
+	__randezvous_globalguard_getaddr(&_globalguard, &_eglobalguard);
+#endif
+
 	assert((MPU->TYPE >> 8) >= NumRNs && "No enough MPU regions!");
 
 	assert(((uint32_t)_text & 0x1f) == 0 && "Text start unaligned!");
@@ -80,6 +92,14 @@ void MPU_Init(void)
 	assert(((uint32_t)_vStackTop & 0x1f) == 0 && "Stack end unaligned!");
 	assert(_erodata <= _data && "Rodata and data overlap!");
 	assert(_data < _vStackTop && "Non-positive RAM size!");
+
+#ifdef RANDEZVOUS_GLOBAL_GUARD
+	assert(((uint32_t)_globalguard & 0x1f) == 0 && "Global guard start unaligned!");
+	assert(((uint32_t)_eglobalguard & 0x1f) == 0 && "Global guard end unaligned!");
+	assert(_data < _globalguard && "Non-positive RAM1 size!");
+	assert(_globalguard < _eglobalguard && "Non-positive global guard size!");
+	assert(_eglobalguard < _vStackTop && "Non-positive RAM2 size!");
+#endif
 
 	/* Set MPU Control register: Disable MPU */
 	MPU->CTRL = 0;
@@ -140,7 +160,7 @@ void MPU_Init(void)
 	 * Set up an MPU region for RAM.
 	 *
 	 * Base:  _data
-	 * Limit: _vStackTop - 1
+	 * Limit: _vStackTop - 1 or _globalguard - 1
 	 * Share: Non-shareable
 	 * AP:    Privileged read-write
 	 * XN:    True
@@ -151,9 +171,53 @@ void MPU_Init(void)
 		    ((0U << MPU_RBAR_SH_Pos) & MPU_RBAR_SH_Msk) |
 		    ((0U << MPU_RBAR_AP_Pos) & MPU_RBAR_AP_Msk) |
 		    ((1U << MPU_RBAR_XN_Pos) & MPU_RBAR_XN_Msk);
+#ifdef RANDEZVOUS_GLOBAL_GUARD
+	MPU->RLAR = (((uint32_t)_globalguard - 1) & MPU_RLAR_LIMIT_Msk) |
+#else
+	MPU->RLAR = (((uint32_t)_vStackTop - 1) & MPU_RLAR_LIMIT_Msk) |
+#endif
+		    ((0U << MPU_RLAR_AttrIndx_Pos) & MPU_RLAR_AttrIndx_Msk) |
+		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
+
+#ifdef RANDEZVOUS_GLOBAL_GUARD
+	/*
+	 * Set up an MPU region for global guard.
+	 *
+	 * Base:  _globalguard
+	 * Limit: _eglobalguard - 1
+	 * Share: Non-shareable
+	 * AP:    Privileged read-only
+	 * XN:    True
+	 * Attr:  0
+	 */
+	MPU->RNR = RN_GlobalGuard;
+	MPU->RBAR = ((uint32_t)_globalguard & MPU_RBAR_BASE_Msk) |
+		    ((0U << MPU_RBAR_SH_Pos) & MPU_RBAR_SH_Msk) |
+		    ((2U << MPU_RBAR_AP_Pos) & MPU_RBAR_AP_Msk) |
+		    ((1U << MPU_RBAR_XN_Pos) & MPU_RBAR_XN_Msk);
+	MPU->RLAR = (((uint32_t)_eglobalguard - 1) & MPU_RLAR_LIMIT_Msk) |
+		    ((0U << MPU_RLAR_AttrIndx_Pos) & MPU_RLAR_AttrIndx_Msk) |
+		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
+
+	/*
+	 * Set up an MPU region for the rest of RAM.
+	 *
+	 * Base:  _eglobalguard
+	 * Limit: _vStackTop - 1
+	 * Share: Non-shareable
+	 * AP:    Privileged read-write
+	 * XN:    True
+	 * Attr:  0
+	 */
+	MPU->RNR = RN_Ram2;
+	MPU->RBAR = ((uint32_t)_eglobalguard & MPU_RBAR_BASE_Msk) |
+		    ((0U << MPU_RBAR_SH_Pos) & MPU_RBAR_SH_Msk) |
+		    ((0U << MPU_RBAR_AP_Pos) & MPU_RBAR_AP_Msk) |
+		    ((1U << MPU_RBAR_XN_Pos) & MPU_RBAR_XN_Msk);
 	MPU->RLAR = (((uint32_t)_vStackTop - 1) & MPU_RLAR_LIMIT_Msk) |
 		    ((0U << MPU_RLAR_AttrIndx_Pos) & MPU_RLAR_AttrIndx_Msk) |
 		    ((1U << MPU_RLAR_EN_Pos) & MPU_RLAR_EN_Msk);
+#endif
 
 	/*
 	 * Set up an MPU region for peripherals.
