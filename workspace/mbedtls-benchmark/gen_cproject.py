@@ -182,18 +182,6 @@ def populate_extra_settings():
                 'ldflags': [],
             }
 
-    for conf in configurations:
-        load2sram = conf.endswith('-sram')
-        clr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-clr' in configurations[conf]['ldflags']
-
-        # If using CLR and not loading text to SRAM (execute-in-place), set max
-        # text size to 7936 KB (8 MB - 256 KB)
-        if clr and not load2sram:
-            for program in programs:
-                extras[(conf, program)]['ldflags'].extend([
-                    '-Wl,-mllvm,-arm-randezvous-max-text-size=0x7c0000',
-                ])
-
 
 ###############################################################################
 
