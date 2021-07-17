@@ -477,8 +477,8 @@ def gen_core_settings_config(conf, program):
     xml += '                <option id="gnu.c.compiler.option.preprocessor.undef.symbol.' + program_id + '" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" useByScannerDiscovery="false"/>\n'
     # Add -include's: none
     xml += '                <option id="gnu.c.compiler.option.include.files.' + program_id + '" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>\n'
-    # Other optmization flags: -ffunction-sections -fdata-sections -fomit-frame-pointer
-    xml += '                <option id="gnu.c.compiler.option.optimization.flags.' + program_id + '" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-ffunction-sections -fdata-sections -fomit-frame-pointer" valueType="string"/>\n'
+    # Other optmization flags: -ffunction-sections -fdata-sections -fomit-frame-pointer -ffreestanding
+    xml += '                <option id="gnu.c.compiler.option.optimization.flags.' + program_id + '" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-ffunction-sections -fdata-sections -fomit-frame-pointer -ffreestanding" valueType="string"/>\n'
     # Other debug flags: none
     xml += '                <option id="gnu.c.compiler.option.debugging.other.' + program_id + '" name="Other debugging flags" superClass="gnu.c.compiler.option.debugging.other" useByScannerDiscovery="false" value="" valueType="string"/>\n'
     # Add -p: false
