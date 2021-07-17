@@ -260,13 +260,19 @@ def populate_extra_settings():
         gdlr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-gdlr' in configurations[conf]['ldflags']
         shadow_stack = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-shadow-stack' in configurations[conf]['ldflags']
 
-        # loops-all-moid-10k-sp and zip-test need more than 3 MB of heap, so
-        # set max text size to 832 KB if using CLR and loading text to SRAM
         if load2sram and clr:
+            # loops-all-mid-10k-sp and zip-test need more than 3 MB of heap, so
+            # set max text size to 832 KB if using CLR and loading text to SRAM
             extras[(conf, 'loops-all-mid-10k-sp')]['ldflags'].extend([
                 '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
             ])
             extras[(conf, 'zip-test')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
+            ])
+            # radix2-big-64k needs more than 1.5 MB of both .rodata and heap,
+            # so set max text size to 832 KB if using both CLR and loading text
+            # to SRAM
+            extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
                 '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
             ])
 
@@ -282,18 +288,12 @@ def populate_extra_settings():
                 '-Wl,-mllvm,-arm-randezvous-max-rodata-size=0x190000',
             ])
 
-        # parser-125k needs to fit ~2000 recursions in 32 KB shadow stack, so
-        # set shadow stack stride length to 4 bits
+
         if shadow_stack:
+            # parser-125k needs to fit ~2000 recursions in 32 KB shadow stack,
+            # so set shadow stack stride length to 4 bits
             extras[(conf, 'parser-125k')]['ldflags'].extend([
                 '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=4',
-            ])
-
-        # radix2-big-64k needs more than 1.5 MB of .rodata, so set max text
-        # size to 960 KB if using both CLR and GDLR and loading text to SRAM
-        if load2sram and clr and gdlr:
-            extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
-                '-Wl,-mllvm,-arm-randezvous-max-text-size=0xe0000',
             ])
 
 
