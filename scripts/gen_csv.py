@@ -53,15 +53,28 @@ benchmarks = [
 # @output: path to the output CSV file.
 #
 def write_data(data, output):
+    # Do we have any program that uses average + stdev?
+    has_stdev = False
+    for prog in data:
+        for conf in data[prog]:
+            if isinstance(data[prog][conf], list):
+                assert len(data[prog][conf]) == 2, 'Not average + stdev list?'
+                has_stdev = True
+
+    # Post-process: limit floating-point numbers to 3 digits
+    for prog in data:
+        for conf in data[prog]:
+            if isinstance(data[prog][conf], list):
+                if isinstance(data[prog][conf][0], float):
+                    data[prog][conf][0] = '{0:.3f}'.format(data[prog][conf][0])
+                if isinstance(data[prog][conf][1], float):
+                    data[prog][conf][1] = '{0:.3f}'.format(data[prog][conf][1])
+            elif isinstance(data[prog][conf], float):
+                data[prog][conf] = '{0:.3f}'.format(data[prog][conf])
+
+    # Now write to a CSV file
     with open(output, mode='w') as csv_file:
         writer = csv.writer(csv_file)
-
-        # Do we have any program that use average + stdev?
-        has_stdev = False
-        for prog in data:
-            for conf in data[prog]:
-                if isinstance(data[prog][conf], list):
-                    has_stdev = True
 
         # Construct and write the header row
         row = ['#Program']
@@ -106,7 +119,7 @@ def gen_csv_mem(benchmark, output):
 
             if prog not in data:
                 data[prog] = {}
-            data[prog][conf] = str(stats['arm-randezvous-cdla.XformedCodeSize'])
+            data[prog][conf] = stats['arm-randezvous-cdla.XformedCodeSize']
 
     # Write data to CSV
     write_data(data, output)
@@ -135,11 +148,11 @@ def gen_csv_perf(benchmark, output):
                 latency_match = mbedtls_bench_latency_re.match(line)
                 # BEEBS
                 if 'Finished' in line:
-                    number = str(int(line.split(' ')[2].lstrip()))
+                    number = int(line.split(' ')[2].lstrip())
                     break
                 # CoreMark-Pro
                 elif 'time(ns)' in line:
-                    number = str(int(line.split('=')[-1].lstrip()))
+                    number = int(line.split('=')[-1].lstrip())
                     break
                 # MbedTLS-Benchmark
                 elif thruput_match or latency_match:
@@ -149,14 +162,14 @@ def gen_csv_perf(benchmark, output):
                         prog = alg + ' (' + unit + ')'
                         if prog not in data:
                             data[prog] = {}
-                        data[prog][conf] = thruput_match.group(2)
+                        data[prog][conf] = float(thruput_match.group(2))
                     if latency_match:
                         alg = latency_match.group(1)
                         unit = latency_match.group(3)
                         prog = alg + ' (' + unit + ')'
                         if prog not in data:
                             data[prog] = {}
-                        data[prog][conf] = latency_match.group(2)
+                        data[prog][conf] = float(latency_match.group(2))
 
             if number is not None:
                 if prog not in data:
@@ -209,7 +222,7 @@ def gen_csv_perf(benchmark, output):
             if conf in data[prog] and isinstance(data[prog][conf], list):
                 average = float(sum(data[prog][conf])) / len(data[prog][conf])
                 stdev = statistics.stdev(data[prog][conf])
-                data[prog][conf] = ['{:.3f}'.format(average), '{:.3f}'.format(stdev)]
+                data[prog][conf] = [average, stdev]
 
     # Write data to CSV
     write_data(data, output)
