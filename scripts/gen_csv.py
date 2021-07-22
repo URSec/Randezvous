@@ -121,7 +121,8 @@ def gen_csv_mem(benchmark, output):
 #
 def gen_csv_perf(benchmark, output):
     data = {}
-    mbedtls_bench_re = re.compile('^\s*(.+?)\s*:\s*(\d+\.\d+) \w+/s')
+    mbedtls_bench_thruput_re = re.compile('^\s*(.+?)\s*:\s*(\d+\.\d+)\s+(\w+/s)')
+    mbedtls_bench_latency_re = re.compile('^\s*(.+?)\s*:.+?(\d+\.\d+)\s+(cycles/byte)')
     for conf in configurations:
         new_data_dir = data_dir + '/' + benchmark + '-' + conf
 
@@ -130,7 +131,8 @@ def gen_csv_perf(benchmark, output):
             prog = os.path.splitext(os.path.basename(f))[0]
             number = None
             for line in open(f):
-                match = mbedtls_bench_re.match(line)
+                thruput_match = mbedtls_bench_thruput_re.match(line)
+                latency_match = mbedtls_bench_latency_re.match(line)
                 # BEEBS
                 if 'Finished' in line:
                     number = str(int(line.split(' ')[2].lstrip()))
@@ -139,12 +141,22 @@ def gen_csv_perf(benchmark, output):
                 elif 'time(ns)' in line:
                     number = str(int(line.split('=')[-1].lstrip()))
                     break
-                # mbedTLS-Benchmark
-                elif match:
-                    prog = match.group(1)
-                    if prog not in data:
-                        data[prog] = {}
-                    data[prog][conf] = match.group(2)
+                # MbedTLS-Benchmark
+                elif thruput_match or latency_match:
+                    if thruput_match:
+                        alg = thruput_match.group(1)
+                        unit = thruput_match.group(3)
+                        prog = alg + ' (' + unit + ')'
+                        if prog not in data:
+                            data[prog] = {}
+                        data[prog][conf] = thruput_match.group(2)
+                    if latency_match:
+                        alg = latency_match.group(1)
+                        unit = latency_match.group(3)
+                        prog = alg + ' (' + unit + ')'
+                        if prog not in data:
+                            data[prog] = {}
+                        data[prog][conf] = latency_match.group(2)
 
             if number is not None:
                 if prog not in data:
@@ -156,7 +168,8 @@ def gen_csv_perf(benchmark, output):
             prog = os.path.splitext(os.path.basename(f))[0]
             number = None
             for line in open(f):
-                match = mbedtls_bench_re.match(line)
+                thruput_match = mbedtls_bench_thruput_re.match(line)
+                latency_match = mbedtls_bench_latency_re.match(line)
                 # BEEBS
                 if 'Finished' in line:
                     number = int(line.split(' ')[2].lstrip())
@@ -165,14 +178,26 @@ def gen_csv_perf(benchmark, output):
                 elif 'time(ns)' in line:
                     number = int(line.split('=')[-1].lstrip())
                     break
-                # mbedTLS-Benchmark
-                elif match:
-                    prog = match.group(1)
-                    if prog not in data:
-                        data[prog] = {}
-                    if conf not in data[prog]:
-                        data[prog][conf] = []
-                    data[prog][conf].append(float(match.group(2)))
+                # MbedTLS-Benchmark
+                elif thruput_match or latency_match:
+                    if thruput_match:
+                        alg = thruput_match.group(1)
+                        unit = thruput_match.group(3)
+                        prog = alg + ' (' + unit + ')'
+                        if prog not in data:
+                            data[prog] = {}
+                        if conf not in data[prog]:
+                            data[prog][conf] = []
+                        data[prog][conf].append(float(thruput_match.group(2)))
+                    if latency_match:
+                        alg = thruput_match.group(1)
+                        unit = thruput_match.group(3)
+                        prog = alg + ' (' + unit + ')'
+                        if prog not in data:
+                            data[prog] = {}
+                        if conf not in data[prog]:
+                            data[prog][conf] = []
+                        data[prog][conf].append(float(latency_match.group(2)))
 
             if number is not None:
                 if prog not in data:
