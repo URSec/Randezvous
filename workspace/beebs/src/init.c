@@ -68,6 +68,7 @@ extern uint8_t _erodata[];
 extern uint8_t _data[];
 extern uint8_t _vStackTop[];
 
+#ifdef RANDEZVOUS_PICOXOM
 void MPU_Init(void)
 {
 #ifdef RANDEZVOUS_GLOBAL_GUARD
@@ -247,6 +248,7 @@ void MPU_Init(void)
 	/* Flush and refill pipeline with updated permissions */
 	__ISB();
 }
+#endif
 
 //=============================================================================
 // DWT
@@ -275,6 +277,7 @@ struct DWTComparatorPair {
 	bool link;
 };
 
+#ifdef RANDEZVOUS_PICOXOM
 void DWT_Init(void)
 {
 	uint32_t i;
@@ -395,6 +398,7 @@ void DWT_Init(void)
 	*CompPairs[i].func0 = (1UL << DWT_FUNCTION_ACTION_Pos) |
 			      (DWT_FUNCTION_MATCH_D_W << DWT_FUNCTION_MATCH_Pos);
 }
+#endif
 
 //=============================================================================
 // Initialization
