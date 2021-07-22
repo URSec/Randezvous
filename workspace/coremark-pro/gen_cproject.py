@@ -255,14 +255,13 @@ def populate_extra_settings():
             }
 
     for conf in configurations:
-        load2sram = conf.endswith('-sram')
         clr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-clr' in configurations[conf]['ldflags']
         gdlr = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-gdlr' in configurations[conf]['ldflags']
         shadow_stack = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-shadow-stack' in configurations[conf]['ldflags']
 
-        if load2sram and clr:
+        if clr:
             # loops-all-mid-10k-sp and zip-test need more than 3 MB of heap, so
-            # set max text size to 832 KB if using CLR and loading text to SRAM
+            # set max text size to 832 KB if using CLR
             extras[(conf, 'loops-all-mid-10k-sp')]['ldflags'].extend([
                 '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
             ])
@@ -270,8 +269,7 @@ def populate_extra_settings():
                 '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
             ])
             # radix2-big-64k needs more than 1.5 MB of both .rodata and heap,
-            # so set max text size to 832 KB if using both CLR and loading text
-            # to SRAM
+            # so set max text size to 832 KB if using CLR
             extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
                 '-Wl,-mllvm,-arm-randezvous-max-text-size=0xd0000',
             ])
