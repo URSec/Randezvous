@@ -200,6 +200,7 @@ configurations = {
         'defines': [
             'RANDEZVOUS_PICOXOM',
             'RANDEZVOUS_SS',
+            'RANDEZVOUS_GLOBAL_GUARD',
         ],
         'ldflags': [
             '-Wl,-mllvm,-arm-randezvous-clr',
@@ -211,6 +212,7 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-picoxom',
             '-Wl,-mllvm,-arm-randezvous-ran',
             '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-global-guard',
             '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
         ],
     },
@@ -218,6 +220,7 @@ configurations = {
         'defines': [
             'RANDEZVOUS_PICOXOM',
             'RANDEZVOUS_SS',
+            'RANDEZVOUS_GLOBAL_GUARD',
         ],
         'ldflags': [
             '-Wl,-mllvm,-arm-randezvous-clr',
@@ -229,6 +232,7 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-picoxom',
             '-Wl,-mllvm,-arm-randezvous-ran',
             '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-global-guard',
             '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
         ],
         'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
