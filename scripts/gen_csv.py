@@ -134,6 +134,7 @@ def gen_csv_mem(benchmark, output):
 #
 def gen_csv_perf(benchmark, output):
     data = {}
+    data_t = {}
     mbedtls_bench_thruput_re = re.compile('^\s*(.+?)\s*:\s*(\d+\.\d+)\s+(\w+/s)')
     mbedtls_bench_latency_re = re.compile('^\s*(.+?)\s*:.+?(\d+\.\d+)\s+(cycles/byte)')
     for conf in configurations:
@@ -160,9 +161,9 @@ def gen_csv_perf(benchmark, output):
                         alg = thruput_match.group(1)
                         unit = thruput_match.group(3)
                         prog = alg + ' (' + unit + ')'
-                        if prog not in data:
-                            data[prog] = {}
-                        data[prog][conf] = float(thruput_match.group(2))
+                        if prog not in data_t:
+                            data_t[prog] = {}
+                        data_t[prog][conf] = float(thruput_match.group(2))
                     if latency_match:
                         alg = latency_match.group(1)
                         unit = latency_match.group(3)
@@ -197,11 +198,11 @@ def gen_csv_perf(benchmark, output):
                         alg = thruput_match.group(1)
                         unit = thruput_match.group(3)
                         prog = alg + ' (' + unit + ')'
-                        if prog not in data:
-                            data[prog] = {}
-                        if conf not in data[prog]:
-                            data[prog][conf] = []
-                        data[prog][conf].append(float(thruput_match.group(2)))
+                        if prog not in data_t:
+                            data_t[prog] = {}
+                        if conf not in data_t[prog]:
+                            data_t[prog][conf] = []
+                        data_t[prog][conf].append(float(thruput_match.group(2)))
                     if latency_match:
                         alg = thruput_match.group(1)
                         unit = thruput_match.group(3)
@@ -223,6 +224,14 @@ def gen_csv_perf(benchmark, output):
                 average = float(sum(data[prog][conf])) / len(data[prog][conf])
                 stdev = statistics.stdev(data[prog][conf])
                 data[prog][conf] = [average, stdev]
+        for prog in data_t:
+            if conf in data_t[prog] and isinstance(data_t[prog][conf], list):
+                average = float(sum(data_t[prog][conf])) / len(data_t[prog][conf])
+                stdev = statistics.stdev(data_t[prog][conf])
+                data_t[prog][conf] = [average, stdev]
+
+    # Add throughput data
+    data.update(data_t)
 
     # Write data to CSV
     write_data(data, output)
