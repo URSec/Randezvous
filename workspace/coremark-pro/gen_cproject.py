@@ -203,6 +203,7 @@ configurations = {
         ],
         'ldflags': [
             '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
             '-Wl,-mllvm,-arm-randezvous-gdlr',
             '-Wl,-mllvm,-arm-randezvous-grbg',
             '-Wl,-mllvm,-arm-randezvous-icall-limiter',
@@ -220,6 +221,7 @@ configurations = {
         ],
         'ldflags': [
             '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
             '-Wl,-mllvm,-arm-randezvous-gdlr',
             '-Wl,-mllvm,-arm-randezvous-grbg',
             '-Wl,-mllvm,-arm-randezvous-icall-limiter',
