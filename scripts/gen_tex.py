@@ -206,6 +206,8 @@ def write_tex_content(f, benchmark, typ, has_stdev, data):
                         if isinstance(number, int):
                             # Generate comma-separated numbers for baseline
                             number = '{:,}'.format(int(number))
+                        else:
+                            number = '{0:.3f}'.format(float(number))
                     else:
                         if isinstance(data[prog][baseline_conf], list):
                             baseline = float(data[prog][baseline_conf][0])
