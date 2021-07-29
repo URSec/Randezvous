@@ -149,7 +149,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
         caption += 'Performance'
     else:
         caption += 'Code Size'
-    caption += ' Overhead on ' + benchmarks[benchmark]
+    caption += ' of ' + benchmarks[benchmark]
 
     # Write \bottomrule
     f.write('\\bottomrule\n')

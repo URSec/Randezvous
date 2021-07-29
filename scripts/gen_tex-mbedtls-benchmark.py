@@ -148,7 +148,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
         caption += 'Latency'
     else:
         caption += 'Throughput'
-    caption += ' Overhead on ' + benchmarks[benchmark]
+    caption += ' of ' + benchmarks[benchmark]
 
     # Write \bottomrule
     f.write('\\bottomrule\n')
