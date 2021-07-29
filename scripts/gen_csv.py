@@ -276,7 +276,7 @@ def main():
     # Construct a CLI argument parser
     parser = argparse.ArgumentParser(description='Generate CSV files.')
     parser.add_argument('-b', '--benchmark', choices=benchmarks,
-                        default='beebs', metavar='BENCH',
+                        default=benchmarks[0], metavar='BENCH',
                         help='Name of the benchmark suite')
     parser.add_argument('-t', '--type', choices=types,
                         default=types[0], metavar='TYPE',

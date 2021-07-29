@@ -25,12 +25,12 @@ debug_dir = root + '/debug'
 data_dir = root + '/data'
 
 #
-# List of configurations.
+# Dict of configurations and their formal names.
 #
-configurations = [
-    'baseline-sram',
-    'randezvous-sram',
-]
+configurations = {
+    'baseline-sram': 'Baseline',
+    'randezvous-sram': '{\\System}',
+}
 baseline_conf = 'baseline-sram'
 
 #
@@ -40,6 +40,14 @@ benchmarks = {
     'mbedtls-benchmark': 'MbedTLS-Benchmark',
 }
 
+#
+# Dict of types and their formal names.
+#
+types = {
+    'latency': 'Latency',
+    'thruput': 'Throughput',
+}
+
 ###############################################################################
 
 #
@@ -47,7 +55,7 @@ benchmarks = {
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'latency' or 'thruput'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @ieee: whether to generate an IEEE-style table.
 #
@@ -55,12 +63,7 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
     ncols = 2 if typ == 'latency' else 3
 
     # Synthesize a table caption
-    caption = ''
-    if typ == 'latency':
-        caption += 'Latency'
-    else:
-        caption += 'Throughput'
-    caption += ' of ' + benchmarks[benchmark]
+    caption = types[typ] + ' of ' + benchmarks[benchmark]
 
     # Write a comment
     f.write('%\n% ' + caption + '.\n%\n')
@@ -83,48 +86,44 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
     # Restrict everything within column width
     f.write('\\resizebox{\\linewidth}{!}{\n')
     # Write \begin{tabular}
-    pat = 'l' + ''.join(['rr' if has_stdev else 'r' for c in configurations])
-    line = '\\begin{tabular}{@{}' + pat
-    for i in range(1, ncols):
-        line += '|' + pat
+    line = '\\begin{tabular}{@{}'
+    for i in range(0, ncols):
+        if i != 0:
+            line += '|'
+        line += 'l'
+        for c in configurations:
+            line += 'rr' if has_stdev else 'r'
     line += '@{}}\n'
     f.write(line)
     # Write \toprule
     f.write('\\toprule\n')
     # Write 1st row of table header
-    pat = ''.join([' & {\\bf ' + c + '} & {\\bf Stdev}' if has_stdev else ' & {\\bf ' + c + '}' for c in configurations])
-    line = ' ' + pat
-    for i in range(1, ncols):
-        line += ' &' + pat
+    line = ' '
+    for i in range(0, ncols):
+        if i != 0:
+            line += ' &'
+        for c in configurations:
+            line += ' & {\\bf ' + configurations[c] + '}'
+            if has_stdev:
+                line += ' & {\\bf Stdev}'
     line += ' \\\\\n'
     f.write(line)
     # Write 2nd row of table header
-    if typ == 'latency':
-        pat = ''
+    line = ' '
+    for i in range(0, ncols):
+        if i != 0:
+            line += ' &'
         for c in configurations:
             if c == baseline_conf:
-                pat += ' & {(cycle/byte)}'
+                if typ == 'latency':
+                    line += ' & {(cycle/byte)}'
+                else:
+                    line += ' &'
             else:
-                pat += ' & {($\\times$)}'
+                line += ' & {($\\times$)}'
             if has_stdev:
-                pat += ' &'
-        line = ' ' + pat
-        for i in range(1, ncols):
-            line += ' &' + pat
-        line += ' \\\\\n'
-    else:
-        pat = ''
-        for c in configurations:
-            if c == baseline_conf:
-                pat += ' &'
-            else:
-                pat += ' & {($\\times$)}'
-            if has_stdev:
-                pat += ' &'
-        line = ' ' + pat
-        for i in range(1, ncols):
-            line += ' &' + pat
-        line += ' \\\\\n'
+                line += ' &'
+    line += ' \\\\\n'
     f.write(line)
     # Write \midrule
     f.write('\\midrule\n')
@@ -135,7 +134,7 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'latency' or 'thruput'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @ieee: whether to generate an IEEE-style table.
 #
@@ -143,12 +142,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
     ncols = 2 if typ == 'latency' else 3
 
     # Synthesize a table caption
-    caption = ''
-    if typ == 'latency':
-        caption += 'Latency'
-    else:
-        caption += 'Throughput'
-    caption += ' of ' + benchmarks[benchmark]
+    caption = types[typ] + ' of ' + benchmarks[benchmark]
 
     # Write \bottomrule
     f.write('\\bottomrule\n')
@@ -172,7 +166,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'latency' or 'thruput'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @data: the data collection.
 #
@@ -263,7 +257,7 @@ def write_tex_content(f, benchmark, typ, has_stdev, data):
 # Write extracted data to an output file.
 #
 # @benchmark: name of the benchmark suite.
-# @typ: 'latency' or 'thruput'.
+# @typ: type of the LaTeX file to generate.
 # @ieee: whether to generate an IEEE-style table.
 # @data: the data collection.
 # @output: path to the output LaTeX file.
@@ -293,7 +287,7 @@ def write_data(benchmark, typ, ieee, data, output):
 # already contains all the experiment data needed.
 #
 # @benchmark: name of the benchmark suite.
-# @typ: 'latency' or 'thruput'.
+# @typ: type of the LaTeX file to generate.
 # @ieee: whether to generate an IEEE-style table.
 # @output: path to the output LaTeX file.
 #
@@ -352,10 +346,10 @@ def main():
     # Construct a CLI argument parser
     parser = argparse.ArgumentParser(description='Generate LaTeX files.')
     parser.add_argument('-b', '--benchmark', choices=benchmarks.keys(),
-                        default='mbedtls-benchmark', metavar='BENCH',
+                        default=list(benchmarks.keys())[0], metavar='BENCH',
                         help='Name of the benchmark suite')
-    parser.add_argument('-t', '--type', choices=['latency', 'thruput'],
-                        default='latency', metavar='TYPE',
+    parser.add_argument('-t', '--type', choices=types.keys(),
+                        default=list(types.keys())[0], metavar='TYPE',
                         help='Type of the LaTeX file to generate')
     parser.add_argument('--ieee', action='store_true',
                         help='Generate an IEEE-style table')

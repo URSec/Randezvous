@@ -4,7 +4,6 @@ import argparse
 import glob
 import json
 import os
-import re
 import statistics
 import sys
 
@@ -25,12 +24,12 @@ debug_dir = root + '/debug'
 data_dir = root + '/data'
 
 #
-# List of configurations.
+# Dict of configurations and their formal names.
 #
-configurations = [
-    'baseline-sram',
-    'randezvous-sram',
-]
+configurations = {
+    'baseline-sram': 'Baseline',
+    'randezvous-sram': '{\\System}',
+}
 baseline_conf = 'baseline-sram'
 
 #
@@ -41,6 +40,15 @@ benchmarks = {
     'coremark-pro': 'CoreMark-Pro',
 }
 
+#
+# Dict of types and their formal names.
+#
+types = {
+    'perf': 'Execution Time',
+    'codesize': 'Code Size',
+    'datasize': '{\\tt .data} Section Size',
+}
+
 ###############################################################################
 
 #
@@ -48,7 +56,7 @@ benchmarks = {
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'mem' or 'perf'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @ieee: whether to generate an IEEE-style table.
 #
@@ -56,12 +64,7 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
     ncols = 2
 
     # Synthesize a table caption
-    caption = ''
-    if typ == 'perf':
-        caption += 'Execution Time'
-    else:
-        caption += 'Code Size'
-    caption += ' of ' + benchmarks[benchmark]
+    caption = types[typ] + ' of ' + benchmarks[benchmark]
 
     # Write a comment
     f.write('%\n% ' + caption + '.\n%\n')
@@ -84,48 +87,44 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
     # Restrict everything within column width
     f.write('\\resizebox{\\linewidth}{!}{\n')
     # Write \begin{tabular}
-    pat = 'l' + ''.join(['rr' if has_stdev else 'r' for c in configurations])
-    line = '\\begin{tabular}{@{}' + pat
-    for i in range(1, ncols):
-        line += '|' + pat
+    line = '\\begin{tabular}{@{}'
+    for i in range(0, ncols):
+        if i != 0:
+            line += '|'
+        line += 'l'
+        for c in configurations:
+            line += 'rr' if has_stdev else 'r'
     line += '@{}}\n'
     f.write(line)
     # Write \toprule
     f.write('\\toprule\n')
     # Write 1st row of table header
-    pat = ''.join([' & {\\bf ' + c + '} & {\\bf Stdev}' if has_stdev else ' & {\\bf ' + c + '}' for c in configurations])
-    line = ' ' + pat
-    for i in range(1, ncols):
-        line += ' &' + pat
+    line = ' '
+    for i in range(0, ncols):
+        if i != 0:
+            line += ' &'
+        for c in configurations:
+            line += ' & {\\bf ' + configurations[c] + '}'
+            if has_stdev:
+                line += ' & {\\bf Stdev}'
     line += ' \\\\\n'
     f.write(line)
     # Write 2nd row of table header
-    if typ == 'perf':
-        pat = ''
+    line = ' '
+    for i in range(0, ncols):
+        if i != 0:
+            line += ' &'
         for c in configurations:
             if c == baseline_conf:
-                pat += ' & {(ms)}'
+                if typ == 'perf':
+                    line += ' & {(ms)}'
+                else:
+                    line += ' & {(bytes)}'
             else:
-                pat += ' & {($\\times$)}'
+                line += ' & {($\\times$)}'
             if has_stdev:
-                pat += ' &'
-        line = ' ' + pat
-        for i in range(1, ncols):
-            line += ' &' + pat
-        line += ' \\\\\n'
-    else:
-        pat = ''
-        for c in configurations:
-            if c == baseline_conf:
-                pat += ' & {(bytes)}'
-            else:
-                pat += ' & {($\\times$)}'
-            if has_stdev:
-                pat += ' &'
-        line = ' ' + pat
-        for i in range(1, ncols):
-            line += ' &' + pat
-        line += ' \\\\\n'
+                line += ' &'
+    line += ' \\\\\n'
     f.write(line)
     # Write \midrule
     f.write('\\midrule\n')
@@ -136,7 +135,7 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'mem' or 'perf'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @ieee: whether to generate an IEEE-style table.
 #
@@ -144,12 +143,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
     ncols = 2
 
     # Synthesize a table caption
-    caption = ''
-    if typ == 'perf':
-        caption += 'Performance'
-    else:
-        caption += 'Code Size'
-    caption += ' of ' + benchmarks[benchmark]
+    caption = types[typ] + ' of ' + benchmarks[benchmark]
 
     # Write \bottomrule
     f.write('\\bottomrule\n')
@@ -173,7 +167,7 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
 #
 # @f: a file object of the opened output file.
 # @benchmark: name of the benchmark suite.
-# @typ: 'mem' or 'perf'.
+# @typ: type of the LaTeX file to generate.
 # @has_stdev: whether the data has standard deviations.
 # @data: the data collection.
 #
@@ -264,7 +258,7 @@ def write_tex_content(f, benchmark, typ, has_stdev, data):
 # Write extracted data to an output file.
 #
 # @benchmark: name of the benchmark suite.
-# @typ: 'mem' or 'perf'.
+# @typ: type of the LaTeX file to generate.
 # @ieee: whether to generate an IEEE-style table.
 # @data: the data collection.
 # @output: path to the output LaTeX file.
@@ -291,70 +285,70 @@ def write_data(benchmark, typ, ieee, data, output):
 
 #
 # Generate a LaTeX file for a specified benchmark suite, assuming @data_dir
-# already contains all the experiment data needed and @debug_dir already
-# contains all the generated binaries needed.
+# already contains all the experiment data needed.
 #
 # @benchmark: name of the benchmark suite.
-# @typ: 'mem' or 'perf'.
+# @typ: type of the LaTeX file to generate.
 # @ieee: whether to generate an IEEE-style table.
 # @output: path to the output LaTeX file.
 #
 def gen_tex(benchmark, typ, ieee, output):
     data = {}
-    if typ == 'perf':
-        for conf in configurations:
-            new_data_dir = data_dir + '/' + benchmark + '-' + conf
+    data2 = {}
+    for conf in configurations:
+        new_data_dir = data_dir + '/' + benchmark + '-' + conf
 
-            # Process single-number data as is
-            for f in sorted(glob.glob(new_data_dir + '/*.stat')):
-                prog = os.path.splitext(os.path.basename(f))[0]
-                number = None
-                for line in open(f):
-                    # BEEBS
-                    if 'Finished' in line:
-                        number = int(line.split(' ')[2].lstrip())
-                        if conf == baseline_conf:
-                            if number < 500:
-                                number = None
-                        elif prog not in data or baseline_conf not in data[prog]:
+        # Process single-number data as is
+        for f in sorted(glob.glob(new_data_dir + '/*.stat')):
+            prog = os.path.splitext(os.path.basename(f))[0]
+            number = None
+            for line in open(f):
+                # BEEBS
+                if 'Finished' in line:
+                    number = int(line.split(' ')[2].lstrip())
+                    if conf == baseline_conf:
+                        if number < 500:
                             number = None
-                        break
-                    # CoreMark-Pro
-                    elif 'time(ns)' in line:
-                        number = int(line.split('=')[-1].lstrip())
-                        break
+                    elif prog not in data or baseline_conf not in data[prog]:
+                        number = None
+                    break
+                # CoreMark-Pro
+                elif 'time(ns)' in line:
+                    number = int(line.split('=')[-1].lstrip())
+                    break
 
-                if number is not None:
-                    if prog not in data:
-                        data[prog] = {}
-                    data[prog][conf] = number
+            if number is not None:
+                if prog not in data:
+                    data[prog] = {}
+                data[prog][conf] = number
 
-            # Process multi-number data as average and stdev
-            for f in sorted(glob.glob(new_data_dir + '/*-stat')):
-                prog = os.path.splitext(os.path.basename(f))[0]
-                number = None
-                for line in open(f):
-                    # BEEBS
-                    if 'Finished' in line:
-                        number = int(line.split(' ')[2].lstrip())
-                        break
-                    # CoreMark-Pro
-                    elif 'time(ns)' in line:
-                        number = int(line.split('=')[-1].lstrip())
-                        break
+        # Process multi-number data as average and stdev
+        for f in sorted(glob.glob(new_data_dir + '/*-stat')):
+            prog = os.path.splitext(os.path.basename(f))[0]
+            number = None
+            for line in open(f):
+                # BEEBS
+                if 'Finished' in line:
+                    number = int(line.split(' ')[2].lstrip())
+                    break
+                # CoreMark-Pro
+                elif 'time(ns)' in line:
+                    number = int(line.split('=')[-1].lstrip())
+                    break
 
-                if number is not None:
-                    if prog not in data:
-                        data[prog] = {}
-                    if conf not in data[prog]:
-                        data[prog][conf] = []
-                    data[prog][conf].append(number)
-            for prog in data:
-                if conf in data[prog] and isinstance(data[prog][conf], list):
-                    average = float(sum(data[prog][conf])) / len(data[prog][conf])
-                    stdev = statistics.stdev(data[prog][conf])
-                    data[prog][conf] = [average, stdev]
-    else:
+            if number is not None:
+                if prog not in data:
+                    data[prog] = {}
+                if conf not in data[prog]:
+                    data[prog][conf] = []
+                data[prog][conf].append(number)
+        for prog in data:
+            if conf in data[prog] and isinstance(data[prog][conf], list):
+                average = float(sum(data[prog][conf])) / len(data[prog][conf])
+                stdev = statistics.stdev(data[prog][conf])
+                data[prog][conf] = [average, stdev]
+
+    if typ == 'codesize':
         for conf in configurations:
             new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
             for f in sorted(glob.glob(new_debug_dir + '/*.json')):
@@ -362,8 +356,24 @@ def gen_tex(benchmark, typ, ieee, output):
                 stats = json.load(open(f))
 
                 if prog not in data:
-                    data[prog] = {}
-                data[prog][conf] = stats['arm-randezvous-cdla.XformedCodeSize']
+                    continue
+                if prog not in data2:
+                    data2[prog] = {}
+                data2[prog][conf] = stats['arm-randezvous-cdla.XformedCodeSize']
+        data = data2
+    elif typ == 'datasize':
+        for conf in configurations:
+            new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
+            for f in sorted(glob.glob(new_debug_dir + '/*.json')):
+                prog = os.path.splitext(os.path.basename(f))[0]
+                stats = json.load(open(f))
+
+                if prog not in data:
+                    continue
+                if prog not in data2:
+                    data2[prog] = {}
+                data2[prog][conf] = stats['arm-randezvous-gdlr.NumBytesInData']
+        data = data2
 
     # Write data to LaTeX
     write_data(benchmark, typ, ieee, data, output)
@@ -376,10 +386,10 @@ def main():
     # Construct a CLI argument parser
     parser = argparse.ArgumentParser(description='Generate LaTeX files.')
     parser.add_argument('-b', '--benchmark', choices=benchmarks.keys(),
-                        default='beebs', metavar='BENCH',
+                        default=list(benchmarks.keys())[0], metavar='BENCH',
                         help='Name of the benchmark suite')
-    parser.add_argument('-t', '--type', choices=['mem', 'perf'],
-                        default='perf', metavar='TYPE',
+    parser.add_argument('-t', '--type', choices=types.keys(),
+                        default=list(types.keys())[0], metavar='TYPE',
                         help='Type of the LaTeX file to generate')
     parser.add_argument('--ieee', action='store_true',
                         help='Generate an IEEE-style table')
