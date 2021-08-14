@@ -4,6 +4,9 @@ debug
 # Running results
 data
 
+# Where we put generated CSV files
+csv
+
 # cscope files
 cscope.out
 cscope.files
