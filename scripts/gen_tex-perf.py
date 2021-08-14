@@ -45,8 +45,6 @@ benchmarks = {
 #
 types = {
     'perf': 'Execution Time',
-    'codesize': 'Code Size',
-    'datasize': '{\\tt .data} Section Size',
 }
 
 ###############################################################################
@@ -347,33 +345,6 @@ def gen_tex(benchmark, typ, ieee, output):
                 average = float(sum(data[prog][conf])) / len(data[prog][conf])
                 stdev = statistics.stdev(data[prog][conf])
                 data[prog][conf] = [average, stdev]
-
-    if typ == 'codesize':
-        for conf in configurations:
-            new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
-            for f in sorted(glob.glob(new_debug_dir + '/*.json')):
-                prog = os.path.splitext(os.path.basename(f))[0]
-                stats = json.load(open(f))
-
-                if prog not in data:
-                    continue
-                if prog not in data2:
-                    data2[prog] = {}
-                data2[prog][conf] = stats['arm-randezvous-cdla.XformedCodeSize']
-        data = data2
-    elif typ == 'datasize':
-        for conf in configurations:
-            new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
-            for f in sorted(glob.glob(new_debug_dir + '/*.json')):
-                prog = os.path.splitext(os.path.basename(f))[0]
-                stats = json.load(open(f))
-
-                if prog not in data:
-                    continue
-                if prog not in data2:
-                    data2[prog] = {}
-                data2[prog][conf] = stats['arm-randezvous-gdlr.NumBytesInData']
-        data = data2
 
     # Write data to LaTeX
     write_data(benchmark, typ, ieee, data, output)
