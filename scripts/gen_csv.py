@@ -51,6 +51,8 @@ types = [
     'perf',
     'codesize',
     'datasize',
+    'codesize-adjusted',
+    'datasize-adjusted',
 ]
 
 ###############################################################################
@@ -112,13 +114,28 @@ def write_data(data, output):
 
 
 #
-# Generate a code size CSV file for a specified benchmark suite, assuming
-# @debug_dir already contains statistics of all the generate binaries.
+# Generate a memory size CSV file for a specified benchmark suite, assuming
+# @debug_dir already contains all the generate binaries and their statistics.
 #
 # @benchmark: name of the benchmark suite.
+# @typ: type of the CSV file.
 # @output: path to the output CSV file.
 #
-def gen_csv_codesize(benchmark, output):
+def gen_csv_mem(benchmark, typ, output):
+    codesize_key = 'arm-randezvous-cdla.XformedCodeSize'
+    datasize_keys = [
+        'arm-randezvous-gdlr.NumBytesInRodata',
+        'arm-randezvous-gdlr.NumBytesInData',
+        'arm-randezvous-gdlr.NumBytesInBss',
+    ]
+
+    numtraps_key = 'arm-randezvous-clr.NumTraps'
+    numgarbage_keys = [
+        'arm-randezvous-gdlr.NumGarbageObjectsInRodata',
+        'arm-randezvous-gdlr.NumGarbageObjectsInData',
+        'arm-randezvous-gdlr.NumGarbageObjectsInBss',
+    ]
+
     data = {}
     for conf in configurations:
         new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
@@ -128,34 +145,27 @@ def gen_csv_codesize(benchmark, output):
 
             if prog not in data:
                 data[prog] = {}
-            data[prog][conf] = stats['arm-randezvous-cdla.XformedCodeSize']
+
+            data[prog][conf] = 0
+            if typ.startswith('codesize'):
+                data[prog][conf] += stats[codesize_key]
+            elif typ.startswith('datasize'):
+                for key in datasize_keys:
+                    if key in stats:
+                        data[prog][conf] += stats[key]
+
+            if typ.endswith('-adjusted'):
+                if typ.startswith('codesize'):
+                    if numtraps_key in stats:
+                        data[prog][conf] += stats[numtraps_key] * 4
+                elif typ.startswith('datasize'):
+                    for key in numgarbage_keys:
+                        if key in stats:
+                            data[prog][conf] += stats[key] * 4
+
 
     # Write data to CSV
     write_data(data, output)
-
-
-#
-# Generate a data size CSV file for a specified benchmark suite, assuming
-# @debug_dir already contains statistics of all the generate binaries.
-#
-# @benchmark: name of the benchmark suite.
-# @output: path to the output CSV file.
-#
-def gen_csv_datasize(benchmark, output):
-    data = {}
-    for conf in configurations:
-        new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
-        for f in sorted(glob.glob(new_debug_dir + '/*.json')):
-            prog = os.path.splitext(os.path.basename(f))[0]
-            stats = json.load(open(f))
-
-            if prog not in data:
-                data[prog] = {}
-            data[prog][conf] = stats['arm-randezvous-gdlr.NumBytesInData']
-
-    # Write data to CSV
-    write_data(data, output)
-
 
 #
 # Generate a performance CSV file for a specified benchmark suite, assuming
@@ -295,10 +305,8 @@ def main():
     # Generate CSV
     if typ == 'perf':
         gen_csv_perf(benchmark, output)
-    elif typ == 'codesize':
-        gen_csv_codesize(benchmark, output)
     else:
-        gen_csv_datasize(benchmark, output)
+        gen_csv_mem(benchmark, typ, output)
 
 
 #
