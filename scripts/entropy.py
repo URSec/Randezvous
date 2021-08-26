@@ -17,18 +17,14 @@ import math
 #      time, in bytes.
 # t_B: time from booting to reaching an arbitrary memory read or write
 #      vulnerability that the attacker exploits, in seconds.
-# t_R: time for the attacker to completely read out all readable memory and
-#      download the memory content, in seconds.
-# t_W: time for the attacker to finish setting up the attack payload for
-#      execution, in seconds.
-# t_W: time for the attacker to observe the result of an executed attack
-#      payload, in seconds.
+# t_N: time for the attacker to send an attack payload and receive an execution
+#      result over network, in seconds.
 # T_min: expected time for the whole system to resist brute force attacks, in
 #        seconds.
 #
 cases = {
     'small': {
-        'S_C': 64 * 1024,
+        'S_C': 32 * 1024,
         'S_CO': 8 * 1024,
         'S_D': 32 * 1024,
         'S_Dp': 1 * 1024,
@@ -38,14 +34,13 @@ cases = {
         'S_T': 16,
         'S_W': 128,
         't_B': 1,
-        't_W': 0.002,
-        't_O': 0.004,
-        'T_min': 30 * 24 * 3600,
+        't_N': 0.006,
+        'T_min': 3 * 24 * 3600,
     },
     'medium': {
         'S_C': 1024 * 1024,
         'S_CO': 128 * 1024,
-        'S_D': 512 * 1024,
+        'S_D': 256 * 1024,
         'S_Dp': 4 * 1024,
         'S_D0': 512,
         'N': 32,
@@ -53,9 +48,8 @@ cases = {
         'S_T': 16,
         'S_W': 128,
         't_B': 1,
-        't_W': 0.002,
-        't_O': 0.004,
-        'T_min': 30 * 24 * 3600,
+        't_N': 0.006,
+        'T_min': 3 * 24 * 3600,
     },
     'large': {
         'S_C': 16 * 1024 * 1024,
@@ -68,9 +62,8 @@ cases = {
         'S_T': 16,
         'S_W': 128,
         't_B': 1,
-        't_W': 0.002,
-        't_O': 0.004,
-        'T_min': 30 * 24 * 3600,
+        't_N': 0.006,
+        'T_min': 3 * 24 * 3600,
     },
 }
 
@@ -160,7 +153,7 @@ def main():
         E = e11 * e21
         p_T = pT11(cases[case]) * pS21(cases[case]) + pT21(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.1 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
@@ -172,7 +165,7 @@ def main():
         E = e12 * e21
         p_T = pT12(cases[case]) * pS21(cases[case]) + pT21(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.2 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
@@ -184,7 +177,7 @@ def main():
         E = e13 * e21
         p_T = pT13(cases[case]) * pS21(cases[case]) + pT21(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.3 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
@@ -196,7 +189,7 @@ def main():
         E = e11 * e22
         p_T = pT11(cases[case]) * pS22(cases[case]) + pT22(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.1 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
@@ -208,7 +201,7 @@ def main():
         E = e12 * e22
         p_T = pT12(cases[case]) * pS22(cases[case]) + pT22(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.2 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
@@ -220,7 +213,7 @@ def main():
         E = e13 * e22
         p_T = pT13(cases[case]) * pS22(cases[case]) + pT22(cases[case])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_W'] + cases[case]['t_O']) * E
+        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
         Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
         print('  Strategy 1.3 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
