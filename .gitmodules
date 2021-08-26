@@ -1,6 +1,6 @@
 [submodule "llvm-project"]
 	path = llvm-project
-	url = https://github.com/chaosdefinition/llvm-project.git
+	url = https://github.com/URSec/Randezvous-Compiler.git
 [submodule "newlib-cygwin"]
 	path = newlib-cygwin
-	url = https://github.com/chaosdefinition/newlib-cygwin.git
+	url = https://github.com/URSec/newlib-cygwin.git
