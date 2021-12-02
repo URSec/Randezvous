@@ -79,8 +79,8 @@ def write_tex_header(f, benchmark, typ, has_stdev, ieee):
         f.write('\\label{tbl:' + typ + '-' + benchmark + '}\n')
     # Write \centering
     f.write('\\centering\n')
-    # Write \sffamily
-    f.write('\\sffamily\n')
+    # Write {\sffamily
+    f.write('{\\sffamily\n')
     # Write \footnotesize{
     f.write('\\footnotesize{\n')
     # Restrict everything within column width
@@ -148,8 +148,8 @@ def write_tex_footer(f, benchmark, typ, has_stdev, ieee):
     f.write('\\bottomrule\n')
     # Write \end{tabular}
     f.write('\\end{tabular}\n')
-    # Write end of \footnotesize{
-    f.write('}}\n')
+    # Write end of \resizebox{, \footnotesize{, and {\sffamily
+    f.write('}}}\n')
     if not ieee:
         # Write caption and label
         f.write('\\caption{' + caption + '}\n')
