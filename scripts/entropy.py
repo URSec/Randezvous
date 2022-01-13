@@ -76,7 +76,7 @@ def pS22(case):
         return 0
 
     s = math.comb(int((case['S_D'] - case['S_G']) / 4 + 1),
-                  int((case['S_D'] - case['S_G'] - case['S_W']) / 4 + 1))
+                  int(case['S_W'] / 4))
 
     t = 0
     for i in range(0, min(int(case['S_W'] / 4), case['N'])):
@@ -91,7 +91,7 @@ def pN22(case):
         return 0
 
     s = math.comb(int((case['S_D'] - case['S_G']) / 4 + 1),
-                  int((case['S_D'] - case['S_G'] - case['S_W']) / 4 + 1))
+                  int(case['S_W'] / 4))
     t = math.comb(int((case['S_D'] - case['S_G']) / 4 - case['N']),
                   int(case['S_W'] / 4))
 
