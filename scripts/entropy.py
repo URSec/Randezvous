@@ -11,7 +11,7 @@ import math
 #       data, in bytes.
 # S_D0: size of zeroed memory in the .data segment, in bytes.
 # N: number of valid control data slots in the .data segment.
-# S_G: size of the global guard object, in bytes.
+# S_G: total size of all global guard objects, in bytes.
 # S_T: size of the control flow target, in bytes.
 # S_W: size of memory in the .data segment that the attacker corrupts each
 #      time, in bytes.
@@ -75,7 +75,7 @@ def pS22(case):
     if case['S_D'] - case['S_G'] < case['S_W']:
         return 0
 
-    s = math.comb(int((case['S_D'] - case['S_G']) / 4 + 1),
+    s = math.comb(int(case['S_D'] / 4),
                   int(case['S_W'] / 4))
 
     t = 0
@@ -90,7 +90,7 @@ def pN22(case):
     if case['S_D'] - case['S_G'] - 4 * case['N'] < case['S_W']:
         return 0
 
-    s = math.comb(int((case['S_D'] - case['S_G']) / 4 + 1),
+    s = math.comb(int(case['S_D'] / 4),
                   int(case['S_W'] / 4))
     t = math.comb(int((case['S_D'] - case['S_G']) / 4 - case['N']),
                   int(case['S_W'] / 4))
