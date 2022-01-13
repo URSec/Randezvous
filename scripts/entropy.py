@@ -140,9 +140,6 @@ def main():
         e21 = E21(cases[c])
         e22 = E22(cases[c])
 
-        p_T = cases[c]['S_G'] / cases[c]['S_D']
-        p_T += cases[c]['N'] * 4 * (1 - cases[c]['S_CO'] / cases[c]['S_C']) / cases[c]['S_D']
-
         print('For case ' + c)
         print('  e11 = {0:.3f}'.format(e11))
         print('  e12 = {0:.3f}'.format(e12))
