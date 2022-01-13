@@ -68,82 +68,82 @@ cases = {
 }
 
 
-def pS21(case):
-    return 4 * case['N'] / (case['S_D'] - case['S_Dp'] + case['S_D0'])
+def pS21(c):
+    return 4 * c['N'] / (c['S_D'] - c['S_Dp'] + c['S_D0'])
 
-def pS22(case):
-    if case['S_D'] - case['S_G'] < case['S_W']:
+def pS22(c):
+    if c['S_D'] - c['S_G'] < c['S_W']:
         return 0
 
-    s = math.comb(int(case['S_D'] / 4),
-                  int(case['S_W'] / 4))
+    s = math.comb(int(c['S_D'] / 4),
+                  int(c['S_W'] / 4))
 
     t = 0
-    for i in range(0, min(int(case['S_W'] / 4), case['N'])):
-        t += math.comb(int(case['N']), int(i + 1)) * \
-             math.comb(int((case['S_D'] - case['S_G']) / 4 - case['N']),
-                       int(case['S_W'] / 4 - i - 1))
+    for i in range(0, min(int(c['S_W'] / 4), c['N'])):
+        t += math.comb(int(c['N']), int(i + 1)) * \
+             math.comb(int((c['S_D'] - c['S_G']) / 4 - c['N']),
+                       int(c['S_W'] / 4 - i - 1))
 
     return t / s
 
-def pN22(case):
-    if case['S_D'] - case['S_G'] - 4 * case['N'] < case['S_W']:
+def pN22(c):
+    if c['S_D'] - c['S_G'] - 4 * c['N'] < c['S_W']:
         return 0
 
-    s = math.comb(int(case['S_D'] / 4),
-                  int(case['S_W'] / 4))
-    t = math.comb(int((case['S_D'] - case['S_G']) / 4 - case['N']),
-                  int(case['S_W'] / 4))
+    s = math.comb(int(c['S_D'] / 4),
+                  int(c['S_W'] / 4))
+    t = math.comb(int((c['S_D'] - c['S_G']) / 4 - c['N']),
+                  int(c['S_W'] / 4))
 
     return t / s
 
 
-def pT11(case):
-    return (case['S_C'] - case['S_CO']) * (case['S_C'] - case['S_T']) / case['S_C'] / case['S_C']
+def pT11(c):
+    return (c['S_C'] - c['S_CO']) * (c['S_C'] - c['S_T']) / c['S_C'] / c['S_C']
 
-def pT12(case):
-    return (case['S_D'] - case['S_Dp'] - 4 * case['N']) / (case['S_D'] - case['S_Dp'])
+def pT12(c):
+    return (c['S_D'] - c['S_Dp'] - 4 * c['N']) / (c['S_D'] - c['S_Dp'])
 
-def pT13(case):
-    return (case['S_D'] - case['S_Dp'] - 4 * case['N']) / (case['S_D'] - case['S_Dp'])
+def pT13(c):
+    return (c['S_D'] - c['S_Dp'] - 4 * c['N']) / (c['S_D'] - c['S_Dp'])
 
-def pT21(case):
-    return case['S_G'] / (case['S_D'] - case['S_Dp'] + case['S_D0'])
+def pT21(c):
+    return c['S_G'] / (c['S_D'] - c['S_Dp'] + c['S_D0'])
 
-def pT22(case):
-    return 1 - pS22(case) - pN22(case)
+def pT22(c):
+    return 1 - pS22(c) - pN22(c)
 
 
-def E11(case):
-    return (case['S_C'] - case['S_T']) / 4
+def E11(c):
+    return (c['S_C'] - c['S_T']) / 4
 
-def E12(case):
-    return (case['S_D'] - case['S_Dp']) / 4
+def E12(c):
+    return (c['S_D'] - c['S_Dp']) / 4
 
-def E13(case):
-    return (case['S_D'] - case['S_Dp']) / 8 + 0.5
+def E13(c):
+    return (c['S_D'] - c['S_Dp']) / 8 + 0.5
 
-def E21(case):
-    return (case['S_D'] - case['S_Dp'] + case['S_D0']) / case['N'] / 4
+def E21(c):
+    return (c['S_D'] - c['S_Dp'] + c['S_D0']) / c['N'] / 4
 
-def E22(case):
-    p_S22 = pS22(case)
+def E22(c):
+    p_S22 = pS22(c)
 
     return 1 / p_S22 if p_S22 != 0 else math.inf
 
 
 def main():
-    for case in cases:
-        e11 = E11(cases[case])
-        e12 = E12(cases[case])
-        e13 = E13(cases[case])
-        e21 = E21(cases[case])
-        e22 = E22(cases[case])
+    for c in cases:
+        e11 = E11(cases[c])
+        e12 = E12(cases[c])
+        e13 = E13(cases[c])
+        e21 = E21(cases[c])
+        e22 = E22(cases[c])
 
-        p_T = cases[case]['S_G'] / cases[case]['S_D']
-        p_T += cases[case]['N'] * 4 * (1 - cases[case]['S_CO'] / cases[case]['S_C']) / cases[case]['S_D']
+        p_T = cases[c]['S_G'] / cases[c]['S_D']
+        p_T += cases[c]['N'] * 4 * (1 - cases[c]['S_CO'] / cases[c]['S_C']) / cases[c]['S_D']
 
-        print('For case ' + case)
+        print('For case ' + c)
         print('  e11 = {0:.3f}'.format(e11))
         print('  e12 = {0:.3f}'.format(e12))
         print('  e13 = {0:.3f}'.format(e13))
@@ -151,10 +151,10 @@ def main():
         print('  e22 = {0:.3f}'.format(e22))
 
         E = e11 * e21
-        p_T = pT11(cases[case]) * pS21(cases[case]) + pT21(cases[case])
+        p_T = pT11(cases[c]) * pS21(cases[c]) + pT21(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.1 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
@@ -163,10 +163,10 @@ def main():
         print('    Total delay = {0:.3f}'.format(Delay))
 
         E = e12 * e21
-        p_T = pT12(cases[case]) * pS21(cases[case]) + pT21(cases[case])
+        p_T = pT12(cases[c]) * pS21(cases[c]) + pT21(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.2 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
@@ -175,10 +175,10 @@ def main():
         print('    Total delay = {0:.3f}'.format(Delay))
 
         E = e13 * e21
-        p_T = pT13(cases[case]) * pS21(cases[case]) + pT21(cases[case])
+        p_T = pT13(cases[c]) * pS21(cases[c]) + pT21(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.3 + Strategy 2.1')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
@@ -187,10 +187,10 @@ def main():
         print('    Total delay = {0:.3f}'.format(Delay))
 
         E = e11 * e22
-        p_T = pT11(cases[case]) * pS22(cases[case]) + pT22(cases[case])
+        p_T = pT11(cases[c]) * pS22(cases[c]) + pT22(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.1 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
@@ -199,10 +199,10 @@ def main():
         print('    Total delay = {0:.3f}'.format(Delay))
 
         E = e12 * e22
-        p_T = pT12(cases[case]) * pS22(cases[case]) + pT22(cases[case])
+        p_T = pT12(cases[c]) * pS22(cases[c]) + pT22(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.2 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
@@ -211,10 +211,10 @@ def main():
         print('    Total delay = {0:.3f}'.format(Delay))
 
         E = e13 * e22
-        p_T = pT13(cases[case]) * pS22(cases[case]) + pT22(cases[case])
+        p_T = pT13(cases[c]) * pS22(cases[c]) + pT22(cases[c])
         R = p_T * E
-        T = (p_T * cases[case]['t_B'] + cases[case]['t_N']) * E
-        Delay = cases[case]['T_min'] - T if cases[case]['T_min'] > T else 0
+        T = (p_T * cases[c]['t_B'] + cases[c]['t_N']) * E
+        Delay = cases[c]['T_min'] - T if cases[c]['T_min'] > T else 0
         print('  Strategy 1.3 + Strategy 2.2')
         print('    p_T = {0:.6f}'.format(p_T))
         print('    E = {0:.3f}'.format(E))
