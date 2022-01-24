@@ -51,8 +51,6 @@ types = [
     'perf',
     'codesize',
     'datasize',
-    'codesize-adjusted',
-    'datasize-adjusted',
 ]
 
 ###############################################################################
@@ -129,13 +127,6 @@ def gen_csv_mem(benchmark, typ, output):
         'arm-randezvous-gdlr.NumBytesInBss',
     ]
 
-    numtraps_key = 'arm-randezvous-clr.NumTraps'
-    numgarbage_keys = [
-        'arm-randezvous-gdlr.NumGarbageObjectsInRodata',
-        'arm-randezvous-gdlr.NumGarbageObjectsInData',
-        'arm-randezvous-gdlr.NumGarbageObjectsInBss',
-    ]
-
     data = {}
     for conf in configurations:
         new_debug_dir = debug_dir + '/' + benchmark + '-' + conf
@@ -153,15 +144,6 @@ def gen_csv_mem(benchmark, typ, output):
                 for key in datasize_keys:
                     if key in stats:
                         data[prog][conf] += stats[key]
-
-            if typ.endswith('-adjusted'):
-                if typ.startswith('codesize'):
-                    if numtraps_key in stats:
-                        data[prog][conf] += stats[numtraps_key] * 4
-                elif typ.startswith('datasize'):
-                    for key in numgarbage_keys:
-                        if key in stats:
-                            data[prog][conf] += stats[key] * 4
 
 
     # Write data to CSV
