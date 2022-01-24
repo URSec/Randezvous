@@ -298,7 +298,7 @@ def gen_tex(benchmark, typ, ieee, output):
 
         # Process single-number data as is
         for f in sorted(glob.glob(new_data_dir + '/*.stat')):
-            prog = os.path.splitext(os.path.basename(f))[0]
+            prog = os.path.splitext(os.path.basename(f))[0].split(conf + '-')[1]
             number = None
             for line in open(f):
                 # BEEBS
@@ -322,7 +322,7 @@ def gen_tex(benchmark, typ, ieee, output):
 
         # Process multi-number data as average and stdev
         for f in sorted(glob.glob(new_data_dir + '/*-stat')):
-            prog = os.path.splitext(os.path.basename(f))[0]
+            prog = os.path.splitext(os.path.basename(f))[0].split(conf + '-')[1]
             number = None
             for line in open(f):
                 # BEEBS
