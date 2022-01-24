@@ -19,6 +19,12 @@ CONFIGURATIONS=(
 . "$ROOT_DIR/scripts/common.sh"
 
 #
+# Disable the run() and debug() functions.
+#
+unset run
+unset debug
+
+#
 # Entrance of the script.
 #
 if (( $# == 1 )); then

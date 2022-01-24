@@ -47,6 +47,31 @@ find_ide() {
 }
 
 #
+# Print out the usage of the script.
+#
+usage() {
+    echo
+    echo "Usage: $0 <conf> [<prog>]"
+    echo
+    echo "Compile a program <prog> under the configuration <conf>.  If <prog> "
+    echo "is not given, all programs will be compiled."
+    echo
+    if type -t run > /dev/null; then
+        echo "Or: $0 run <conf> [<prog>]"
+        echo
+        echo "Run a program <prog> under the configuration <conf>.  If <prog> "
+        echo "is not given, all programs will be run."
+        echo
+    fi
+    if type -t debug > /dev/null; then
+        echo "Or: $0 debug <conf> <prog>"
+        echo
+        echo "Debug a program <prog> under the configuration <conf>."
+        echo
+    fi
+}
+
+#
 # Compile a program.
 #
 # $1: the configuration.
@@ -69,6 +94,7 @@ compile() {
     if [[ ! " ${CONFIGURATIONS[@]} " =~ " $1 " ]]; then
         echo "Configuration must be one of the following:"
         echo "${CONFIGURATIONS[@]}"
+        usage
         exit 1
     fi
 
@@ -76,18 +102,9 @@ compile() {
     if [[ ! " ${PROGRAMS[@]} " =~ " $2 " ]]; then
         echo "Program must be one of the following:"
         echo "${PROGRAMS[@]}"
+        usage
         exit 1
     fi
-
-    # Updated the .cproject file
-    if [[ ! -e "$PROJ_DIR/cproject_$1" ]]; then
-        echo "No cproject_$1 found in $PROJ_DIR!"
-        echo "Generate one by:"
-        echo
-        echo "cd '$PROJ_DIR'; ./gen_cproject.py;"
-        exit 1
-    fi
-    (cd "$PROJ_DIR"; ln -sf "cproject_$1" .cproject;)
 
     # Make a debug directory
     local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
@@ -95,9 +112,9 @@ compile() {
         mkdir -p "$debug_dir"
     fi
 
-    local elf="$PROJ_DIR/$2/$2.axf"
-    local lib="$PROJ_DIR/$2/lib$2.a"
-    local stats="$PROJ_DIR/$2/$2.json"
+    local elf="$PROJ_DIR/$1-$2/$1-$2.axf"
+    local lib="$PROJ_DIR/$1-$2/lib$2.a"
+    local stats="$PROJ_DIR/$1-$2/$1-$2.json"
     rm -rf "$elf" "$lib" "$stats"
 
     # Do compile
@@ -106,24 +123,25 @@ compile() {
         "--launcher.suppressErrors"
         "-application org.eclipse.cdt.managedbuilder.core.headlessbuild"
         "-data $ROOT_DIR/workspace"
+        "-no-indexer"
         "-cleanBuild"
     )
     echo "Compiling $2 for $1 ......"
-    "$ECLIPSE" ${eclipse_args[@]} $PROJ/$2 >& "$debug_dir/build-$2.log"
+    "$ECLIPSE" ${eclipse_args[@]} $PROJ/$1-$2 >& "$debug_dir/build-$1-$2.log"
     if [[ ! -x "$elf" ]] && [[ ! -f "$lib" ]]; then
         # Try again; the IDE sometimes may fail for no reason, but it's
         # unlikely to happen twice in a row
-        "$ECLIPSE" ${eclipse_args[@]} $PROJ/$2 >& "$debug_dir/build-$2.log"
+        "$ECLIPSE" ${eclipse_args[@]} $PROJ/$1-$2 >& "$debug_dir/build-$1-$2.log"
         if [[ ! -x "$elf" ]] && [[ ! -f "$lib" ]]; then
             echo "Compiling $2 failed!"
-            echo "Check $debug_dir/build-$2.log for details"
+            echo "Check $debug_dir/build-$1-$2.log for details"
             exit 1
         fi
     fi
 
     # Copy the generated ELF binary to the debug directory
     if [[ -x "$elf" ]]; then
-        echo "Copying $2.axf to debug/$PROJ-$1 ......"
+        echo "Copying $1-$2.axf to debug/$PROJ-$1 ......"
         cp "$elf" "$debug_dir"
     else
         echo "Copying lib$2.a to debug/$PROJ-$1 ......"
@@ -188,7 +206,7 @@ run() {
 
     # Check if the ELF binary is there
     local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
-    local elf="$debug_dir/$2.axf"
+    local elf="$debug_dir/$1-$2.axf"
     if [[ ! -x "$elf" ]]; then
         echo "No $elf found!"
         echo "Try to compile first!"
@@ -197,22 +215,23 @@ run() {
 
     for iter in `seq 0 $(( iters - 1 ))`; do
         # Kill all screens first
-        screen -X kill >& /dev/null
+        local screen_name="Randezvous-ttyACM0"
+        screen -S "$screen_name" -X kill >& /dev/null
 
         local perf_dir="$DATA_DIR/$PROJ-$1"
         if [[ ! -d "$perf_dir" ]]; then
             mkdir -p "$perf_dir"
         fi
 
-        local perf_data="$perf_dir/$2.stat"
+        local perf_data="$perf_dir/$1-$2.stat"
         if (( $iters != 1 )); then
-            perf_data="$perf_dir/$2.$iter-stat"
+            perf_data="$perf_dir/$1-$2.$iter-stat"
         fi
         rm -rf "$perf_data"
 
         # Open screen to receive the output
-        screen -dm -L -fn -Logfile "$perf_data" /dev/ttyACM0 115200
-        screen -X logfile flush 0
+        screen -S "$screen_name" -dm -L -fn -Logfile "$perf_data" /dev/ttyACM0 115200
+        screen -S "$screen_name" -X logfile flush 0
 
         # Program the binary onto the board
         local flash_server_args=(
@@ -234,7 +253,7 @@ run() {
         )
         local flash_server_log=`mktemp -q`
         local flash_tool_log=`mktemp -q`
-        echo "Programming $2.axf onto the board ......"
+        echo "Programming $1-$2.axf onto the board ......"
         "$FLASH_SERVER" ${flash_server_args[@]} < "$FLASH_SERVER_SCRIPT" >& "$flash_server_log"
         if [[ -n `grep -i error "$flash_server_log"` ]]; then
             echo "Programming failed!"
@@ -258,8 +277,8 @@ run() {
         # Feed input to the serial port
         if [[ -n "$4" ]] && [[ -f "$4" ]]; then
             sleep 0.01
-            screen -X readreg p "$4"
-            screen -X paste p
+            screen -S "$screen_name" -X readreg p "$4"
+            screen -S "$screen_name" -X paste p
         fi
 
         echo "Running $PROJ-$1/$2 ......"
@@ -269,7 +288,7 @@ run() {
             grep "$3" "$perf_data" >& /dev/null
         done
         sleep 1
-        screen -X kill
+        screen -S "$screen_name" -X kill
 
         # Print out the result
         echo "Result:"
@@ -313,18 +332,21 @@ debug() {
 
     # Check if the ELF binary is there
     local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
-    local elf="$debug_dir/$2.axf"
+    local elf="$debug_dir/$1-$2.axf"
     if [[ ! -x "$elf" ]]; then
         echo "No $elf found!"
         echo "Try to compile first!"
         exit 1
     fi
 
-    # Check if arm-none-eabi-gdb is there
-    local gdb=`which arm-none-eabi-gdb 2> /dev/null`
+    # Check if gdb-multiarch or arm-none-eabi-gdb is there
+    local gdb=`which gdb-multiarch 2> /dev/null`
     if [[ -z "$gdb" ]]; then
-        echo "arm-none-eabi-gdb not found!"
-        exit 1
+        gdb=`which arm-none-eabi-gdb 2> /dev/null`
+        if [[ -z "$gdb" ]]; then
+            echo "gdb-multiarch or arm-none-eabi-gdb not found!"
+            exit 1
+        fi
     fi
 
     # Establish a flash server
