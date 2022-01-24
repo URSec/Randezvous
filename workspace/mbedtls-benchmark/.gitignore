@@ -1,10 +1,11 @@
 # Hidden configuration files
 .settings
-.cproject
-cproject_*
 
 # Launch configurations
 *.launch
 
 # Compilation results
-/mbedtls-benchmark/
+/baseline-mbedtls-benchmark/
+/baseline-sram-mbedtls-benchmark/
+/randezvous-mbedtls-benchmark/
+/randezvous-sram-mbedtls-benchmark/

@@ -8,7 +8,7 @@ import sys
 #
 # Path to the root directory of whole project.
 #
-root = os.path.abspath(os.path.dirname(sys.argv[0]) + '/../..')
+root = '${workspace_loc}/..'
 
 #
 # Path to our Clang.
@@ -101,6 +101,30 @@ configurations = {
 }
 
 
+#
+# Extra settings that cannot be specified statically and need to be populated
+# by a function at runtime.
+#
+extras = {}
+
+
+#
+# Populate extra settings.
+#
+def populate_extra_settings():
+    number = 0
+    for conf in configurations:
+        for program in programs:
+            extras[(conf, program)] = {
+                'id': str(number),
+                'defines': [],
+                'includes': [],
+                'cflags': [],
+                'ldflags': [],
+            }
+            number += 1
+
+
 ###############################################################################
 
 #
@@ -136,12 +160,14 @@ def gen_scanner_header():
 
 
 #
-# Generate and return the scanner configuration for a given program.
+# Generate and return the scanner configuration for a given configuration and
+# program.
 #
+# @conf: the name of the configuration.
 # @program: the name of the program.
 #
-def gen_scanner_config(program):
-    program_id = programs[program]['id']
+def gen_scanner_config(conf, program):
+    program_id = extras[(conf, program)]['id']
     xml =  '    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.lib.release.' + program_id + ';com.crt.advproject.config.lib.release.' + program_id + '.;com.crt.advproject.gcc.lib.release.' + program_id + ';com.crt.advproject.compiler.input.' + program_id + '">\n'
     xml += '      <autodiscovery enabled="false" problemReportingEnabled="false" selectedProfileId=""/>\n'
     xml += '    </scannerConfigBuildInfo>\n'
@@ -219,15 +245,16 @@ def gen_core_settings_header():
 # @program: the name of the program.
 #
 def gen_core_settings_config(conf, program):
-    program_id = programs[program]['id']
+    program_id = extras[(conf, program)]['id']
+    program_name = conf + '-' + program
 
-    xml =  '    <!-- Configuration of ' + program + ' -->\n'
+    xml =  '    <!-- Configuration of ' + program_name + ' -->\n'
     xml += '    <cconfiguration id="com.crt.advproject.config.lib.release.' + program_id + '">\n'
-    xml += '      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.lib.release.' + program_id + '" moduleId="org.eclipse.cdt.core.settings" name="' + program + '">\n'
+    xml += '      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.lib.release.' + program_id + '" moduleId="org.eclipse.cdt.core.settings" name="' + program_name + '">\n'
     xml += '        <externalSettings>\n'
     xml += '          <externalSetting>\n'
     xml += '            <entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/' + project_name + '"/>\n'
-    xml += '            <entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/' + project_name + '/' + program + '"/>\n';
+    xml += '            <entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/' + project_name + '/' + program_name + '"/>\n';
     xml += '            <entry flags="RESOLVED" kind="libraryFile" name="' + project_name + '" srcPrefixMapping="" srcRootPath=""/>\n'
     xml += '          </externalSetting>\n'
     xml += '        </externalSettings>\n'
@@ -242,11 +269,11 @@ def gen_core_settings_config(conf, program):
     xml += '        </extensions>\n'
     xml += '      </storageModule>\n'
     xml += '      <storageModule moduleId="cdtBuildSystem" version="4.0.0">\n'
-    xml += '        <configuration artifactExtension="a" artifactName="${ConfigName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="Release build of lib' + program + '" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.lib.release.' + program_id + '" name="' + program + '" parent="com.crt.advproject.config.lib.release" postannouncebuildStep="Performing post-build steps" postbuildStep="">\n'
+    xml += '        <configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="Release build of ' + program_name + '" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.lib.release.' + program_id + '" name="' + program_name + '" parent="com.crt.advproject.config.lib.release" postannouncebuildStep="Performing post-build steps" postbuildStep="">\n'
     xml += '          <folderInfo id="com.crt.advproject.config.lib.release.' + program_id + '." name="/" resourcePath="">\n'
     xml += '            <toolChain id="com.crt.advproject.toolchain.lib.release.' + program_id + '" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.lib.release">\n'
     xml += '              <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.lib.release.' + program_id + '" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.lib.release"/>\n'
-    xml += '              <builder buildPath="${ProjDirPath}/' + program + '" id="com.crt.advproject.builder.lib.release.' + program_id + '" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.lib.release"/>\n'
+    xml += '              <builder buildPath="${ProjDirPath}/' + program_name + '" id="com.crt.advproject.builder.lib.release.' + program_id + '" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.lib.release"/>\n'
     ###########################################################################
     # Set up C compiler
     ###########################################################################
@@ -448,24 +475,23 @@ def gen_core_settings_footer():
 
 
 #
-# Generate and return the whole cproject file content for the given
-# configuration.
+# Generate and return the whole cproject file content for all configurations.
 #
-# @conf: the name of the configuration to use.
-#
-def gen_cproject(conf):
+def gen_cproject():
     xml =  gen_header()
 
     # Generate core settings for each program
     xml += gen_core_settings_header()
-    for program in sorted(programs.keys()):
-        xml += gen_core_settings_config(conf, program)
+    for conf in configurations:
+        for program in sorted(programs.keys()):
+            xml += gen_core_settings_config(conf, program)
     xml += gen_core_settings_footer()
 
     # Generate scanner configuration for each program
     xml += gen_scanner_header()
-    for program in sorted(programs.keys()):
-        xml += gen_scanner_config(program)
+    for conf in configurations:
+        for program in sorted(programs.keys()):
+            xml += gen_scanner_config(conf, program)
     xml += gen_scanner_footer()
 
     # Generate other miscellaneous stuffs
@@ -484,14 +510,17 @@ def gen_cproject(conf):
 def gen_language_settings():
     xml  = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
     xml += '<project>\n'
-    for program in sorted(programs.keys()):
-        xml += '  <configuration id="com.crt.advproject.config.lib.release.' + programs[program]['id'] + '" name="' + program + '">\n'
-        xml += '    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">\n'
-        xml += '      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>\n'
-        xml += '      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>\n'
-        xml += '      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>\n'
-        xml += '    </extension>\n'
-        xml += '  </configuration>\n'
+    for conf in configurations:
+        for program in sorted(programs.keys()):
+            program_id = extras[(conf, program)]['id']
+            program_name = conf + '-' + program
+            xml += '  <configuration id="com.crt.advproject.config.lib.release.' + program_id + '" name="' + program_name + '">\n'
+            xml += '    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">\n'
+            xml += '      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>\n'
+            xml += '      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>\n'
+            xml += '      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>\n'
+            xml += '    </extension>\n'
+            xml += '  </configuration>\n'
     xml += '</project>\n'
 
     return xml
@@ -501,18 +530,11 @@ def gen_language_settings():
 # The main function.
 #
 def main():
-    # Assign an ID to each program
-    program_id = 0
-    for program in sorted(programs.keys()):
-        programs[program]['id'] = str(program_id)
-        program_id += 1
-
-    # Generate cproject file for each configuration
-    for conf in configurations:
-        conf_filename = project_dir + '/cproject_' + conf
-        xml = gen_cproject(conf)
-        with open(conf_filename, 'w') as f:
-            f.write(xml)
+    # Generate a .cproject file for all configurations
+    conf_filename = project_dir + '/.cproject'
+    xml = gen_cproject()
+    with open(conf_filename, 'w') as f:
+        f.write(xml)
 
     # In addition, also generate language.settings.xml that disable discovering
     # compiler's built-in language settings
@@ -524,4 +546,5 @@ def main():
 
 
 if __name__ == '__main__':
+    populate_extra_settings()
     main()

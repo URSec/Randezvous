@@ -1,18 +1,43 @@
 # Hidden configuration files
 .settings
-.cproject
-cproject_*
 
 # Launch configurations
 *.launch
 
 # Compilation results
-/cjpeg-rose7-preset/
-/core/
-/linear_alg-mid-100x100-sp/
-/loops-all-mid-10k-sp/
-/nnet_test/
-/parser-125k/
-/radix2-big-64k/
-/sha-test/
-/zip-test/
+/baseline-cjpeg-rose7-preset/
+/baseline-core/
+/baseline-linear_alg-mid-100x100-sp/
+/baseline-loops-all-mid-10k-sp/
+/baseline-nnet_test/
+/baseline-parser-125k/
+/baseline-radix2-big-64k/
+/baseline-sha-test/
+/baseline-zip-test/
+/baseline-sram-cjpeg-rose7-preset/
+/baseline-sram-core/
+/baseline-sram-linear_alg-mid-100x100-sp/
+/baseline-sram-loops-all-mid-10k-sp/
+/baseline-sram-nnet_test/
+/baseline-sram-parser-125k/
+/baseline-sram-radix2-big-64k/
+/baseline-sram-sha-test/
+/baseline-sram-zip-test/
+/randezvous-cjpeg-rose7-preset/
+/randezvous-core/
+/randezvous-linear_alg-mid-100x100-sp/
+/randezvous-loops-all-mid-10k-sp/
+/randezvous-nnet_test/
+/randezvous-parser-125k/
+/randezvous-radix2-big-64k/
+/randezvous-sha-test/
+/randezvous-zip-test/
+/randezvous-sram-cjpeg-rose7-preset/
+/randezvous-sram-core/
+/randezvous-sram-linear_alg-mid-100x100-sp/
+/randezvous-sram-loops-all-mid-10k-sp/
+/randezvous-sram-nnet_test/
+/randezvous-sram-parser-125k/
+/randezvous-sram-radix2-big-64k/
+/randezvous-sram-sha-test/
+/randezvous-sram-zip-test/

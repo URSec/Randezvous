@@ -1,14 +1,27 @@
 # Hidden configuration files
 .settings
-.cproject
-cproject_*
 
 # Launch configurations
 *.launch
 
 # Compilation results
-/test1/
-/test2/
-/test3/
-/test4/
-/test5/
+/baseline-test1/
+/baseline-test2/
+/baseline-test3/
+/baseline-test4/
+/baseline-test5/
+/baseline-sram-test1/
+/baseline-sram-test2/
+/baseline-sram-test3/
+/baseline-sram-test4/
+/baseline-sram-test5/
+/randezvous-test1/
+/randezvous-test2/
+/randezvous-test3/
+/randezvous-test4/
+/randezvous-test5/
+/randezvous-sram-test1/
+/randezvous-sram-test2/
+/randezvous-sram-test3/
+/randezvous-sram-test4/
+/randezvous-sram-test5/
