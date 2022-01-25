@@ -94,6 +94,7 @@ cmake -G Ninja                                                              \
       -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON                                  \
       -DLLVM_CONFIG_PATH="$LLVM_BUILD/bin/llvm-config"                      \
       -DCMAKE_C_COMPILER_TARGET="$TARGET"                                   \
+      -DCMAKE_CXX_COMPILER_TARGET="$TARGET"                                 \
       -DCMAKE_ASM_COMPILER_TARGET="$TARGET"                                 \
       -DCMAKE_C_FLAGS="$CFLAGS"                                             \
       -DCMAKE_ASM_FLAGS="$ASMFLAGS"                                         \
