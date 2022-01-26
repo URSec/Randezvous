@@ -15,6 +15,11 @@ LLVM_SRC="$ROOT_DIR/llvm-project"
 #
 LLVM_BUILD="$ROOT_DIR/build/llvm"
 
+#
+# Path to the LLVM install directory.
+#
+LLVM_INSTALL="$ROOT_DIR/build/llvm/install"
+
 ###############################################################################
 
 set -e
@@ -33,13 +38,24 @@ export READELF=llvm-readelf
 export STRIP=llvm-strip
 
 cmake -G Ninja                                                              \
-      -DCMAKE_BUILD_TYPE=Release                                            \
+      -DCMAKE_BUILD_TYPE=MinSizeRel                                         \
+      -DCMAKE_INSTALL_PREFIX="$LLVM_INSTALL"                                \
       -DCMAKE_CXX_STANDARD=17                                               \
       -DLLVM_ENABLE_PROJECTS="clang;lld"                                    \
       -DLLVM_TARGETS_TO_BUILD="ARM"                                         \
       -DLLVM_ENABLE_ASSERTIONS=ON                                           \
       -DLLVM_OPTIMIZED_TABLEGEN=ON                                          \
       -DLLVM_APPEND_VC_REV=OFF                                              \
+      -DLLVM_LINK_LLVM_DYLIB=ON                                             \
+      -DLLVM_ENABLE_Z3_SOLVER=OFF                                           \
       "$LLVM_SRC/llvm"
 
+# Build all
 ninja
+
+# Install only the necessary
+ninja install-clang-stripped                                                \
+      install-lld-stripped                                                  \
+      install-LLVM-stripped                                                 \
+      install-clang-cpp-stripped                                            \
+      install-clang-resource-headers-stripped

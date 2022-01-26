@@ -30,6 +30,11 @@ ARM_NONE_EABI_GCC_PATH=`dirname $(arm-none-eabi-gcc -print-libgcc-file-name)`
 #
 LLVM_BUILD="$ROOT_DIR/build/llvm"
 
+#
+# Path to the LLVM install directory.
+#
+LLVM_INSTALL="$ROOT_DIR/build/llvm/install"
+
 
 #
 # The target for which to build newlib.
@@ -39,7 +44,7 @@ TARGET="arm-none-eabihf"
 #
 # Path to the C compiler to use.
 #
-CC_FOR_TARGET="$LLVM_BUILD/bin/clang"
+CC_FOR_TARGET="$LLVM_INSTALL/bin/clang"
 export CC_FOR_TARGET
 
 #

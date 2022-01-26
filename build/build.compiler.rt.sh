@@ -16,6 +16,11 @@ LLVM_SRC="$ROOT_DIR/llvm-project"
 LLVM_BUILD="$ROOT_DIR/build/llvm"
 
 #
+# Path to the LLVM build directory.
+#
+LLVM_INSTALL="$ROOT_DIR/build/llvm/install"
+
+#
 # Path to the newlib install directory.
 #
 NEWLIB_INSTALL="$ROOT_DIR/build/newlib-cygwin/install"
@@ -86,7 +91,7 @@ cmake -G Ninja                                                              \
       -DCOMPILER_RT_BUILD_XRAY=OFF                                          \
       -DCOMPILER_RT_BUILD_LIBFUZZER=OFF                                     \
       -DCOMPILER_RT_BUILD_PROFILE=OFF                                       \
-      -DCMAKE_C_COMPILER="$LLVM_BUILD/bin/clang"                            \
+      -DCMAKE_C_COMPILER="$LLVM_INSTALL/bin/clang"                          \
       -DCMAKE_AR="$LLVM_BUILD/bin/llvm-ar"                                  \
       -DCMAKE_NM="$LLVM_BUILD/bin/llvm-nm"                                  \
       -DCMAKE_RANLIB="$LLVM_BUILD/bin/llvm-ranlib"                          \
