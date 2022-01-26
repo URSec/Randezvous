@@ -105,7 +105,7 @@ to be done once.
    Note that all our scripts (in the `build` and `scripts` directories) are
    CWD-agnostic; each of them can be run from any working directory and would
    have the same outcome.  After `./build/build.llvm.sh` finishes, the
-   Randezvous compiler will be in `build/llvm/bin`.
+   Randezvous compiler will be installed in `build/llvm/install/bin`.
 4. Build Newlib and compiler-rt.
    ```shell
    ./build/build.newlib.sh && ./build/build.compiler.rt.sh
