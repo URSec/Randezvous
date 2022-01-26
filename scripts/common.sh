@@ -149,6 +149,9 @@ compile() {
         fi
     fi
 
+    # Remove the .cproject file
+    (cd "$PROJ_DIR" && rm -rf .cproject;)
+
     # Copy the generated ELF binary to the debug directory
     if [[ -x "$elf" ]]; then
         echo "Copying $1-$2.axf to debug/$PROJ-$1 ......"
@@ -160,7 +163,7 @@ compile() {
 
     # Copy the statistics file to the debug directory
     if [[ -f "$stats" ]]; then
-        echo "Copying $2.json to debug/$PROJ-$1 ......"
+        echo "Copying $1-$2.json to debug/$PROJ-$1 ......"
         cp "$stats" "$debug_dir"
     fi
 
