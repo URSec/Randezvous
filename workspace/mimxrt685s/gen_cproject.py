@@ -475,23 +475,23 @@ def gen_core_settings_footer():
 
 
 #
-# Generate and return the whole cproject file content for all configurations.
+# Generate and return the whole cproject file content for a given configuration.
 #
-def gen_cproject():
+# @conf: the name of the configuration.
+#
+def gen_cproject(conf):
     xml =  gen_header()
 
     # Generate core settings for each program
     xml += gen_core_settings_header()
-    for conf in configurations:
-        for program in sorted(programs.keys()):
-            xml += gen_core_settings_config(conf, program)
+    for program in sorted(programs.keys()):
+        xml += gen_core_settings_config(conf, program)
     xml += gen_core_settings_footer()
 
     # Generate scanner configuration for each program
     xml += gen_scanner_header()
-    for conf in configurations:
-        for program in sorted(programs.keys()):
-            xml += gen_scanner_config(conf, program)
+    for program in sorted(programs.keys()):
+        xml += gen_scanner_config(conf, program)
     xml += gen_scanner_footer()
 
     # Generate other miscellaneous stuffs
@@ -530,11 +530,12 @@ def gen_language_settings():
 # The main function.
 #
 def main():
-    # Generate a .cproject file for all configurations
-    conf_filename = project_dir + '/.cproject'
-    xml = gen_cproject()
-    with open(conf_filename, 'w') as f:
-        f.write(xml)
+    # Generate a .cproject file for each configuration
+    for conf in configurations:
+        conf_filename = project_dir + '/.cproject_' + conf
+        xml = gen_cproject(conf)
+        with open(conf_filename, 'w') as f:
+            f.write(xml)
 
     # In addition, also generate language.settings.xml that disable discovering
     # compiler's built-in language settings

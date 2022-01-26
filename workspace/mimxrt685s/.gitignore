@@ -1,4 +1,5 @@
 # Hidden configuration files
+.cproject
 
 # Compilation results
 /baseline-mimxrt685s/

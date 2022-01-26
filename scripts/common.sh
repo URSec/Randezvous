@@ -106,6 +106,16 @@ compile() {
         exit 1
     fi
 
+    # Updated the .cproject file
+    if [[ ! -e "$PROJ_DIR/.cproject_$1" ]]; then
+        echo "No .cproject_$1 found in $PROJ_DIR!"
+        echo "Generate one by:"
+        echo
+        echo "cd '$PROJ_DIR'; ./gen_cproject.py;"
+        exit 1
+    fi
+    (cd "$PROJ_DIR"; ln -sf ".cproject_$1" .cproject;)
+
     # Make a debug directory
     local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
     if [[ ! -d "$debug_dir" ]]; then
