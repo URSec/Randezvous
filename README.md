@@ -111,7 +111,7 @@ to be done once.
    ./build/build.newlib.sh && ./build/build.compiler.rt.sh
    ```
    After the two scripts finish, Newlib will be installed in
-   `build/newlib/install` and compiler-rt will be installed in
+   `build/newlib-cygwin/install` and compiler-rt will be installed in
    `build/compiler-rt/install`.
 5. Import all the IDE projects in the `workspace` directory into the IDE.
    ```shell
