@@ -17,11 +17,11 @@ with MCUs' limited memory.
 ## Directory Hierarchy
 
 ```shell
-Silhouette-Evaluation
+Randezvous
 |-- build                    # Directory for building LLVM, Newlib, and compiler-rt
 |   |-- build.llvm.sh        # Script to build LLVM
 |   |-- build.newlib.sh      # Script to build Newlib
-|   |-- build.compiler.rt.sh # Script to build Newlib
+|   |-- build.compiler.rt.sh # Script to build compiler-rt
 |
 |-- data                     # Directory containing generated experiment data (to
 |                            # be created by our scripts)
@@ -37,10 +37,10 @@ Silhouette-Evaluation
 |-- scripts                  # Directory containing scripts
 |   |-- import.sh            # Script to import projects into IDE
 |   |-- hal.sh               # Script to compile HAL library for MIMXRT685-EVK
-|   |-- beebs.sh             # Script to compile/run BEEBS benchmarks
-|   |-- coremark-pro.sh      # Script to compile/run CoreMark-Pro benchmarks
-|   |-- mbedtls-benchmark.sh # Script to compile/run MBedTLS-Benchmark
-|   |-- tests.sh             # Script to compile/run test programs
+|   |-- beebs.sh             # Script to compile/debug/run BEEBS benchmarks
+|   |-- coremark-pro.sh      # Script to compile/debug/run CoreMark-Pro benchmarks
+|   |-- mbedtls-benchmark.sh # Script to compile/debug/run MbedTLS-Benchmark
+|   |-- tests.sh             # Script to compile/debug/run test programs
 |   |-- entropy.py           # Script to calculate security analysis results
 |   |-- gen_csv.py           # Script to collect experiment results into CSV files
 |   |-- gen_tex*.py          # Scripts to generate LaTeX tables for paper writing
@@ -48,7 +48,7 @@ Silhouette-Evaluation
 |-- workspace                # Directory containing source code
 |   |-- beebs                # Source code of BEEBS benchmarks
 |   |-- coremark-pro         # Source code of CoreMark-Pro benchmarks
-|   |-- mbedtls-benchmark    # Source code of MBedTLS-Benchmark
+|   |-- mbedtls-benchmark    # Source code of MbedTLS-Benchmark
 |   |-- tests                # Source code of test programs
 |   |-- mimxrt685s           # Source code of HAL library for MIMXRT685-EVK
 |
@@ -89,11 +89,7 @@ The following steps will set up the environment from scratch.  They only need
 to be done once.
 
 1. Download [MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
-   and install it at `/usr/local`, `/opt`, or `$HOME`.  Note that although our
-   scripts build programs using the IDE in headless mode (i.e., no GUI
-   required), the IDE still needs to be run in GUI for the first time in order
-   for the embedded development tools that come with it to be unpacked in the
-   file system.
+   and install it at `/usr/local`, `/opt`, or `$HOME`.
 2. Clone this repository.
    ```shell
    git clone --recurse-submodules URL
@@ -105,7 +101,7 @@ to be done once.
    Note that all our scripts (in the `build` and `scripts` directories) are
    CWD-agnostic; each of them can be run from any working directory and would
    have the same outcome.  After `./build/build.llvm.sh` finishes, the
-   Randezvous compiler will be installed in `build/llvm/install/bin`.
+   Randezvous compiler will be installed in `build/llvm/install`.
 4. Build Newlib and compiler-rt.
    ```shell
    ./build/build.newlib.sh && ./build/build.compiler.rt.sh
@@ -117,8 +113,8 @@ to be done once.
    ```shell
    ./scripts/import.sh
    ```
-6. Build a baseline version of the HAL library.  All our programs will link
-   against the baseline HAL library.
+6. Build a `baseline` version of the HAL library.  All our programs will link
+   against the `baseline` HAL library.
    ```shell
    ./scripts/hal.sh baseline
    ```
@@ -146,10 +142,10 @@ where `CONFIG` is the name of a configuration (see below) and `PROGRAM` is the
 name of a program in the corresponding benchmark suite.  For compile and run,
 if `PROGRAM` is not specified, all the programs in the corresponding benchmark
 suite will be compiled/run.  For example, running `./scripts/beebs.sh baseline`
-will compile all the benchmark programs in BEEBS using the Baseline
+will compile all the benchmark programs in BEEBS using the `baseline`
 configuration, and running `./scripts/coremark-pro.sh run randezvous zip-test`
 will run the `zip-test` program in CoreMark-Pro that was compiled using the
-Randezvous configuration.
+`randezvous` configuration.
 
 More specifically, we use four configurations of experiments for each benchmark
 suite:
