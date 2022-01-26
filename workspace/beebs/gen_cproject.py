@@ -13,12 +13,7 @@ root = '${workspace_loc}/..'
 #
 # Path to our Clang.
 #
-clang_path = root + '/build/llvm/bin/clang'
-
-#
-# Path to our archiver.
-#
-ar_path = root + '/build/llvm/bin/llvm-ar'
+clang_path = root + '/build/llvm/install/bin/clang'
 
 #
 # Path to the newlib install directory.

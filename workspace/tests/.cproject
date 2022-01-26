@@ -22,7 +22,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.0" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.0" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-test1" id="com.crt.advproject.builder.exe.release.0" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.0" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.0" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.0" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.0" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.0" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -82,7 +82,7 @@
                 <option id="gnu.c.compiler.option.misc.other.0" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.0" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.0" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.0" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.0" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.0" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.0" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -152,7 +152,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.0" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.0" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.0" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.0" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -217,7 +217,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.1" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.1" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-test2" id="com.crt.advproject.builder.exe.release.1" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.1" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.1" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.1" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.1" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.1" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -277,7 +277,7 @@
                 <option id="gnu.c.compiler.option.misc.other.1" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.1" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.1" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.1" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.1" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.1" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.1" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -347,7 +347,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.1" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.1" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.1" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.1" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -412,7 +412,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.2" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.2" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-test3" id="com.crt.advproject.builder.exe.release.2" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.2" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.2" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.2" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.2" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.2" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -472,7 +472,7 @@
                 <option id="gnu.c.compiler.option.misc.other.2" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.2" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.2" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.2" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.2" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.2" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.2" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -542,7 +542,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.2" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.2" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.2" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.2" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -607,7 +607,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.3" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.3" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-test4" id="com.crt.advproject.builder.exe.release.3" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.3" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.3" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.3" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.3" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.3" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -667,7 +667,7 @@
                 <option id="gnu.c.compiler.option.misc.other.3" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.3" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.3" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.3" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.3" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.3" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.3" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -737,7 +737,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.3" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.3" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.3" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.3" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -802,7 +802,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.4" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.4" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-test5" id="com.crt.advproject.builder.exe.release.4" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.4" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.4" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.4" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.4" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.4" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -862,7 +862,7 @@
                 <option id="gnu.c.compiler.option.misc.other.4" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.4" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.4" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.4" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.4" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.4" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.4" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -932,7 +932,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.4" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.4" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.4" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.4" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -997,7 +997,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.5" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.5" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-sram-test1" id="com.crt.advproject.builder.exe.release.5" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.5" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.5" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.5" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.5" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.5" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -1057,7 +1057,7 @@
                 <option id="gnu.c.compiler.option.misc.other.5" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.5" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.5" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.5" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.5" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.5" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.5" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -1127,7 +1127,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.5" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.5" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.5" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.5" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -1192,7 +1192,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.6" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.6" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-sram-test2" id="com.crt.advproject.builder.exe.release.6" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.6" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.6" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.6" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.6" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.6" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -1252,7 +1252,7 @@
                 <option id="gnu.c.compiler.option.misc.other.6" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.6" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.6" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.6" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.6" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.6" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.6" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -1322,7 +1322,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.6" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.6" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.6" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.6" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -1387,7 +1387,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.7" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.7" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-sram-test3" id="com.crt.advproject.builder.exe.release.7" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.7" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.7" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.7" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.7" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.7" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -1447,7 +1447,7 @@
                 <option id="gnu.c.compiler.option.misc.other.7" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.7" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.7" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.7" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.7" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.7" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.7" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -1517,7 +1517,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.7" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.7" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.7" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.7" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -1582,7 +1582,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.8" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.8" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-sram-test4" id="com.crt.advproject.builder.exe.release.8" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.8" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.8" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.8" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.8" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.8" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -1642,7 +1642,7 @@
                 <option id="gnu.c.compiler.option.misc.other.8" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.8" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.8" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.8" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.8" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.8" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.8" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -1712,7 +1712,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.8" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.8" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.8" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.8" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -1777,7 +1777,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.9" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.9" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/baseline-sram-test5" id="com.crt.advproject.builder.exe.release.9" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.9" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.9" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.9" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.9" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.9" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -1837,7 +1837,7 @@
                 <option id="gnu.c.compiler.option.misc.other.9" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.9" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.9" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.9" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.9" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.9" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.9" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -1907,7 +1907,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.9" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.9" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.9" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.9" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -1972,7 +1972,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.10" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.10" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-test1" id="com.crt.advproject.builder.exe.release.10" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.10" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.10" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.10" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.10" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.10" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -2035,7 +2035,7 @@
                 <option id="gnu.c.compiler.option.misc.other.10" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.10" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.10" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.10" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.10" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.10" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.10" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -2105,7 +2105,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.10" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.10" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.10" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.10" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -2170,7 +2170,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.11" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.11" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-test2" id="com.crt.advproject.builder.exe.release.11" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.11" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.11" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.11" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.11" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.11" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -2233,7 +2233,7 @@
                 <option id="gnu.c.compiler.option.misc.other.11" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.11" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.11" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.11" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.11" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.11" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.11" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -2303,7 +2303,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.11" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.11" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.11" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.11" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -2368,7 +2368,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.12" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.12" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-test3" id="com.crt.advproject.builder.exe.release.12" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.12" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.12" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.12" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.12" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.12" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -2431,7 +2431,7 @@
                 <option id="gnu.c.compiler.option.misc.other.12" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.12" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.12" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.12" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.12" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.12" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.12" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -2501,7 +2501,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.12" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.12" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.12" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.12" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -2566,7 +2566,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.13" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.13" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-test4" id="com.crt.advproject.builder.exe.release.13" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.13" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.13" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.13" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.13" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.13" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -2629,7 +2629,7 @@
                 <option id="gnu.c.compiler.option.misc.other.13" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.13" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.13" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.13" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.13" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.13" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.13" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -2699,7 +2699,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.13" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.13" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.13" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.13" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -2764,7 +2764,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.14" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.14" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-test5" id="com.crt.advproject.builder.exe.release.14" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.14" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.14" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.14" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.14" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.14" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -2827,7 +2827,7 @@
                 <option id="gnu.c.compiler.option.misc.other.14" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.14" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.14" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.14" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.14" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.14" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.14" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -2897,7 +2897,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.14" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.14" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.14" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.14" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -2962,7 +2962,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.15" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.15" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-sram-test1" id="com.crt.advproject.builder.exe.release.15" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.15" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.15" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.15" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.15" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.15" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -3025,7 +3025,7 @@
                 <option id="gnu.c.compiler.option.misc.other.15" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.15" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.15" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.15" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.15" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.15" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.15" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -3095,7 +3095,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.15" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.15" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.15" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.15" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -3160,7 +3160,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.16" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.16" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-sram-test2" id="com.crt.advproject.builder.exe.release.16" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.16" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.16" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.16" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.16" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.16" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -3223,7 +3223,7 @@
                 <option id="gnu.c.compiler.option.misc.other.16" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.16" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.16" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.16" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.16" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.16" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.16" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -3293,7 +3293,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.16" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.16" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.16" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.16" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -3358,7 +3358,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.17" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.17" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-sram-test3" id="com.crt.advproject.builder.exe.release.17" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.17" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.17" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.17" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.17" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.17" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -3421,7 +3421,7 @@
                 <option id="gnu.c.compiler.option.misc.other.17" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.17" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.17" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.17" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.17" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.17" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.17" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -3491,7 +3491,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.17" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.17" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.17" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.17" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -3556,7 +3556,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.18" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.18" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-sram-test4" id="com.crt.advproject.builder.exe.release.18" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.18" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.18" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.18" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.18" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.18" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -3619,7 +3619,7 @@
                 <option id="gnu.c.compiler.option.misc.other.18" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.18" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.18" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.18" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.18" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.18" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.18" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -3689,7 +3689,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.18" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.18" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.18" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.18" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
@@ -3754,7 +3754,7 @@
             <toolChain id="com.crt.advproject.toolchain.exe.release.19" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
               <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.19" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
               <builder buildPath="${ProjDirPath}/randezvous-sram-test5" id="com.crt.advproject.builder.exe.release.19" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gcc.exe.release.19" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.19" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
                 <option id="gnu.c.compiler.option.dialect.flags.19" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
                 <option id="gnu.c.compiler.option.preprocessor.nostdinc.19" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="gnu.c.compiler.option.preprocessor.preprocess.19" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
@@ -3817,7 +3817,7 @@
                 <option id="gnu.c.compiler.option.misc.other.19" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.19" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.link.exe.release.19" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.19" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
                 <option id="gnu.c.link.option.nostart.19" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nodeflibs.19" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
                 <option id="gnu.c.link.option.nostdlibs.19" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -3887,7 +3887,7 @@
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/bin/clang" id="com.crt.advproject.gas.exe.release.19" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.19" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
                 <option id="gnu.both.asm.option.flags.crt.19" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <option id="gnu.both.asm.option.warnings.nowarn.19" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
