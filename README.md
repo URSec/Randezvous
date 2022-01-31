@@ -92,7 +92,7 @@ to be done once.
    and install it at `/usr/local`, `/opt`, or `$HOME`.
 2. Clone this repository.
    ```shell
-   git clone --recurse-submodules URL
+   git clone --recurse-submodules https://github.com/URSec/Randezvous.git
    ```
 3. Build the Randezvous compiler.
    ```shell
