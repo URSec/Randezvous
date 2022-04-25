@@ -71,10 +71,12 @@
                   <listOptionValue builtIn="false" value="BOOT_HEADER_ENABLE=1"/>
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB"/>
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB_cm33"/>
+                  <listOptionValue builtIn="false" value="DEBUG_CONSOLE_RX_ENABLE=0"/>
                   <listOptionValue builtIn="false" value="NDEBUG"/>
                   <listOptionValue builtIn="false" value="PRINTF_FLOAT_ENABLE=1"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE=0"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE_UART"/>
+                  <listOptionValue builtIn="false" value="SERIAL_PORT_TYPE_UART=1"/>
                   <listOptionValue builtIn="false" value="__MCUXPRESSO"/>
                   <listOptionValue builtIn="false" value="__USE_CMSIS"/>
                 </option>
@@ -83,6 +85,7 @@
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/CMSIS&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/board&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/lists&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/serial_manager&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/uart&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/device&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/drivers&quot;"/>
@@ -110,6 +113,7 @@
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/CMSIS&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/board&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/lists&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/serial_manager&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/uart&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/device&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/drivers&quot;"/>
