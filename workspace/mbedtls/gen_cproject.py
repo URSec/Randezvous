@@ -54,7 +54,6 @@ libraries = {
         'defines': [
             'CPU_MIMXRT685SFVKB',
             'CPU_MIMXRT685SFVKB_cm33',
-            'DEBUG_CONSOLE_RX_ENABLE=0',
             'SDK_DEBUGCONSOLE=0',
             'SDK_DEBUGCONSOLE_UART',
             'SERIAL_PORT_TYPE_UART=1',
