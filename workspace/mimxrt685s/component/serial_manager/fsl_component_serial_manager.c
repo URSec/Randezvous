@@ -1370,16 +1370,13 @@ serial_manager_status_t SerialManager_OpenReadHandle(serial_handle_t serialHandl
     }
 #endif
     primask = DisableGlobalIRQ();
-    if (handle->openedReadHandleHead != NULL)
-    {
-        serialManagerStatus = kStatus_SerialManager_Busy;
-    }
-    else
+    if (handle->openedReadHandleHead == NULL)
     {
         handle->openedReadHandleHead = serialReadHandle;
 
         (void)memset(readHandle, 0, SERIAL_MANAGER_READ_HANDLE_SIZE);
-
+    }
+    {
         serialReadHandle->serialManagerHandle = handle;
 #if (defined(SERIAL_MANAGER_NON_BLOCKING_MODE) && (SERIAL_MANAGER_NON_BLOCKING_MODE > 0U))
         serialReadHandle->tag = SERIAL_MANAGER_READ_TAG;
