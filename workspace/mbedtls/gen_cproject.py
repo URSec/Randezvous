@@ -16,6 +16,11 @@ root = '${workspace_loc}/..'
 clang_path = root + '/build/llvm/install/bin/clang'
 
 #
+# Path to our archiver.
+#
+ar_path = root + '/build/llvm/bin/llvm-ar'
+
+#
 # Path to the newlib install directory.
 #
 newlib_path = root + '/build/newlib-cygwin/install'
@@ -33,7 +38,7 @@ project_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
 #
 # Project name.
 #
-project_name = 'mbedtls-benchmark'
+project_name = 'mbedtls'
 
 
 #
@@ -43,15 +48,6 @@ libraries = {
     'c': {
         'includes': [
             newlib_path + '/arm-none-eabihf/include',
-        ],
-        'library_paths': [
-            newlib_path + '/arm-none-eabihf/lib',
-        ],
-    },
-    'm': {},
-    'clang_rt.builtins-armhf': {
-        'library_paths': [
-            compiler_rt_path + '/lib/baremetal',
         ],
     },
     'mimxrt685s': {
@@ -78,38 +74,25 @@ libraries = {
             '${workspace_loc:/mimxrt685s/baseline-mimxrt685s}',
         ],
     },
+}
+
+
+#
+# Dict of programs to compile.
+#
+programs = {
     'mbedtls': {
         'defines': [
             'MBEDTLS_CONFIG_FILE="ksdk_mbedtls_config.h"',
         ],
         'includes': [
-            '${workspace_loc:/mbedtls/port/ksdk}',
-            '${workspace_loc:/mbedtls/include}',
-        ],
-        'library_paths': [
-            '${workspace_loc:/mbedtls/baseline-mbedtls}',
-        ],
-    },
-}
-
-
-#
-# Dict of common components that are used.
-#
-components = {
-}
-
-
-#
-# Dict of programs to compile and link.
-#
-programs = {
-    'mbedtls-benchmark': {
-        'defines': [
-            'FREESCALE_KSDK_BM',
+            '${ProjDirPath}/port/ksdk',
+            '${ProjDirPath}/include',
+            '${ProjDirPath}/library',
         ],
         'directories': {
-            'src': '',
+            'library': '',
+            'port': '',
         },
     },
 }
@@ -120,50 +103,6 @@ programs = {
 #
 configurations = {
     'baseline': {},
-    'baseline-sram': {
-        'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
-    },
-    'randezvous': {
-        'defines': [
-            'RANDEZVOUS_PICOXOM',
-            'RANDEZVOUS_SS',
-            'RANDEZVOUS_GLOBAL_GUARD',
-        ],
-        'ldflags': [
-            '-Wl,-mllvm,-arm-randezvous-clr',
-            '-Wl,-mllvm,-arm-randezvous-bbclr',
-            '-Wl,-mllvm,-arm-randezvous-gdlr',
-            '-Wl,-mllvm,-arm-randezvous-cdc',
-            '-Wl,-mllvm,-arm-randezvous-icall-limiter',
-            '-Wl,-mllvm,-arm-randezvous-lgp',
-            '-Wl,-mllvm,-arm-randezvous-picoxom',
-            '-Wl,-mllvm,-arm-randezvous-ran',
-            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
-            '-Wl,-mllvm,-arm-randezvous-global-guard',
-            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
-        ],
-    },
-    'randezvous-sram': {
-        'defines': [
-            'RANDEZVOUS_PICOXOM',
-            'RANDEZVOUS_SS',
-            'RANDEZVOUS_GLOBAL_GUARD',
-        ],
-        'ldflags': [
-            '-Wl,-mllvm,-arm-randezvous-clr',
-            '-Wl,-mllvm,-arm-randezvous-bbclr',
-            '-Wl,-mllvm,-arm-randezvous-gdlr',
-            '-Wl,-mllvm,-arm-randezvous-cdc',
-            '-Wl,-mllvm,-arm-randezvous-icall-limiter',
-            '-Wl,-mllvm,-arm-randezvous-lgp',
-            '-Wl,-mllvm,-arm-randezvous-picoxom',
-            '-Wl,-mllvm,-arm-randezvous-ran',
-            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
-            '-Wl,-mllvm,-arm-randezvous-global-guard',
-            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
-        ],
-        'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
-    },
 }
 
 
@@ -208,39 +147,12 @@ def gen_header():
 #
 def gen_footer():
     xml =  '  <storageModule moduleId="cdtBuildSystem" version="4.0.0">\n'
-    xml += '    <project id="' + project_name + '.null" name="' + project_name + '" projectType="com.crt.advproject.projecttype.exe"/>\n'
+    xml += '    <project id="' + project_name + '.null" name="' + project_name + '" projectType="com.crt.advproject.projecttype.lib"/>\n'
     xml += '  </storageModule>\n'
     xml += '  <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>\n'
     xml += '  <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>\n'
     xml += '</cproject>\n'
     return xml
-
-#
-# Generate and return the header of refresh scopes.
-#
-def gen_refresh_scope_header():
-    return '  <storageModule moduleId="refreshScope" versionNumber="2">\n'
-
-
-#
-# Generate and return the refresh scope for a given configuration and program.
-#
-# @conf: the name of the configuration.
-# @program: the name of the program.
-#
-def gen_refresh_scope_config(conf, program):
-    program_name = conf + '-' + program
-    xml =  '    <configuration configurationName="' + program_name + '">\n'
-    xml += '      <resource resourceType="PROJECT" workspacePath="/' + project_name + '"/>\n'
-    xml += '    </configuration>\n'
-    return xml
-
-
-#
-# Generate and return the footer of refresh scopes.
-#
-def gen_refresh_scope_footer():
-    return '  </storageModule>\n'
 
 
 #
@@ -261,10 +173,10 @@ def gen_scanner_header():
 #
 def gen_scanner_config(conf, program):
     program_id = extras[(conf, program)]['id']
-    xml =  '    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.' + program_id + ';com.crt.advproject.config.exe.release.' + program_id + '.;com.crt.advproject.gcc.exe.release.' + program_id + ';com.crt.advproject.compiler.input.' + program_id + '">\n'
+    xml =  '    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.lib.release.' + program_id + ';com.crt.advproject.config.lib.release.' + program_id + '.;com.crt.advproject.gcc.lib.release.' + program_id + ';com.crt.advproject.compiler.input.' + program_id + '">\n'
     xml += '      <autodiscovery enabled="false" problemReportingEnabled="false" selectedProfileId=""/>\n'
     xml += '    </scannerConfigBuildInfo>\n'
-    xml =  '    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.' + program_id + ';com.crt.advproject.config.exe.release.' + program_id + '.;com.crt.advproject.gas.exe.release.' + program_id + ';com.crt.advproject.assembler.input.' + program_id + '">\n'
+    xml =  '    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.lib.release.' + program_id + ';com.crt.advproject.config.lib.release.' + program_id + '.;com.crt.advproject.gas.lib.release.' + program_id + ';com.crt.advproject.assembler.input.' + program_id + '">\n'
     xml += '      <autodiscovery enabled="false" problemReportingEnabled="false" selectedProfileId=""/>\n'
     xml += '    </scannerConfigBuildInfo>\n'
     return xml
@@ -283,9 +195,8 @@ def gen_scanner_footer():
 def gen_core_datamodels():
     xml =  '  <storageModule moduleId="com.nxp.mcuxpresso.core.datamodels">\n'
     xml += '    <sdkName>SDK_2.x_EVK-MIMXRT685</sdkName>\n'
-    xml += '    <sdkExample>evkmimxrt685_hello_world</sdkExample>\n'
     xml += '    <sdkVersion>2.8.2</sdkVersion>\n'
-    xml += '    <sdkComponents>platform.drivers.common.MIMXRT685S;platform.drivers.reset.MIMXRT685S;platform.drivers.clock.MIMXRT685S;device.MIMXRT685S_CMSIS.MIMXRT685S;platform.Include_core_cm33.MIMXRT685S;platform.Include_common.MIMXRT685S;platform.Include_dsp.MIMXRT685S;platform.drivers.power.MIMXRT685S;utility.debug_console.MIMXRT685S;component.serial_manager.MIMXRT685S;component.lists.MIMXRT685S;platform.utilities.assert.MIMXRT685S;component.usart_adapter.MIMXRT685S;platform.drivers.flexcomm_usart.MIMXRT685S;platform.drivers.flexcomm.MIMXRT685S;platform.drivers.flash_config.MIMXRT685S;platform.drivers.flexspi.MIMXRT685S;platform.drivers.cache_cache64.MIMXRT685S;component.serial_manager_uart.MIMXRT685S;device.MIMXRT685S_startup.MIMXRT685S;platform.drivers.lpc_iopctl.MIMXRT685S;platform.drivers.lpc_gpio.MIMXRT685S;platform.utilities.misc_utilities.MIMXRT685S;evkmimxrt685_hello_world;</sdkComponents>\n'
+    xml += '    <sdkComponents>component.lists.MIMXRT685S;component.serial_manager.MIMXRT685S;component.serial_manager_uart.MIMXRT685S;component.usart_adapter.MIMXRT685S;device.MIMXRT685S_CMSIS.MIMXRT685S;device.MIMXRT685S_startup.MIMXRT685S;platform.Include_common.MIMXRT685S;platform.Include_core_cm33.MIMXRT685S;platform.Include_dsp.MIMXRT685S;platform.drivers.cache_cache64.MIMXRT685S;platform.drivers.clock.MIMXRT685S;platform.drivers.common.MIMXRT685S;platform.drivers.flash_config.MIMXRT685S;platform.drivers.flexcomm.MIMXRT685S;platform.drivers.flexcomm_usart.MIMXRT685S;platform.drivers.flexspi.MIMXRT685S;platform.drivers.lpc_gpio.MIMXRT685S;platform.drivers.lpc_iopctl.MIMXRT685S;platform.drivers.power.MIMXRT685S;platform.drivers.reset.MIMXRT685S;platform.utilities.assert.MIMXRT685S;platform.utilities.misc_utilities.MIMXRT685S;project_template.evkmimxrt685.MIMXRT685S;utility.debug_console.MIMXRT685S;</sdkComponents>\n'
     xml += '    <boardId>evkmimxrt685</boardId>\n'
     xml += '    <package>MIMXRT685SFVKB</package>\n'
     xml += '    <core>cm33</core>\n'
@@ -343,9 +254,15 @@ def gen_core_settings_config(conf, program):
     program_name = conf + '-' + program
 
     xml =  '    <!-- Configuration of ' + program_name + ' -->\n'
-    xml += '    <cconfiguration id="com.crt.advproject.config.exe.release.' + program_id + '">\n'
-    xml += '      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.exe.release.' + program_id + '" moduleId="org.eclipse.cdt.core.settings" name="' + program_name + '">\n'
-    xml += '        <externalSettings/>\n'
+    xml += '    <cconfiguration id="com.crt.advproject.config.lib.release.' + program_id + '">\n'
+    xml += '      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.lib.release.' + program_id + '" moduleId="org.eclipse.cdt.core.settings" name="' + program_name + '">\n'
+    xml += '        <externalSettings>\n'
+    xml += '          <externalSetting>\n'
+    xml += '            <entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/' + project_name + '"/>\n'
+    xml += '            <entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/' + project_name + '/' + program_name + '"/>\n';
+    xml += '            <entry flags="RESOLVED" kind="libraryFile" name="' + project_name + '" srcPrefixMapping="" srcRootPath=""/>\n'
+    xml += '          </externalSetting>\n'
+    xml += '        </externalSettings>\n'
     xml += '        <extensions>\n'
     xml += '          <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>\n'
     xml += '          <extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>\n'
@@ -357,15 +274,15 @@ def gen_core_settings_config(conf, program):
     xml += '        </extensions>\n'
     xml += '      </storageModule>\n'
     xml += '      <storageModule moduleId="cdtBuildSystem" version="4.0.0">\n'
-    xml += '        <configuration artifactExtension="axf" artifactName="${ConfigName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="Release build of ' + program_name + '" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.exe.release.' + program_id + '" name="' + program_name + '" parent="com.crt.advproject.config.exe.release" postannouncebuildStep="Performing post-build steps" postbuildStep="arm-none-eabi-size &quot;${BuildArtifactFileName}&quot;">\n'
-    xml += '          <folderInfo id="com.crt.advproject.config.exe.release.' + program_id + '." name="/" resourcePath="">\n'
-    xml += '            <toolChain id="com.crt.advproject.toolchain.exe.release.' + program_id + '" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">\n'
-    xml += '              <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.' + program_id + '" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>\n'
-    xml += '              <builder buildPath="${ProjDirPath}/' + program_name + '" id="com.crt.advproject.builder.exe.release.' + program_id + '" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>\n'
+    xml += '        <configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="Release build of ' + program_name + '" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.lib.release.' + program_id + '" name="' + program_name + '" parent="com.crt.advproject.config.lib.release" postannouncebuildStep="Performing post-build steps" postbuildStep="">\n'
+    xml += '          <folderInfo id="com.crt.advproject.config.lib.release.' + program_id + '." name="/" resourcePath="">\n'
+    xml += '            <toolChain id="com.crt.advproject.toolchain.lib.release.' + program_id + '" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.lib.release">\n'
+    xml += '              <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.lib.release.' + program_id + '" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.lib.release"/>\n'
+    xml += '              <builder buildPath="${ProjDirPath}/' + program_name + '" id="com.crt.advproject.builder.lib.release.' + program_id + '" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.lib.release"/>\n'
     ###########################################################################
     # Set up C compiler
     ###########################################################################
-    xml += '              <tool command="' + clang_path + '" id="com.crt.advproject.gcc.exe.release.' + program_id + '" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">\n'
+    xml += '              <tool command="' + clang_path + '" id="com.crt.advproject.gcc.lib.release.' + program_id + '" name="MCU C Compiler" superClass="com.crt.advproject.gcc.lib.release">\n'
     # Other C dialect flags: none
     xml += '                <option id="gnu.c.compiler.option.dialect.flags.' + program_id + '" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>\n'
     # Add -nostdinc: false
@@ -421,9 +338,9 @@ def gen_core_settings_config(conf, program):
     # Thumb interworking: false
     xml += '                <option id="com.crt.advproject.gcc.thumbinterwork.' + program_id + '" name="Enable Thumb interworking" superClass="com.crt.advproject.gcc.thumbinterwork" useByScannerDiscovery="false" value="false" valueType="boolean"/>\n'
     # Debug level: -g
-    xml += '                <option id="com.crt.advproject.gcc.exe.release.option.debugging.level.' + program_id + '" name="Debug Level" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.default" valueType="enumerated"/>\n'
+    xml += '                <option id="com.crt.advproject.gcc.lib.release.option.debugging.level.' + program_id + '" name="Debug Level" superClass="com.crt.advproject.gcc.lib.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.default" valueType="enumerated"/>\n'
     # Optimization level: -Os
-    xml += '                <option id="com.crt.advproject.gcc.exe.release.option.optimization.level.' + program_id + '" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.size" valueType="enumerated"/>\n'
+    xml += '                <option id="com.crt.advproject.gcc.lib.release.option.optimization.level.' + program_id + '" name="Optimization Level" superClass="com.crt.advproject.gcc.lib.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.size" valueType="enumerated"/>\n'
     # Library headers and specs: none
     xml += '                <option id="com.crt.advproject.gcc.hdrlib.' + program_id + '" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.none" valueType="enumerated"/>\n'
     xml += '                <option id="com.crt.advproject.gcc.specs.' + program_id + '" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.none" valueType="enumerated"/>\n'
@@ -447,11 +364,6 @@ def gen_core_settings_config(conf, program):
             for define in libraries[library]['defines']:
                 define = define.replace('"', '\&quot;')
                 xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
-    for comp in components:
-        if 'defines' in components[comp]:
-            for define in components[comp]['defines']:
-                define = define.replace('"', '\&quot;')
-                xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
     if 'defines' in configurations[conf]:
         for define in configurations[conf]['defines']:
             define = define.replace('"', '\&quot;')
@@ -460,11 +372,6 @@ def gen_core_settings_config(conf, program):
         for define in programs[program]['defines']:
             define = define.replace('"', '\&quot;')
             xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
-    if 'defines' in extras[(conf, program)]:
-        for define in extras[(conf, program)]['defines']:
-            define = define.replace('"', '\&quot;')
-            xml += '                  <listOptionValue builtIn="false" value="' + define + '"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="BENCHMARK_NAME=\&quot;' + program + '\&quot;"/>\n'
     xml += '                </option>\n'
     # Add include paths
     xml += '                <option id="gnu.c.compiler.option.include.paths.' + program_id + '" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
@@ -472,18 +379,11 @@ def gen_core_settings_config(conf, program):
         if 'includes' in libraries[library]:
             for include in libraries[library]['includes']:
                 xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
-    for comp in components:
-        if 'includes' in components[comp]:
-            for include in components[comp]['includes']:
-                xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in configurations[conf]:
         for include in configurations[conf]["includes"]:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
-            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
-    if 'includes' in extras[(conf, program)]:
-        for include in extras[(conf, program)]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     # Add other C flags
@@ -492,148 +392,19 @@ def gen_core_settings_config(conf, program):
         if 'cflags' in libraries[library]:
             for cflag in libraries[library]['cflags']:
                 xml += ' ' + cflag
-    for comp in components:
-        if 'cflags' in components[comp]:
-            for cflag in components[comp]['cflags']:
-                xml += ' ' + cflag
     if 'cflags' in configurations[conf]:
         for cflag in configurations[conf]['cflags']:
             xml += ' ' + cflag
     if 'cflags' in programs[program]:
         for cflag in programs[program]['cflags']:
             xml += ' ' + cflag
-    if 'cflags' in extras[(conf, program)]:
-        for cflag in extras[(conf, program)]['cflags']:
-            xml += ' ' + cflag
     xml += '" valueType="string"/>\n'
     xml += '                <inputType id="com.crt.advproject.compiler.input.' + program_id + '" superClass="com.crt.advproject.compiler.input"/>\n'
     xml += '              </tool>\n'
     ###########################################################################
-    # Set up C linker
-    ###########################################################################
-    xml += '              <tool command="' + clang_path + '" id="com.crt.advproject.link.exe.release.' + program_id + '" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">\n'
-    # Add -nostartfiles: true
-    xml += '                <option id="gnu.c.link.option.nostart.' + program_id + '" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    # Add -nodefaultlibs: true
-    xml += '                <option id="gnu.c.link.option.nodeflibs.' + program_id + '" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    # Add -nostdlibs: true
-    xml += '                <option id="gnu.c.link.option.nostdlibs.' + program_id + '" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    # Add -static: true
-    xml += '                <option id="gnu.c.link.option.noshared.' + program_id + '" name="No shared libraries (-static)" superClass="gnu.c.link.option.noshared" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    # Add -s: false
-    xml += '                <option id="gnu.c.link.option.strip.' + program_id + '" name="Omit all symbol information (-s)" superClass="gnu.c.link.option.strip" useByScannerDiscovery="false"/>\n'
-    # Add -shared: false
-    xml += '                <option id="gnu.c.link.option.shared.' + program_id + '" name="Shared (-shared)" superClass="gnu.c.link.option.shared" useByScannerDiscovery="false" value="false" valueType="boolean"/>\n'
-    # Add -Wl,-soname=...: false
-    xml += '                <option id="gnu.c.link.option.soname.' + program_id + '" name="Shared object name (-Wl,-soname=)" superClass="gnu.c.link.option.soname" useByScannerDiscovery="false" value="" valueType="string"/>\n'
-    # Add -Wl,--out-implib=...: false
-    xml += '                <option id="gnu.c.link.option.implname.' + program_id + '" name="Import Library name (-Wl,--out-implib=)" superClass="gnu.c.link.option.implname" useByScannerDiscovery="false" value="" valueType="string"/>\n'
-    # Add -Wl,--output-def=...: false
-    xml += '                <option id="gnu.c.link.option.defname.' + program_id + '" name="DEF file name (-Wl,--output-def=)" superClass="gnu.c.link.option.defname" useByScannerDiscovery="false" value="" valueType="string"/>\n'
-    # Add Xlinker flags
-    xml += '                <option id="gnu.c.link.option.other.' + program_id + '" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
-    xml += '                  <listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--save-temps"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--mllvm=-stats-json"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--mllvm=-info-output-file=&quot;${BuildArtifactFileBaseName}.json&quot;"/>\n'
-    xml += '                  <listOptionValue builtIn="false" value="--undefined=flexspi_config"/>\n'  # XXX: Hack!
-    xml += '                  <listOptionValue builtIn="false" value="--undefined-glob=__aeabi_*"/>\n'  # XXX: Hack!
-    xml += '                </option>\n'
-    # Architecture: Cortex-M33
-    xml += '                <option id="com.crt.advproject.link.arch.' + program_id + '" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm33" valueType="enumerated"/>\n'
-    # FPU: FPv5-SP-D16 Hard ABI
-    xml += '                <option id="com.crt.advproject.link.fpu.' + program_id + '" name="Floating point" superClass="com.crt.advproject.link.fpu" useByScannerDiscovery="false" value="com.crt.advproject.link.fpu.fpv5sp.hard" valueType="enumerated"/>\n'
-    # TrustZone type: none
-    xml += '                <option id="com.crt.advproject.link.securestate.' + program_id + '" name="TrustZone Project Type" superClass="com.crt.advproject.link.securestate" useByScannerDiscovery="false" value="com.crt.advproject.link.securestate.none" valueType="enumerated"/>\n'
-    xml += '                <option id="com.crt.advproject.link.sgstubs.placement.' + program_id + '" name="Secure Gateway Placement" superClass="com.crt.advproject.link.sgstubs.placement" useByScannerDiscovery="false" value="com.crt.advproject.link.sgstubs.append" valueType="enumerated"/>\n'
-    xml += '                <option id="com.crt.advproject.link.sgstubenable.' + program_id + '" name="Enable generation of Secure Gateway Import Library" superClass="com.crt.advproject.link.sgstubenable" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.nonsecureobject.' + program_id + '" name="Secure Gateway Import Library" superClass="com.crt.advproject.link.nonsecureobject" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.inimplib.' + program_id + '" name="Input Secure Gateway Import Library" superClass="com.crt.advproject.link.inimplib" useByScannerDiscovery="false"/>\n'
-    # Thumb mode: true
-    xml += '                <option id="com.crt.advproject.link.thumb.' + program_id + '" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>\n'
-    # Linker script path: "${ProjDirPath}/LinkerScript.ld" or a custom one
-    linkerscript = '${ProjDirPath}/LinkerScript.ld'
-    if 'linkerscript' in configurations[conf]:
-        linkerscript = configurations[conf]['linkerscript']
-    xml += '                <option id="com.crt.advproject.link.script.' + program_id + '" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;' + linkerscript + '&quot;" valueType="string"/>\n'
-    # Linker script directory: none
-    xml += '                <option id="com.crt.advproject.link.scriptdir.' + program_id + '" name="Script path" superClass="com.crt.advproject.link.scriptdir" useByScannerDiscovery="false" value="" valueType="string"/>\n'
-    # Manage linker script: false
-    xml += '                <option id="com.crt.advproject.link.manage.' + program_id + '" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="false" valueType="boolean"/>\n'
-    xml += '                <option id="com.crt.advproject.link.memory.load.image.' + program_id + '" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="false;" valueType="string"/>\n'
-    xml += '                <option id="com.crt.advproject.link.memory.heapAndStack.' + program_id + '" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>\n'
-    xml += '                <option id="com.crt.advproject.link.memory.heapAndStack.style.' + program_id + '" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" defaultValue="com.crt.advproject.heapAndStack.mcuXpressoStyle" valueType="enumerated"/>\n'
-    xml += '                <option id="com.crt.advproject.link.memory.data.' + program_id + '" name="Global data placement" superClass="com.crt.advproject.link.memory.data" useByScannerDiscovery="false" value="Default" valueType="string"/>\n'
-    xml += '                <option id="com.crt.advproject.link.memory.sections.' + program_id + '" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>\n'
-    xml += '                <option id="com.crt.advproject.link.toram.' + program_id + '" name="Link application to RAM" superClass="com.crt.advproject.link.toram" useByScannerDiscovery="false" value="false" valueType="boolean"/>\n'
-    xml += '                <option id="com.crt.advproject.link.stackOffset.' + program_id + '" name="Stack offset" superClass="com.crt.advproject.link.stackOffset" useByScannerDiscovery="false" value="0" valueType="string"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.hdrlib.' + program_id + '" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.link.hdrlib.none" valueType="enumerated"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.nanofloat.' + program_id + '" name="Enable printf float " superClass="com.crt.advproject.link.gcc.nanofloat" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.nanofloat.scanf.' + program_id + '" name="Enable scanf float " superClass="com.crt.advproject.link.gcc.nanofloat.scanf" useByScannerDiscovery="false"/>\n'
-    # Add -flto: true
-    xml += '                <option id="com.crt.advproject.link.gcc.lto.' + program_id + '" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.link.gcc.lto" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    # LTO optimization level: -Os
-    xml += '                <option id="com.crt.advproject.link.gcc.lto.optmization.level.' + program_id + '" name="Link-time optimization level" superClass="com.crt.advproject.link.gcc.lto.optmization.level" useByScannerDiscovery="false" value="link.c.optimization.level.size" valueType="enumerated"/>\n'
-    # No multicore options: true
-    xml += '                <option id="com.crt.advproject.link.gcc.multicore.empty.' + program_id + '" name="No Multicore options for this project" superClass="com.crt.advproject.link.gcc.multicore.empty" useByScannerDiscovery="false" value="true" valueType="string"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.multicore.master.' + program_id + '" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.multicore.master.userobjs.' + program_id + '" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>\n'
-    xml += '                <option id="com.crt.advproject.link.gcc.multicore.slave.' + program_id + '" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>\n'
-    # Unused options
-    xml += '                <option id="com.crt.advproject.link.crpenable.' + program_id + '" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.flashconfigenable.' + program_id + '" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.flashconfigenable" useByScannerDiscovery="false" value="true" valueType="boolean"/>\n'
-    xml += '                <option id="com.crt.advproject.link.ecrp.' + program_id + '" name="Enhanced CRP" superClass="com.crt.advproject.link.ecrp" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.config.' + program_id + '" name="Obsolete (Config)" superClass="com.crt.advproject.link.config" useByScannerDiscovery="false"/>\n'
-    xml += '                <option id="com.crt.advproject.link.store.' + program_id + '" name="Obsolete (Store)" superClass="com.crt.advproject.link.store" useByScannerDiscovery="false"/>\n'
-    # Add linked libraries
-    xml += '                <option id="gnu.c.link.option.libs.' + program_id + '" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
-    for library in libraries:
-        xml += '                  <listOptionValue builtIn="false" value="' + library + '"/>\n'
-    xml += '                </option>\n'
-    # Add linker flags
-    xml += '                <option id="gnu.c.link.option.ldflags.' + program_id + '" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-fuse-ld=lld --target=arm-none-eabihf'
-    for library in libraries:
-        if 'ldflags' in libraries[library]:
-            for ldflag in libraries[library]['ldflags']:
-                xml += ' ' + ldflag
-    for comp in components:
-        if 'ldflags' in components[comp]:
-            for ldflag in components[comp]['ldflags']:
-                xml += ' ' + ldflag
-    if 'ldflags' in configurations[conf]:
-        for ldflag in configurations[conf]['ldflags']:
-            xml += ' ' + ldflag
-    if 'ldflags' in programs[program]:
-        for ldflag in programs[program]['ldflags']:
-            xml += ' ' + ldflag
-    if 'ldflags' in extras[(conf, program)]:
-        for ldflag in extras[(conf, program)]['ldflags']:
-            xml += ' ' + ldflag
-    xml += '" valueType="string"/>\n'
-    # Add library search paths
-    xml += '                <option id="gnu.c.link.option.paths.' + program_id + '" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
-    for library in libraries:
-        if 'library_paths' in libraries[library]:
-            for library_path in libraries[library]['library_paths']:
-                xml += '                  <listOptionValue builtIn="false" value="&quot;' + library_path + '&quot;"/>\n'
-    xml += '                </option>\n'
-    # Add other objects
-    xml += '                <option id="gnu.c.link.option.userobjs.' + program_id + '" name="Other objects" superClass="gnu.c.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">\n'
-    for library in libraries:
-        if 'objects' in libraries[library]:
-            for obj in libraries[library]['objects']:
-                xml += '                  <listOptionValue builtIn="false" value="&quot;' + obj + '&quot;"/>\n'
-    xml += '                </option>\n'
-    xml += '                <inputType id="cdt.managedbuild.tool.gnu.c.linker.input.' + program_id + '" superClass="cdt.managedbuild.tool.gnu.c.linker.input">\n'
-    xml += '                  <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>\n'
-    xml += '                  <additionalInput kind="additionalinput" paths="$(LIBS)"/>\n'
-    xml += '                </inputType>\n'
-    xml += '              </tool>\n'
-    ###########################################################################
     # Set up assembler
     ###########################################################################
-    xml += '              <tool command="' + clang_path + '" id="com.crt.advproject.gas.exe.release.' + program_id + '" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">\n'
+    xml += '              <tool command="' + clang_path + '" id="com.crt.advproject.gas.lib.release.' + program_id + '" name="MCU Assembler" superClass="com.crt.advproject.gas.lib.release">\n'
     # Other assembler flags: -c --target=arm-none-eabihf
     xml += '                <option id="gnu.both.asm.option.flags.crt.' + program_id + '" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>\n'
     # Add -W: false
@@ -662,18 +433,11 @@ def gen_core_settings_config(conf, program):
         if 'includes' in libraries[library]:
             for include in libraries[library]['includes']:
                 xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
-    for comp in components:
-        if 'includes' in components[comp]:
-            for include in components[comp]['includes']:
-                xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in configurations[conf]:
         for include in configurations[conf]["includes"]:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     if 'includes' in programs[program]:
         for include in programs[program]['includes']:
-            xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
-    if 'includes' in extras[(conf, program)]:
-        for include in extras[(conf, program)]['includes']:
             xml += '                  <listOptionValue builtIn="false" value="&quot;' + include + '&quot;"/>\n'
     xml += '                </option>\n'
     xml += '                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.' + program_id + '" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>\n'
@@ -682,21 +446,11 @@ def gen_core_settings_config(conf, program):
     ###########################################################################
     # Set up C++ compiler
     ###########################################################################
-    xml += '              <tool id="com.crt.advproject.cpp.exe.release.' + program_id + '" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release">\n'
-    xml += '                <option id="com.crt.advproject.cpp.fpu.' + program_id + '" name="Floating point" superClass="com.crt.advproject.cpp.fpu"/>\n'
-    xml += '                <option id="com.crt.advproject.cpp.hdrlib.' + program_id + '" name="Library headers" superClass="com.crt.advproject.cpp.hdrlib"/>\n'
-    xml += '              </tool>\n'
+    xml += '              <tool id="com.crt.advproject.cpp.lib.release.' + program_id + '" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.lib.release"/>\n'
     ###########################################################################
-    # Set up C++ linker
+    # Set up archiver
     ###########################################################################
-    xml += '              <tool id="com.crt.advproject.link.cpp.exe.release.' + program_id + '" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.release">\n'
-    xml += '                <option id="com.crt.advproject.link.cpp.fpu.' + program_id + '" name="Floating point" superClass="com.crt.advproject.link.cpp.fpu"/>\n'
-    xml += '                <option id="com.crt.advproject.link.cpp.hdrlib.' + program_id + '" name="Library" superClass="com.crt.advproject.link.cpp.hdrlib"/>\n'
-    xml += '              </tool>\n'
-    ###########################################################################
-    # Set up debugger
-    ###########################################################################
-    xml += '              <tool id="com.crt.advproject.tool.debug.release.' + program_id + '" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>\n'
+    xml += '              <tool command="' + ar_path + '" id="com.crt.advproject.ar.lib.release.' + program_id + '" name="MCU Archiver" superClass="com.crt.advproject.ar.lib.release"/>\n'
     xml += '            </toolChain>\n'
     xml += '          </folderInfo>\n'
     ###########################################################################
@@ -709,13 +463,6 @@ def gen_core_settings_config(conf, program):
                 xml += '            <entry excluding="' + programs[program]['directories'][directory] + '" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="' + directory + '"/>\n'
             else:
                 xml += '            <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="' + directory + '"/>\n'
-    for comp in components:
-        if 'directories' in components[comp]:
-            for directory in components[comp]['directories']:
-                if components[comp]['directories'][directory]:
-                    xml += '            <entry excluding="' + components[comp]['directories'][directory] + '" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="' + directory + '"/>\n'
-                else:
-                    xml += '            <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="' + directory + '"/>\n'
     xml += '          </sourceEntries>\n'
     xml += '        </configuration>\n'
     xml += '      </storageModule>\n'
@@ -742,17 +489,12 @@ def gen_core_settings_footer():
 def gen_cproject(conf, program):
     xml =  gen_header()
 
-    # Generate core settings for each pair of configuration and program
+    # Generate core settings for each program
     xml += gen_core_settings_header()
     xml += gen_core_settings_config(conf, program)
     xml += gen_core_settings_footer()
 
-    # Generate refresh scope for each pair of configuration and program
-    xml += gen_refresh_scope_header()
-    xml += gen_refresh_scope_config(conf, program)
-    xml += gen_refresh_scope_footer()
-
-    # Generate scanner configuration for each pair of configuration and program
+    # Generate scanner configuration for each program
     xml += gen_scanner_header()
     xml += gen_scanner_config(conf, program)
     xml += gen_scanner_footer()
@@ -777,7 +519,7 @@ def gen_language_settings():
         for program in sorted(programs.keys()):
             program_id = extras[(conf, program)]['id']
             program_name = conf + '-' + program
-            xml += '  <configuration id="com.crt.advproject.config.exe.release.' + program_id + '" name="' + program_name + '">\n'
+            xml += '  <configuration id="com.crt.advproject.config.lib.release.' + program_id + '" name="' + program_name + '">\n'
             xml += '    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">\n'
             xml += '      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>\n'
             xml += '      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>\n'

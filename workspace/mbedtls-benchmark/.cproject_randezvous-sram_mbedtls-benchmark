@@ -68,11 +68,11 @@
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE=0"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE_UART"/>
                   <listOptionValue builtIn="false" value="SERIAL_PORT_TYPE_UART=1"/>
-                  <listOptionValue builtIn="false" value="FREESCALE_KSDK_BM"/>
                   <listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=\&quot;ksdk_mbedtls_config.h\&quot;"/>
                   <listOptionValue builtIn="false" value="RANDEZVOUS_PICOXOM"/>
                   <listOptionValue builtIn="false" value="RANDEZVOUS_SS"/>
                   <listOptionValue builtIn="false" value="RANDEZVOUS_GLOBAL_GUARD"/>
+                  <listOptionValue builtIn="false" value="FREESCALE_KSDK_BM"/>
                   <listOptionValue builtIn="false" value="BENCHMARK_NAME=\&quot;mbedtls-benchmark\&quot;"/>
                 </option>
                 <option id="gnu.c.compiler.option.include.paths.3" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
@@ -86,9 +86,8 @@
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/drivers}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/flash_config}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/utilities}&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/port/ksdk&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/include&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/library&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mbedtls/port/ksdk}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mbedtls/include}&quot;"/>
                 </option>
                 <option id="gnu.c.compiler.option.misc.other.3" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
                 <inputType id="com.crt.advproject.compiler.input.3" superClass="com.crt.advproject.compiler.input"/>
@@ -149,12 +148,14 @@
                   <listOptionValue builtIn="false" value="m"/>
                   <listOptionValue builtIn="false" value="clang_rt.builtins-armhf"/>
                   <listOptionValue builtIn="false" value="mimxrt685s"/>
+                  <listOptionValue builtIn="false" value="mbedtls"/>
                 </option>
                 <option id="gnu.c.link.option.ldflags.3" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-fuse-ld=lld --target=arm-none-eabihf -Wl,-mllvm,-arm-randezvous-clr -Wl,-mllvm,-arm-randezvous-bbclr -Wl,-mllvm,-arm-randezvous-gdlr -Wl,-mllvm,-arm-randezvous-cdc -Wl,-mllvm,-arm-randezvous-icall-limiter -Wl,-mllvm,-arm-randezvous-lgp -Wl,-mllvm,-arm-randezvous-picoxom -Wl,-mllvm,-arm-randezvous-ran -Wl,-mllvm,-arm-randezvous-shadow-stack -Wl,-mllvm,-arm-randezvous-global-guard -Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c" valueType="string"/>
                 <option id="gnu.c.link.option.paths.3" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/newlib-cygwin/install/arm-none-eabihf/lib&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/compiler-rt/install/lib/baremetal&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/baseline-mimxrt685s}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mbedtls/baseline-mbedtls}&quot;"/>
                 </option>
                 <option id="gnu.c.link.option.userobjs.3" name="Other objects" superClass="gnu.c.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                 </option>
@@ -187,9 +188,8 @@
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/drivers}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/flash_config}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/utilities}&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/port/ksdk&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/include&quot;"/>
-                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/mbedtls/library&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mbedtls/port/ksdk}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mbedtls/include}&quot;"/>
                 </option>
                 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.3" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
                 <inputType id="com.crt.advproject.assembler.input.3" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
@@ -207,7 +207,6 @@
           </folderInfo>
           <sourceEntries>
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-            <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="mbedtls"/>
           </sourceEntries>
         </configuration>
       </storageModule>
