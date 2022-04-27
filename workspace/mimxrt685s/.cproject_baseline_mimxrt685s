@@ -74,8 +74,10 @@
                   <listOptionValue builtIn="false" value="DEBUG_CONSOLE_ENABLE_ECHO"/>
                   <listOptionValue builtIn="false" value="NDEBUG"/>
                   <listOptionValue builtIn="false" value="PRINTF_FLOAT_ENABLE=1"/>
+                  <listOptionValue builtIn="false" value="SD_ENABLED"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE=0"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE_UART"/>
+                  <listOptionValue builtIn="false" value="SDK_I2C_BASED_COMPONENT_USED=1"/>
                   <listOptionValue builtIn="false" value="SERIAL_PORT_TYPE_UART=1"/>
                   <listOptionValue builtIn="false" value="__MCUXPRESSO"/>
                   <listOptionValue builtIn="false" value="__USE_CMSIS"/>
@@ -85,11 +87,16 @@
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/CMSIS&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/board&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/lists&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/osa&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/serial_manager&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/uart&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/device&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/drivers&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/flash_config&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/pmic_driver&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/host&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/inc&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/osa&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/utilities&quot;"/>
                 </option>
                 <option id="gnu.c.compiler.option.misc.other.0" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
@@ -113,11 +120,16 @@
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/CMSIS&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/board&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/lists&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/osa&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/serial_manager&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/component/uart&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/device&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/drivers&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/flash_config&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/pmic_driver&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/host&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/inc&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/sdmmc/osa&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/utilities&quot;"/>
                 </option>
                 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.0" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
@@ -134,6 +146,8 @@
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="device"/>
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="drivers"/>
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="flash_config"/>
+            <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="pmic_driver"/>
+            <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="sdmmc"/>
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
             <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="utilities"/>
           </sourceEntries>
