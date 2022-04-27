@@ -178,7 +178,8 @@ compile() {
 # $2: the program to run.
 # $3: a string to grep for checking if the program has finished executing.
 # $4: a file containing input to the program (default none).
-# $5: number of iterations to run (default 1).
+# $5: number of seconds between two feeds of an input character (default 0.1).
+# $6: number of iterations to run (default 1).
 #
 run() {
     # Find IDE if we have not done so
@@ -206,16 +207,29 @@ run() {
         exit 1
     fi
 
+    # Check if the feed interval is a good number
+    local feed_interval=0.1
+    if [[ -n "$5" ]]; then
+        if [[ "$5" =~ ^([0-9]+\.?[0-9]+|[0-9]*\.[0-9]+)$ ]]; then
+            feed_interval="$5"
+        else
+            echo "Invalid number of feed interval!"
+            exit 1
+        fi
+    fi
+
+
     # Check if the number of iterations is actually a number
     local iters=1
-    if [[ -n "$5" ]]; then
-        if [[ "$5" =~ '^[0-9]+$' ]]; then
-            iters="$5"
+    if [[ -n "$6" ]]; then
+        if [[ "$6" =~ ^[0-9]+$ ]]; then
+            iters="$6"
         else
             echo "Number of iterations must be an integer!"
             exit 1
         fi
     fi
+
 
     # Check if the ELF binary is there
     local debug_dir="$ROOT_DIR/debug/$PROJ-$1"
@@ -287,14 +301,18 @@ run() {
             exit 1
         fi
 
+        echo "Running $PROJ-$1/$2 ......"
+        sleep 2
+
         # Feed input to the serial port
         if [[ -n "$4" ]] && [[ -f "$4" ]]; then
-            sleep 0.01
-            screen -S "$screen_name" -X readreg p "$4"
-            screen -S "$screen_name" -X paste p
+            while IFS= read -r -n1 char; do
+                screen -S "$screen_name" -X register p "$char"
+                screen -S "$screen_name" -X paste p
+                sleep "$feed_interval"
+            done < "$4"
         fi
 
-        echo "Running $PROJ-$1/$2 ......"
         grep "$3" "$perf_data" >& /dev/null
         while (( $? != 0 )); do
             sleep 1
