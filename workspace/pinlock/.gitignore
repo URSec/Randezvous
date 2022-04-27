@@ -1,0 +1,11 @@
+# Hidden configuration files
+.cproject
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/baseline-sram-pinlock/
+/randezvous-sram-pinlock/
+/baseline-pinlock/
+/randezvous-pinlock/

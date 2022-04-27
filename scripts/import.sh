@@ -8,6 +8,7 @@ PROJECTS=(
     "mbedtls"
     "mbedtls-benchmark"
     "mimxrt685s"
+    "pinlock"
     "tests"
 )
 
