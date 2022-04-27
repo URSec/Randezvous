@@ -71,7 +71,6 @@
                   <listOptionValue builtIn="false" value="BOOT_HEADER_ENABLE=1"/>
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB"/>
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB_cm33"/>
-                  <listOptionValue builtIn="false" value="DEBUG_CONSOLE_ENABLE_ECHO"/>
                   <listOptionValue builtIn="false" value="NDEBUG"/>
                   <listOptionValue builtIn="false" value="PRINTF_FLOAT_ENABLE=1"/>
                   <listOptionValue builtIn="false" value="SD_ENABLED"/>

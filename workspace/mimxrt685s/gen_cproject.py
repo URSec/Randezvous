@@ -62,7 +62,6 @@ programs = {
             'BOOT_HEADER_ENABLE=1',
             'CPU_MIMXRT685SFVKB',
             'CPU_MIMXRT685SFVKB_cm33',
-            'DEBUG_CONSOLE_ENABLE_ECHO',
             'NDEBUG',
             'PRINTF_FLOAT_ENABLE=1',
             'SD_ENABLED',
