@@ -1,0 +1,11 @@
+# Hidden configuration files
+.cproject
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/baseline-sram-sdcard_fatfs/
+/randezvous-sram-sdcard_fatfs/
+/baseline-sdcard_fatfs/
+/randezvous-sdcard_fatfs/

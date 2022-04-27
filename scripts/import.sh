@@ -9,6 +9,7 @@ PROJECTS=(
     "mbedtls-benchmark"
     "mimxrt685s"
     "pinlock"
+    "sdcard_fatfs"
     "tests"
 )
 
