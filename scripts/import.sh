@@ -10,6 +10,7 @@ PROJECTS=(
     "mimxrt685s"
     "pinlock"
     "sdcard_fatfs"
+    "shell"
     "tests"
 )
 

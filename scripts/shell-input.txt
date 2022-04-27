@@ -1,0 +1,13 @@
+led 1 on
+led 2 on
+led 3 on
+led 1 off
+led 2 off
+led 3 off
+led 1 on
+led 2 on
+led 3 on
+led 1 off
+led 2 off
+led 3 off
+exit

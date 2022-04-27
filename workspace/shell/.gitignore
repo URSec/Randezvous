@@ -1,0 +1,11 @@
+# Hidden configuration files
+.cproject
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/baseline-sram-shell/
+/randezvous-sram-shell/
+/baseline-shell/
+/randezvous-shell/
