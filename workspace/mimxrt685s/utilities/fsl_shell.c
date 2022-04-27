@@ -320,7 +320,11 @@ void SHELL_Task(shell_handle_t shellHandle)
                 if (kStatus_SHELL_Success != (shell_status_t)SHELL_GetChar(shellContextHandle, &ch))
                 {
                     /* If error occurred when getting a char, exit the task and waiting the new data arriving. */
+#if (defined(SHELL_NON_BLOCKING_MODE) && (SHELL_NON_BLOCKING_MODE > 0U))
                     break;
+#else
+                    continue;
+#endif
                 }
 
                 /* Special key */
