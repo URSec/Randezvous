@@ -5,6 +5,7 @@ ROOT_DIR=`dirname $0 | sed 's/$/\/../' | xargs realpath`
 PROJECTS=(
     "beebs"
     "coremark-pro"
+    "exploit"
     "mbedtls"
     "mbedtls-benchmark"
     "mimxrt685s"
