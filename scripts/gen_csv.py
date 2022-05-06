@@ -42,6 +42,9 @@ benchmarks = [
     'beebs',
     'coremark-pro',
     'mbedtls-benchmark',
+    'pinlock',
+    'sdcard_fatfs',
+    'shell',
 ]
 
 #
@@ -195,6 +198,10 @@ def gen_csv_perf(benchmark, output):
                         if prog not in data:
                             data[prog] = {}
                         data[prog][conf] = float(latency_match.group(2))
+                # Applications
+                elif 'Elapsed time:' in line:
+                    number = int(line.split(' ')[-2].lstrip())
+                    break
 
             if number is not None:
                 if prog not in data:
@@ -236,6 +243,10 @@ def gen_csv_perf(benchmark, output):
                         if conf not in data[prog]:
                             data[prog][conf] = []
                         data[prog][conf].append(float(latency_match.group(2)))
+                # Applications
+                elif 'Elapsed time:' in line:
+                    number = int(line.split(' ')[-2].lstrip())
+                    break
 
             if number is not None:
                 if prog not in data:
@@ -269,7 +280,7 @@ def main():
     parser = argparse.ArgumentParser(description='Generate CSV files.')
     parser.add_argument('-b', '--benchmark', choices=benchmarks,
                         default=benchmarks[0], metavar='BENCH',
-                        help='Name of the benchmark suite')
+                        help='Name of the benchmark/application suite')
     parser.add_argument('-t', '--type', choices=types,
                         default=types[0], metavar='TYPE',
                         help='Type of the CSV file to generate')
