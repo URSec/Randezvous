@@ -31,10 +31,10 @@ case $1 in
 "run" )
     if (( $# == 2 )); then
         for program in ${PROGRAMS[@]}; do
-            run $2 $program "Bye!" "$ROOT_DIR/scripts/shell-input.txt" 0.1
+            run $2 $program "Bye!" "$ROOT_DIR/scripts/shell-input.txt" 0.1 10
         done
     else
-        run $2 $3 "Bye!" "$ROOT_DIR/scripts/shell-input.txt" 0.1
+        run $2 $3 "Bye!" "$ROOT_DIR/scripts/shell-input.txt" 0.1 10
     fi
     ;;
 * )
