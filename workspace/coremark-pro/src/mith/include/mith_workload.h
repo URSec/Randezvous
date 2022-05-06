@@ -105,7 +105,11 @@ typedef struct ee_workload_s {
 ee_workload *mith_wl_init(int num_items);
 /* Function: mith_item_init
 	Allocate and initialize a specific work item */
+#ifdef USE_HEAP_FOR_FUNC_PTR
 ee_work_item_t *mith_item_init(unsigned int override_iterations);
+#else
+ee_work_item_t *mith_item_init(ee_work_item_t *item, unsigned int override_iterations);
+#endif
 /* Function: mith_wl_init
 	Allocate and initialize chain info for workload with chains */
 int mith_init_chains(ee_workload * workload,int numchains);

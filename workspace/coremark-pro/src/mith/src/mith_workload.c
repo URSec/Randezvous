@@ -28,8 +28,12 @@ ee_workload *mith_wl_init(int num_items) {
 	workload->next_connect=1;
 	return workload;
 }
+#ifdef USE_HEAP_FOR_FUNC_PTR
 ee_work_item_t *mith_item_init(unsigned int override_iterations) {
 	ee_work_item_t *item=th_calloc(1,sizeof(ee_work_item_t));
+#else
+ee_work_item_t *mith_item_init(ee_work_item_t *item, unsigned int override_iterations) {
+#endif
 	item->tcdef=(TCDef *)th_calloc(1,sizeof(TCDef));
 	if (override_iterations>0)
 		item->tcdef->iterations=override_iterations;
@@ -50,7 +54,9 @@ int mith_wl_destroy(ee_workload *workload) {
 	for (i=0; i<workload->max_idx; i++) {
 		if (workload->load[i] != NULL) {
 			th_free(workload->load[i]->tcdef);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 			th_free(workload->load[i]);
+#endif
 			workload->load[i]=NULL;
 		}
 	}

@@ -250,16 +250,25 @@ int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,
 #ifdef Z_SOLO
         return Z_STREAM_ERROR;
 #else
+#ifdef USE_HEAP_FOR_FUNC_PTR
         strm->zalloc = zcalloc;
+#else
+        strm->zalloc = (alloc_func)1;
+#endif
         strm->opaque = (voidpf)0;
 #endif
     }
-    if (strm->zfree == (free_func)0)
+    if (strm->zfree == (free_func)0) {
 #ifdef Z_SOLO
         return Z_STREAM_ERROR;
 #else
+#ifdef USE_HEAP_FOR_FUNC_PTR
         strm->zfree = zcfree;
+#else
+        strm->zfree = (free_func)1;
 #endif
+#endif
+    }
 
 #ifdef FASTEST
     if (level != 0) level = 1;

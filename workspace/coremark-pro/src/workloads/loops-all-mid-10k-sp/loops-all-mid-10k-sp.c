@@ -4,15 +4,27 @@
 #include "mith_workload.h"
 #include "al_smp.h"
 
+#ifndef USE_HEAP_FOR_FUNC_PTR
+static ee_work_item_t items[1];
+#endif
+
 /* helper function to initialize a workload item */
 ee_work_item_t *helper_loopsallmid10ksp(ee_workload *workload, void *params, char *name, void * (*init_func)(void *), e_u32 repeats_override,
 			void * (*bench_func)(struct TCDef *,void *), int (*cleanup)(void *), void * (*fini_func)(void *), int (*veri_func)(void *), int ncont,
+#ifdef USE_HEAP_FOR_FUNC_PTR
 			e_u32 kernel_id, e_u32 instance_id) {
 	ee_work_item_t *item;
+#else
+			e_u32 kernel_id, e_u32 instance_id, ee_work_item_t *item) {
+#endif
 	if (params==NULL) {
 		th_exit(1,"Error when trying to define benchmark params");
 	}
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	item=mith_item_init(repeats_override);
+#else
+	item=mith_item_init(item, repeats_override);
+#endif
 	item->params=params;
 	if (th_strlen(name)>(MITH_MAX_NAME-1)) {
 		th_strncpy(item->shortname,name,MITH_MAX_NAME-1);
@@ -108,7 +120,11 @@ int main(int argc, char *argv[])
 		th_strncpy(dataname,"10k",MITH_MAX_NAME);
 	}
 	retval=define_params_loops(1,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[0]=helper_loopsallmid10ksp(workload,retval,name,bmark_init_loops,bench_repeats,t_run_test_loops,bmark_clean_loops,bmark_fini_loops,bmark_verify_loops,1,(e_u32)914965340,(e_u32)7685734);
+#else
+	real_items[0]=helper_loopsallmid10ksp(workload,retval,name,bmark_init_loops,bench_repeats,t_run_test_loops,bmark_clean_loops,bmark_fini_loops,bmark_verify_loops,1,(e_u32)914965340,(e_u32)7685734,&items[0]);
+#endif
 
 	/* Run the workload */
 	mith_main(workload,workload->iterations,num_contexts,oversubscribe_allowed,num_workers);

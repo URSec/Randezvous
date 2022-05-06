@@ -4,15 +4,27 @@
 #include "mith_workload.h"
 #include "al_smp.h"
 
+#ifndef USE_HEAP_FOR_FUNC_PTR
+static ee_work_item_t items[7];
+#endif
+
 /* helper function to initialize a workload item */
 ee_work_item_t *helper_cjpegrose7preset(ee_workload *workload, void *params, char *name, void * (*init_func)(void *), e_u32 repeats_override,
 			void * (*bench_func)(struct TCDef *,void *), int (*cleanup)(void *), void * (*fini_func)(void *), int (*veri_func)(void *), int ncont,
+#ifdef USE_HEAP_FOR_FUNC_PTR
 			e_u32 kernel_id, e_u32 instance_id) {
 	ee_work_item_t *item;
+#else
+			e_u32 kernel_id, e_u32 instance_id, ee_work_item_t *item) {
+#endif
 	if (params==NULL) {
 		th_exit(1,"Error when trying to define benchmark params");
 	}
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	item=mith_item_init(repeats_override);
+#else
+	item=mith_item_init(item, repeats_override);
+#endif
 	item->params=params;
 	if (th_strlen(name)>(MITH_MAX_NAME-1)) {
 		th_strncpy(item->shortname,name,MITH_MAX_NAME-1);
@@ -150,49 +162,77 @@ int main(int argc, char *argv[])
 		th_strncpy(dataname,"data1 PRESET=Rose256_bmp",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[0]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)128872101);
+#else
+	real_items[0]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)128872101,&items[0]);
+#endif
 /* ITEM 1-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[1]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1957440298);
+#else
+	real_items[1]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1957440298,&items[1]);
+#endif
 /* ITEM 2-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[2]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1992679075);
+#else
+	real_items[2]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1992679075,&items[2]);
+#endif
 /* ITEM 3-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[3]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1998418468);
+#else
+	real_items[3]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1998418468,&items[3]);
+#endif
 /* ITEM 4-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[4]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1914058161);
+#else
+	real_items[4]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1914058161,&items[4]);
+#endif
 /* ITEM 5-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[5]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1942919478);
+#else
+	real_items[5]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1942919478,&items[5]);
+#endif
 /* ITEM 6-0 [0]*/
 	th_strncpy(name,"cjpeg-data1",MITH_MAX_NAME);
 	if (orig_dataname) {
 		th_strncpy(dataname,"data1",MITH_MAX_NAME);
 	}
 	retval=define_params_cjpeg(0,name,dataname);
+#ifdef USE_HEAP_FOR_FUNC_PTR
 	real_items[6]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1906797759);
+#else
+	real_items[6]=helper_cjpegrose7preset(workload,retval,name,bmark_init_cjpeg,1,t_run_test_cjpeg,bmark_clean_cjpeg,bmark_fini_cjpeg,bmark_verify_cjpeg,1,(e_u32)466733417,(e_u32)1906797759,&items[6]);
+#endif
 
 	/* Run the workload */
 	mith_main(workload,workload->iterations,num_contexts,oversubscribe_allowed,num_workers);
