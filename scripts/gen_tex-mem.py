@@ -61,16 +61,16 @@ def write_tex_header(f, benchmark, typ, ieee):
     ncols = 1
 
     # Synthesize a table caption
-    caption = types[typ] + ' of ' + benchmarks[benchmark]
+    caption = benchmarks[benchmark] + ' ' + types[typ]
 
     # Write a comment
     f.write('%\n% ' + caption + '.\n%\n')
 
     # Write \begin{table}
     if ncols < 3:
-        f.write('\\begin{table}[ptb]\n')
+        f.write('\\begin{table}[tb]\n')
     else:
-        f.write('\\begin{table*}[ptb]\n')
+        f.write('\\begin{table*}[tb]\n')
     if ieee:
         # Write caption and label
         f.write('\\caption{' + caption + '}\n')
@@ -135,7 +135,7 @@ def write_tex_footer(f, benchmark, typ, ieee):
     ncols = 1
 
     # Synthesize a table caption
-    caption = types[typ] + ' of ' + benchmarks[benchmark]
+    caption = benchmarks[benchmark] + ' ' + types[typ]
 
     # Write \bottomrule
     f.write('\\bottomrule\n')
