@@ -196,7 +196,7 @@ def write_tex_content(f, benchmark, typ, data):
                                 # Generate comma-separated numbers for baseline
                                 number = '{:,}'.format(int(number))
                             else:
-                                number = '{0:.3f}'.format(float(number))
+                                number = '{0:,.3f}'.format(float(number))
                         else:
                             baseline = float(data[prog][baseline_conf][mt])
                             number = float(number) / baseline
