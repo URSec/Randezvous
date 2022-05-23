@@ -62,7 +62,7 @@ static pca9420_handle_t pca9420Handle;
 /*!
  * @brief Main function
  */
-int main(void)
+int __attribute__((noinline)) main(void)
 {
     FRESULT error;
     DIR directory; /* Directory object */
