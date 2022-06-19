@@ -6,6 +6,4 @@
 
 # Compilation results
 /baseline-mbedtls-benchmark/
-/baseline-sram-mbedtls-benchmark/
 /randezvous-mbedtls-benchmark/
-/randezvous-sram-mbedtls-benchmark/

@@ -63,189 +63,63 @@
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.9" name="baseline-sram-cjpeg-rose7-preset">
+  <configuration id="com.crt.advproject.config.exe.release.9" name="randezvous-cjpeg-rose7-preset">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.10" name="baseline-sram-core">
+  <configuration id="com.crt.advproject.config.exe.release.10" name="randezvous-core">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.11" name="baseline-sram-linear_alg-mid-100x100-sp">
+  <configuration id="com.crt.advproject.config.exe.release.11" name="randezvous-linear_alg-mid-100x100-sp">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.12" name="baseline-sram-loops-all-mid-10k-sp">
+  <configuration id="com.crt.advproject.config.exe.release.12" name="randezvous-loops-all-mid-10k-sp">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.13" name="baseline-sram-nnet_test">
+  <configuration id="com.crt.advproject.config.exe.release.13" name="randezvous-nnet_test">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.14" name="baseline-sram-parser-125k">
+  <configuration id="com.crt.advproject.config.exe.release.14" name="randezvous-parser-125k">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.15" name="baseline-sram-radix2-big-64k">
+  <configuration id="com.crt.advproject.config.exe.release.15" name="randezvous-radix2-big-64k">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.16" name="baseline-sram-sha-test">
+  <configuration id="com.crt.advproject.config.exe.release.16" name="randezvous-sha-test">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
       <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
     </extension>
   </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.17" name="baseline-sram-zip-test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.18" name="randezvous-cjpeg-rose7-preset">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.19" name="randezvous-core">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.20" name="randezvous-linear_alg-mid-100x100-sp">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.21" name="randezvous-loops-all-mid-10k-sp">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.22" name="randezvous-nnet_test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.23" name="randezvous-parser-125k">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.24" name="randezvous-radix2-big-64k">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.25" name="randezvous-sha-test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.26" name="randezvous-zip-test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.27" name="randezvous-sram-cjpeg-rose7-preset">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.28" name="randezvous-sram-core">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.29" name="randezvous-sram-linear_alg-mid-100x100-sp">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.30" name="randezvous-sram-loops-all-mid-10k-sp">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.31" name="randezvous-sram-nnet_test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.32" name="randezvous-sram-parser-125k">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.33" name="randezvous-sram-radix2-big-64k">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.34" name="randezvous-sram-sha-test">
-    <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-      <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
-      <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
-      <provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-    </extension>
-  </configuration>
-  <configuration id="com.crt.advproject.config.exe.release.35" name="randezvous-sram-zip-test">
+  <configuration id="com.crt.advproject.config.exe.release.17" name="randezvous-zip-test">
     <extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
       <provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
       <provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>

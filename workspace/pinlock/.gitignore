@@ -5,7 +5,5 @@
 *.launch
 
 # Compilation results
-/baseline-sram-pinlock/
-/randezvous-sram-pinlock/
 /baseline-pinlock/
 /randezvous-pinlock/

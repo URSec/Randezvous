@@ -112,7 +112,7 @@
                 <option id="com.crt.advproject.link.nonsecureobject.22" name="Secure Gateway Import Library" superClass="com.crt.advproject.link.nonsecureobject" useByScannerDiscovery="false"/>
                 <option id="com.crt.advproject.link.inimplib.22" name="Input Secure Gateway Import Library" superClass="com.crt.advproject.link.inimplib" useByScannerDiscovery="false"/>
                 <option id="com.crt.advproject.link.thumb.22" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.link.script.22" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;${ProjDirPath}/LinkerScript.ld&quot;" valueType="string"/>
+                <option id="com.crt.advproject.link.script.22" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;${ProjDirPath}/LinkerScript-SRAM.ld&quot;" valueType="string"/>
                 <option id="com.crt.advproject.link.scriptdir.22" name="Script path" superClass="com.crt.advproject.link.scriptdir" useByScannerDiscovery="false" value="" valueType="string"/>
                 <option id="com.crt.advproject.link.manage.22" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                 <option id="com.crt.advproject.link.memory.load.image.22" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="false;" valueType="string"/>

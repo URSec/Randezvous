@@ -3,8 +3,8 @@
 <cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
   <storageModule moduleId="org.eclipse.cdt.core.settings">
     <!-- Configuration of randezvous-crc -->
-    <cconfiguration id="com.crt.advproject.config.exe.release.167">
-      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.exe.release.167" moduleId="org.eclipse.cdt.core.settings" name="randezvous-crc">
+    <cconfiguration id="com.crt.advproject.config.exe.release.87">
+      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.exe.release.87" moduleId="org.eclipse.cdt.core.settings" name="randezvous-crc">
         <externalSettings/>
         <extensions>
           <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -17,51 +17,51 @@
         </extensions>
       </storageModule>
       <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-        <configuration artifactExtension="axf" artifactName="${ConfigName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="Release build of randezvous-crc" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.exe.release.167" name="randezvous-crc" parent="com.crt.advproject.config.exe.release" postannouncebuildStep="Performing post-build steps" postbuildStep="arm-none-eabi-size &quot;${BuildArtifactFileName}&quot;">
-          <folderInfo id="com.crt.advproject.config.exe.release.167." name="/" resourcePath="">
-            <toolChain id="com.crt.advproject.toolchain.exe.release.167" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
-              <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.167" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
-              <builder buildPath="${ProjDirPath}/randezvous-crc" id="com.crt.advproject.builder.exe.release.167" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.167" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
-                <option id="gnu.c.compiler.option.dialect.flags.167" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
-                <option id="gnu.c.compiler.option.preprocessor.nostdinc.167" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.preprocessor.preprocess.167" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.preprocessor.undef.symbol.167" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" useByScannerDiscovery="false"/>
-                <option id="gnu.c.compiler.option.include.files.167" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
-                <option id="gnu.c.compiler.option.optimization.flags.167" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-ffunction-sections -fdata-sections -fomit-frame-pointer -ffreestanding" valueType="string"/>
-                <option id="gnu.c.compiler.option.debugging.other.167" name="Other debugging flags" superClass="gnu.c.compiler.option.debugging.other" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="gnu.c.compiler.option.debugging.prof.167" name="Generate prof information (-p)" superClass="gnu.c.compiler.option.debugging.prof" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.debugging.gprof.167" name="Generate gprof information (-pg)" superClass="gnu.c.compiler.option.debugging.gprof" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.debugging.codecov.167" name="Generate gcov information (-ftest-coverage -fprofile-arcs)" superClass="gnu.c.compiler.option.debugging.codecov" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.syntax.167" name="Check syntax only (-fsyntax-only)" superClass="gnu.c.compiler.option.warnings.syntax" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.pedantic.167" name="Pedantic (-pedantic)" superClass="gnu.c.compiler.option.warnings.pedantic" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.pedantic.error.167" name="Pedantic warnings as errors (-pedantic-errors)" superClass="gnu.c.compiler.option.warnings.pedantic.error" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.nowarn.167" name="Inhibit all warnings (-w)" superClass="gnu.c.compiler.option.warnings.nowarn" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.allwarn.167" name="All warnings (-Wall)" superClass="gnu.c.compiler.option.warnings.allwarn" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.extrawarn.167" name="Extra warnings (-Wextra)" superClass="gnu.c.compiler.option.warnings.extrawarn" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.toerrors.167" name="Warnings as errors (-Werror)" superClass="gnu.c.compiler.option.warnings.toerrors" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.warnings.wconversion.167" name="Implicit conversion warnings (-Wconversion)" superClass="gnu.c.compiler.option.warnings.wconversion" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.misc.verbose.167" name="Verbose (-v)" superClass="gnu.c.compiler.option.misc.verbose" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.misc.ansi.167" name="Support ANSI programs (-ansi)" superClass="gnu.c.compiler.option.misc.ansi" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.compiler.option.misc.pic.167" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.c.misc.dialect.167" name="Language standard" superClass="com.crt.advproject.c.misc.dialect" useByScannerDiscovery="false" value="com.crt.advproject.misc.dialect.default" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.arch.167" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm33" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.fpu.167" name="Floating point" superClass="com.crt.advproject.gcc.fpu" useByScannerDiscovery="true" value="com.crt.advproject.gcc.fpu.fpv5sp.hard" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.securestate.167" name="TrustZone Project Type" superClass="com.crt.advproject.gcc.securestate" useByScannerDiscovery="false" value="com.crt.advproject.gcc.securestate.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.thumb.167" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.thumbinterwork.167" name="Enable Thumb interworking" superClass="com.crt.advproject.gcc.thumbinterwork" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.exe.release.option.debugging.level.167" name="Debug Level" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.default" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.exe.release.option.optimization.level.167" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.size" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.hdrlib.167" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.specs.167" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gcc.lto.167" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.gcc.lto" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.lto.fat.167" name="Fat lto objects (-ffat-lto-objects)" superClass="com.crt.advproject.gcc.lto.fat" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.merge.constants.167" name="Merge Identical Constants (-fmerge-constants)" superClass="com.crt.advproject.gcc.merge.constants" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.prefixmap.167" name="Remove path from __FILE__ (-fmacro-prefix-map)" superClass="com.crt.advproject.gcc.prefixmap" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="com.crt.advproject.gcc.stackusage.167" name="Generate Stack Usage Info (-fstack-usage)" superClass="com.crt.advproject.gcc.stackusage" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.gcc.config.167" name="Obsolete (Config)" superClass="com.crt.advproject.gcc.config" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.gcc.store.167" name="Obsolete (Store)" superClass="com.crt.advproject.gcc.store" useByScannerDiscovery="false"/>
-                <option id="gnu.c.compiler.option.preprocessor.def.symbols.167" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+        <configuration artifactExtension="axf" artifactName="${ConfigName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="Release build of randezvous-crc" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.exe.release.87" name="randezvous-crc" parent="com.crt.advproject.config.exe.release" postannouncebuildStep="Performing post-build steps" postbuildStep="arm-none-eabi-size &quot;${BuildArtifactFileName}&quot;">
+          <folderInfo id="com.crt.advproject.config.exe.release.87." name="/" resourcePath="">
+            <toolChain id="com.crt.advproject.toolchain.exe.release.87" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
+              <targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.87" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
+              <builder buildPath="${ProjDirPath}/randezvous-crc" id="com.crt.advproject.builder.exe.release.87" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gcc.exe.release.87" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
+                <option id="gnu.c.compiler.option.dialect.flags.87" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" useByScannerDiscovery="false"/>
+                <option id="gnu.c.compiler.option.preprocessor.nostdinc.87" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.preprocessor.preprocess.87" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.preprocessor.undef.symbol.87" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol" useByScannerDiscovery="false"/>
+                <option id="gnu.c.compiler.option.include.files.87" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
+                <option id="gnu.c.compiler.option.optimization.flags.87" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-ffunction-sections -fdata-sections -fomit-frame-pointer -ffreestanding" valueType="string"/>
+                <option id="gnu.c.compiler.option.debugging.other.87" name="Other debugging flags" superClass="gnu.c.compiler.option.debugging.other" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="gnu.c.compiler.option.debugging.prof.87" name="Generate prof information (-p)" superClass="gnu.c.compiler.option.debugging.prof" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.debugging.gprof.87" name="Generate gprof information (-pg)" superClass="gnu.c.compiler.option.debugging.gprof" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.debugging.codecov.87" name="Generate gcov information (-ftest-coverage -fprofile-arcs)" superClass="gnu.c.compiler.option.debugging.codecov" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.syntax.87" name="Check syntax only (-fsyntax-only)" superClass="gnu.c.compiler.option.warnings.syntax" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.pedantic.87" name="Pedantic (-pedantic)" superClass="gnu.c.compiler.option.warnings.pedantic" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.pedantic.error.87" name="Pedantic warnings as errors (-pedantic-errors)" superClass="gnu.c.compiler.option.warnings.pedantic.error" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.nowarn.87" name="Inhibit all warnings (-w)" superClass="gnu.c.compiler.option.warnings.nowarn" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.allwarn.87" name="All warnings (-Wall)" superClass="gnu.c.compiler.option.warnings.allwarn" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.extrawarn.87" name="Extra warnings (-Wextra)" superClass="gnu.c.compiler.option.warnings.extrawarn" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.toerrors.87" name="Warnings as errors (-Werror)" superClass="gnu.c.compiler.option.warnings.toerrors" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.warnings.wconversion.87" name="Implicit conversion warnings (-Wconversion)" superClass="gnu.c.compiler.option.warnings.wconversion" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.misc.verbose.87" name="Verbose (-v)" superClass="gnu.c.compiler.option.misc.verbose" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.misc.ansi.87" name="Support ANSI programs (-ansi)" superClass="gnu.c.compiler.option.misc.ansi" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.compiler.option.misc.pic.87" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.c.misc.dialect.87" name="Language standard" superClass="com.crt.advproject.c.misc.dialect" useByScannerDiscovery="false" value="com.crt.advproject.misc.dialect.default" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.arch.87" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm33" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.fpu.87" name="Floating point" superClass="com.crt.advproject.gcc.fpu" useByScannerDiscovery="true" value="com.crt.advproject.gcc.fpu.fpv5sp.hard" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.securestate.87" name="TrustZone Project Type" superClass="com.crt.advproject.gcc.securestate" useByScannerDiscovery="false" value="com.crt.advproject.gcc.securestate.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.thumb.87" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.thumbinterwork.87" name="Enable Thumb interworking" superClass="com.crt.advproject.gcc.thumbinterwork" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.exe.release.option.debugging.level.87" name="Debug Level" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.default" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.exe.release.option.optimization.level.87" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.size" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.hdrlib.87" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.specs.87" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gcc.lto.87" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.gcc.lto" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.lto.fat.87" name="Fat lto objects (-ffat-lto-objects)" superClass="com.crt.advproject.gcc.lto.fat" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.merge.constants.87" name="Merge Identical Constants (-fmerge-constants)" superClass="com.crt.advproject.gcc.merge.constants" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.prefixmap.87" name="Remove path from __FILE__ (-fmacro-prefix-map)" superClass="com.crt.advproject.gcc.prefixmap" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="com.crt.advproject.gcc.stackusage.87" name="Generate Stack Usage Info (-fstack-usage)" superClass="com.crt.advproject.gcc.stackusage" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.gcc.config.87" name="Obsolete (Config)" superClass="com.crt.advproject.gcc.config" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.gcc.store.87" name="Obsolete (Store)" superClass="com.crt.advproject.gcc.store" useByScannerDiscovery="false"/>
+                <option id="gnu.c.compiler.option.preprocessor.def.symbols.87" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB"/>
                   <listOptionValue builtIn="false" value="CPU_MIMXRT685SFVKB_cm33"/>
                   <listOptionValue builtIn="false" value="SDK_DEBUGCONSOLE=0"/>
@@ -72,7 +72,7 @@
                   <listOptionValue builtIn="false" value="RANDEZVOUS_GLOBAL_GUARD"/>
                   <listOptionValue builtIn="false" value="BENCHMARK_NAME=\&quot;crc\&quot;"/>
                 </option>
-                <option id="gnu.c.compiler.option.include.paths.167" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+                <option id="gnu.c.compiler.option.include.paths.87" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/newlib-cygwin/install/arm-none-eabihf/include&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/CMSIS}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/board}&quot;"/>
@@ -85,20 +85,20 @@
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/utilities}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/inc&quot;"/>
                 </option>
-                <option id="gnu.c.compiler.option.misc.other.167" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
-                <inputType id="com.crt.advproject.compiler.input.167" superClass="com.crt.advproject.compiler.input"/>
+                <option id="gnu.c.compiler.option.misc.other.87" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
+                <inputType id="com.crt.advproject.compiler.input.87" superClass="com.crt.advproject.compiler.input"/>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.167" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
-                <option id="gnu.c.link.option.nostart.167" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.link.option.nodeflibs.167" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.link.option.nostdlibs.167" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.link.option.noshared.167" name="No shared libraries (-static)" superClass="gnu.c.link.option.noshared" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="gnu.c.link.option.strip.167" name="Omit all symbol information (-s)" superClass="gnu.c.link.option.strip" useByScannerDiscovery="false"/>
-                <option id="gnu.c.link.option.shared.167" name="Shared (-shared)" superClass="gnu.c.link.option.shared" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="gnu.c.link.option.soname.167" name="Shared object name (-Wl,-soname=)" superClass="gnu.c.link.option.soname" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="gnu.c.link.option.implname.167" name="Import Library name (-Wl,--out-implib=)" superClass="gnu.c.link.option.implname" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="gnu.c.link.option.defname.167" name="DEF file name (-Wl,--output-def=)" superClass="gnu.c.link.option.defname" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="gnu.c.link.option.other.167" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.link.exe.release.87" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
+                <option id="gnu.c.link.option.nostart.87" name="Do not use standard start files (-nostartfiles)" superClass="gnu.c.link.option.nostart" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.link.option.nodeflibs.87" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.c.link.option.nodeflibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.link.option.nostdlibs.87" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.link.option.noshared.87" name="No shared libraries (-static)" superClass="gnu.c.link.option.noshared" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="gnu.c.link.option.strip.87" name="Omit all symbol information (-s)" superClass="gnu.c.link.option.strip" useByScannerDiscovery="false"/>
+                <option id="gnu.c.link.option.shared.87" name="Shared (-shared)" superClass="gnu.c.link.option.shared" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="gnu.c.link.option.soname.87" name="Shared object name (-Wl,-soname=)" superClass="gnu.c.link.option.soname" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="gnu.c.link.option.implname.87" name="Import Library name (-Wl,--out-implib=)" superClass="gnu.c.link.option.implname" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="gnu.c.link.option.defname.87" name="DEF file name (-Wl,--output-def=)" superClass="gnu.c.link.option.defname" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="gnu.c.link.option.other.87" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>
                   <listOptionValue builtIn="false" value="--save-temps"/>
                   <listOptionValue builtIn="false" value="--mllvm=-stats"/>
@@ -107,71 +107,71 @@
                   <listOptionValue builtIn="false" value="--undefined=flexspi_config"/>
                   <listOptionValue builtIn="false" value="--undefined-glob=__aeabi_*"/>
                 </option>
-                <option id="com.crt.advproject.link.arch.167" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm33" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.fpu.167" name="Floating point" superClass="com.crt.advproject.link.fpu" useByScannerDiscovery="false" value="com.crt.advproject.link.fpu.fpv5sp.hard" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.securestate.167" name="TrustZone Project Type" superClass="com.crt.advproject.link.securestate" useByScannerDiscovery="false" value="com.crt.advproject.link.securestate.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.sgstubs.placement.167" name="Secure Gateway Placement" superClass="com.crt.advproject.link.sgstubs.placement" useByScannerDiscovery="false" value="com.crt.advproject.link.sgstubs.append" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.sgstubenable.167" name="Enable generation of Secure Gateway Import Library" superClass="com.crt.advproject.link.sgstubenable" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.nonsecureobject.167" name="Secure Gateway Import Library" superClass="com.crt.advproject.link.nonsecureobject" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.inimplib.167" name="Input Secure Gateway Import Library" superClass="com.crt.advproject.link.inimplib" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.thumb.167" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.link.script.167" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;${ProjDirPath}/LinkerScript.ld&quot;" valueType="string"/>
-                <option id="com.crt.advproject.link.scriptdir.167" name="Script path" superClass="com.crt.advproject.link.scriptdir" useByScannerDiscovery="false" value="" valueType="string"/>
-                <option id="com.crt.advproject.link.manage.167" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.link.memory.load.image.167" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="false;" valueType="string"/>
-                <option id="com.crt.advproject.link.memory.heapAndStack.167" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>
-                <option id="com.crt.advproject.link.memory.heapAndStack.style.167" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" defaultValue="com.crt.advproject.heapAndStack.mcuXpressoStyle" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.memory.data.167" name="Global data placement" superClass="com.crt.advproject.link.memory.data" useByScannerDiscovery="false" value="Default" valueType="string"/>
-                <option id="com.crt.advproject.link.memory.sections.167" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>
-                <option id="com.crt.advproject.link.toram.167" name="Link application to RAM" superClass="com.crt.advproject.link.toram" useByScannerDiscovery="false" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.link.stackOffset.167" name="Stack offset" superClass="com.crt.advproject.link.stackOffset" useByScannerDiscovery="false" value="0" valueType="string"/>
-                <option id="com.crt.advproject.link.gcc.hdrlib.167" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.link.hdrlib.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.gcc.nanofloat.167" name="Enable printf float " superClass="com.crt.advproject.link.gcc.nanofloat" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.gcc.nanofloat.scanf.167" name="Enable scanf float " superClass="com.crt.advproject.link.gcc.nanofloat.scanf" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.gcc.lto.167" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.link.gcc.lto" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.link.gcc.lto.optmization.level.167" name="Link-time optimization level" superClass="com.crt.advproject.link.gcc.lto.optmization.level" useByScannerDiscovery="false" value="link.c.optimization.level.size" valueType="enumerated"/>
-                <option id="com.crt.advproject.link.gcc.multicore.empty.167" name="No Multicore options for this project" superClass="com.crt.advproject.link.gcc.multicore.empty" useByScannerDiscovery="false" value="true" valueType="string"/>
-                <option id="com.crt.advproject.link.gcc.multicore.master.167" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.gcc.multicore.master.userobjs.167" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>
-                <option id="com.crt.advproject.link.gcc.multicore.slave.167" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.crpenable.167" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.flashconfigenable.167" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.flashconfigenable" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.link.ecrp.167" name="Enhanced CRP" superClass="com.crt.advproject.link.ecrp" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.config.167" name="Obsolete (Config)" superClass="com.crt.advproject.link.config" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.link.store.167" name="Obsolete (Store)" superClass="com.crt.advproject.link.store" useByScannerDiscovery="false"/>
-                <option id="gnu.c.link.option.libs.167" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+                <option id="com.crt.advproject.link.arch.87" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm33" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.fpu.87" name="Floating point" superClass="com.crt.advproject.link.fpu" useByScannerDiscovery="false" value="com.crt.advproject.link.fpu.fpv5sp.hard" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.securestate.87" name="TrustZone Project Type" superClass="com.crt.advproject.link.securestate" useByScannerDiscovery="false" value="com.crt.advproject.link.securestate.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.sgstubs.placement.87" name="Secure Gateway Placement" superClass="com.crt.advproject.link.sgstubs.placement" useByScannerDiscovery="false" value="com.crt.advproject.link.sgstubs.append" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.sgstubenable.87" name="Enable generation of Secure Gateway Import Library" superClass="com.crt.advproject.link.sgstubenable" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.nonsecureobject.87" name="Secure Gateway Import Library" superClass="com.crt.advproject.link.nonsecureobject" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.inimplib.87" name="Input Secure Gateway Import Library" superClass="com.crt.advproject.link.inimplib" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.thumb.87" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.link.script.87" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;${ProjDirPath}/LinkerScript-SRAM.ld&quot;" valueType="string"/>
+                <option id="com.crt.advproject.link.scriptdir.87" name="Script path" superClass="com.crt.advproject.link.scriptdir" useByScannerDiscovery="false" value="" valueType="string"/>
+                <option id="com.crt.advproject.link.manage.87" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.link.memory.load.image.87" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="false;" valueType="string"/>
+                <option id="com.crt.advproject.link.memory.heapAndStack.87" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>
+                <option id="com.crt.advproject.link.memory.heapAndStack.style.87" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" defaultValue="com.crt.advproject.heapAndStack.mcuXpressoStyle" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.memory.data.87" name="Global data placement" superClass="com.crt.advproject.link.memory.data" useByScannerDiscovery="false" value="Default" valueType="string"/>
+                <option id="com.crt.advproject.link.memory.sections.87" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false" valueType="stringList" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>
+                <option id="com.crt.advproject.link.toram.87" name="Link application to RAM" superClass="com.crt.advproject.link.toram" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.link.stackOffset.87" name="Stack offset" superClass="com.crt.advproject.link.stackOffset" useByScannerDiscovery="false" value="0" valueType="string"/>
+                <option id="com.crt.advproject.link.gcc.hdrlib.87" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.link.hdrlib.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.gcc.nanofloat.87" name="Enable printf float " superClass="com.crt.advproject.link.gcc.nanofloat" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.gcc.nanofloat.scanf.87" name="Enable scanf float " superClass="com.crt.advproject.link.gcc.nanofloat.scanf" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.gcc.lto.87" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.link.gcc.lto" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.link.gcc.lto.optmization.level.87" name="Link-time optimization level" superClass="com.crt.advproject.link.gcc.lto.optmization.level" useByScannerDiscovery="false" value="link.c.optimization.level.size" valueType="enumerated"/>
+                <option id="com.crt.advproject.link.gcc.multicore.empty.87" name="No Multicore options for this project" superClass="com.crt.advproject.link.gcc.multicore.empty" useByScannerDiscovery="false" value="true" valueType="string"/>
+                <option id="com.crt.advproject.link.gcc.multicore.master.87" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.gcc.multicore.master.userobjs.87" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true"/>
+                <option id="com.crt.advproject.link.gcc.multicore.slave.87" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.crpenable.87" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.flashconfigenable.87" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.flashconfigenable" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.link.ecrp.87" name="Enhanced CRP" superClass="com.crt.advproject.link.ecrp" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.config.87" name="Obsolete (Config)" superClass="com.crt.advproject.link.config" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.link.store.87" name="Obsolete (Store)" superClass="com.crt.advproject.link.store" useByScannerDiscovery="false"/>
+                <option id="gnu.c.link.option.libs.87" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="c"/>
                   <listOptionValue builtIn="false" value="m"/>
                   <listOptionValue builtIn="false" value="clang_rt.builtins-armhf"/>
                   <listOptionValue builtIn="false" value="mimxrt685s"/>
                 </option>
-                <option id="gnu.c.link.option.ldflags.167" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-fuse-ld=lld --target=arm-none-eabihf -Wl,-mllvm,-arm-randezvous-clr -Wl,-mllvm,-arm-randezvous-bbclr -Wl,-mllvm,-arm-randezvous-gdlr -Wl,-mllvm,-arm-randezvous-cdc -Wl,-mllvm,-arm-randezvous-icall-limiter -Wl,-mllvm,-arm-randezvous-lgp -Wl,-mllvm,-arm-randezvous-picoxom -Wl,-mllvm,-arm-randezvous-ran -Wl,-mllvm,-arm-randezvous-shadow-stack -Wl,-mllvm,-arm-randezvous-global-guard -Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c" valueType="string"/>
-                <option id="gnu.c.link.option.paths.167" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+                <option id="gnu.c.link.option.ldflags.87" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-fuse-ld=lld --target=arm-none-eabihf -Wl,-mllvm,-arm-randezvous-clr -Wl,-mllvm,-arm-randezvous-bbclr -Wl,-mllvm,-arm-randezvous-gdlr -Wl,-mllvm,-arm-randezvous-cdc -Wl,-mllvm,-arm-randezvous-icall-limiter -Wl,-mllvm,-arm-randezvous-lgp -Wl,-mllvm,-arm-randezvous-picoxom -Wl,-mllvm,-arm-randezvous-ran -Wl,-mllvm,-arm-randezvous-shadow-stack -Wl,-mllvm,-arm-randezvous-global-guard -Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c" valueType="string"/>
+                <option id="gnu.c.link.option.paths.87" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/newlib-cygwin/install/arm-none-eabihf/lib&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/compiler-rt/install/lib/baremetal&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/baseline-mimxrt685s}&quot;"/>
                 </option>
-                <option id="gnu.c.link.option.userobjs.167" name="Other objects" superClass="gnu.c.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+                <option id="gnu.c.link.option.userobjs.87" name="Other objects" superClass="gnu.c.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                 </option>
-                <inputType id="cdt.managedbuild.tool.gnu.c.linker.input.167" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+                <inputType id="cdt.managedbuild.tool.gnu.c.linker.input.87" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
                   <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
                   <additionalInput kind="additionalinput" paths="$(LIBS)"/>
                 </inputType>
               </tool>
-              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.167" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
-                <option id="gnu.both.asm.option.flags.crt.167" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
-                <option id="gnu.both.asm.option.warnings.nowarn.167" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
+              <tool command="${workspace_loc}/../build/llvm/install/bin/clang" id="com.crt.advproject.gas.exe.release.87" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
+                <option id="gnu.both.asm.option.flags.crt.87" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c --target=arm-none-eabihf" valueType="string"/>
+                <option id="gnu.both.asm.option.warnings.nowarn.87" name="Suppress warnings (-W)" superClass="gnu.both.asm.option.warnings.nowarn" value="false" valueType="boolean"/>
                 <option id="gnu.both.asm.option.version.1432171472" name="Announce version (-v)" superClass="gnu.both.asm.option.version" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.gas.arch.167" name="Architecture" superClass="com.crt.advproject.gas.arch" value="com.crt.advproject.gas.target.cm33" valueType="enumerated"/>
-                <option id="com.crt.advproject.gas.fpu.167" name="Floating point" superClass="com.crt.advproject.gas.fpu" value="com.crt.advproject.gas.fpu.fpv5sp.hard" valueType="enumerated"/>
-                <option id="com.crt.advproject.gas.thumb.167" name="Thumb mode" superClass="com.crt.advproject.gas.thumb" value="true" valueType="boolean"/>
-                <option id="com.crt.advproject.gas.thumbinterwork.167" name="Enable Thumb interworking" superClass="com.crt.advproject.gas.thumbinterwork" value="false" valueType="boolean"/>
-                <option id="com.crt.advproject.gas.debug.167" name="Debug level" superClass="com.crt.advproject.gas.debug" value="com.crt.advproject.gas.debug.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gas.hdrlib.167" name="Library headers" superClass="com.crt.advproject.gas.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gas.hdrlib.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gas.specs.167" name="Specs" superClass="com.crt.advproject.gas.specs" useByScannerDiscovery="false" value="com.crt.advproject.gas.specs.none" valueType="enumerated"/>
-                <option id="com.crt.advproject.gas.config.167" name="Obsolete (Config)" superClass="com.crt.advproject.gas.config" useByScannerDiscovery="false"/>
-                <option id="com.crt.advproject.gas.store.167" name="Obsolete (Store)" superClass="com.crt.advproject.gas.store" useByScannerDiscovery="false"/>
-                <option id="gnu.both.asm.option.include.paths.167" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+                <option id="com.crt.advproject.gas.arch.87" name="Architecture" superClass="com.crt.advproject.gas.arch" value="com.crt.advproject.gas.target.cm33" valueType="enumerated"/>
+                <option id="com.crt.advproject.gas.fpu.87" name="Floating point" superClass="com.crt.advproject.gas.fpu" value="com.crt.advproject.gas.fpu.fpv5sp.hard" valueType="enumerated"/>
+                <option id="com.crt.advproject.gas.thumb.87" name="Thumb mode" superClass="com.crt.advproject.gas.thumb" value="true" valueType="boolean"/>
+                <option id="com.crt.advproject.gas.thumbinterwork.87" name="Enable Thumb interworking" superClass="com.crt.advproject.gas.thumbinterwork" value="false" valueType="boolean"/>
+                <option id="com.crt.advproject.gas.debug.87" name="Debug level" superClass="com.crt.advproject.gas.debug" value="com.crt.advproject.gas.debug.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gas.hdrlib.87" name="Library headers" superClass="com.crt.advproject.gas.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gas.hdrlib.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gas.specs.87" name="Specs" superClass="com.crt.advproject.gas.specs" useByScannerDiscovery="false" value="com.crt.advproject.gas.specs.none" valueType="enumerated"/>
+                <option id="com.crt.advproject.gas.config.87" name="Obsolete (Config)" superClass="com.crt.advproject.gas.config" useByScannerDiscovery="false"/>
+                <option id="com.crt.advproject.gas.store.87" name="Obsolete (Store)" superClass="com.crt.advproject.gas.store" useByScannerDiscovery="false"/>
+                <option id="gnu.both.asm.option.include.paths.87" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc}/../build/newlib-cygwin/install/arm-none-eabihf/include&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/CMSIS}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/board}&quot;"/>
@@ -184,18 +184,18 @@
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/mimxrt685s/utilities}&quot;"/>
                   <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/inc&quot;"/>
                 </option>
-                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.167" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-                <inputType id="com.crt.advproject.assembler.input.167" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
+                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.87" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                <inputType id="com.crt.advproject.assembler.input.87" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
               </tool>
-              <tool id="com.crt.advproject.cpp.exe.release.167" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release">
-                <option id="com.crt.advproject.cpp.fpu.167" name="Floating point" superClass="com.crt.advproject.cpp.fpu"/>
-                <option id="com.crt.advproject.cpp.hdrlib.167" name="Library headers" superClass="com.crt.advproject.cpp.hdrlib"/>
+              <tool id="com.crt.advproject.cpp.exe.release.87" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release">
+                <option id="com.crt.advproject.cpp.fpu.87" name="Floating point" superClass="com.crt.advproject.cpp.fpu"/>
+                <option id="com.crt.advproject.cpp.hdrlib.87" name="Library headers" superClass="com.crt.advproject.cpp.hdrlib"/>
               </tool>
-              <tool id="com.crt.advproject.link.cpp.exe.release.167" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.release">
-                <option id="com.crt.advproject.link.cpp.fpu.167" name="Floating point" superClass="com.crt.advproject.link.cpp.fpu"/>
-                <option id="com.crt.advproject.link.cpp.hdrlib.167" name="Library" superClass="com.crt.advproject.link.cpp.hdrlib"/>
+              <tool id="com.crt.advproject.link.cpp.exe.release.87" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.release">
+                <option id="com.crt.advproject.link.cpp.fpu.87" name="Floating point" superClass="com.crt.advproject.link.cpp.fpu"/>
+                <option id="com.crt.advproject.link.cpp.hdrlib.87" name="Library" superClass="com.crt.advproject.link.cpp.hdrlib"/>
               </tool>
-              <tool id="com.crt.advproject.tool.debug.release.167" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
+              <tool id="com.crt.advproject.tool.debug.release.87" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
             </toolChain>
           </folderInfo>
           <sourceEntries>
@@ -213,7 +213,7 @@
   </storageModule>
   <storageModule moduleId="scannerConfiguration">
     <autodiscovery enabled="false" problemReportingEnabled="false" selectedProfileId=""/>
-    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.167;com.crt.advproject.config.exe.release.167.;com.crt.advproject.gas.exe.release.167;com.crt.advproject.assembler.input.167">
+    <scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.87;com.crt.advproject.config.exe.release.87.;com.crt.advproject.gas.exe.release.87;com.crt.advproject.assembler.input.87">
       <autodiscovery enabled="false" problemReportingEnabled="false" selectedProfileId=""/>
     </scannerConfigBuildInfo>
   </storageModule>
