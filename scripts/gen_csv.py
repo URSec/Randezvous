@@ -31,8 +31,6 @@ data_dir = root + '/data'
 configurations = [
     'baseline',
     'randezvous',
-    'baseline-sram',
-    'randezvous-sram',
 ]
 
 #

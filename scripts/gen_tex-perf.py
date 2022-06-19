@@ -27,10 +27,10 @@ data_dir = root + '/data'
 # Dict of configurations and their formal names.
 #
 configurations = {
-    'baseline-sram': 'Baseline',
-    'randezvous-sram': '{\\System}',
+    'baseline': 'Baseline',
+    'randezvous': '{\\System}',
 }
-baseline_conf = 'baseline-sram'
+baseline_conf = 'baseline'
 
 #
 # Dict of benchmark suites and their formal names.

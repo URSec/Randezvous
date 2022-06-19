@@ -11,9 +11,7 @@ PROGRAMS=(
 
 CONFIGURATIONS=(
     "baseline"
-    "baseline-sram"
     "randezvous"
-    "randezvous-sram"
 )
 
 #
