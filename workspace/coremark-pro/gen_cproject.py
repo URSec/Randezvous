@@ -210,6 +210,7 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-shadow-stack',
             '-Wl,-mllvm,-arm-randezvous-global-guard',
             '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=3',
         ],
         'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
     },
@@ -273,10 +274,33 @@ def populate_extra_settings():
 
 
         if shadow_stack:
-            # parser-125k needs to fit ~2000 recursions in 32 KB shadow stack,
-            # so set shadow stack stride length to 4 bits
+            extras[(conf, 'cjpeg-rose7-preset')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x60',
+            ])
+            extras[(conf, 'core')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            extras[(conf, 'linear_alg-mid-100x100-sp')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            extras[(conf, 'loops-all-mid-10k-sp')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            extras[(conf, 'nnet_test')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            # parser-125k needs to fit ~2000 recursions
             extras[(conf, 'parser-125k')]['ldflags'].extend([
-                '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=4',
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x4a60',
+            ])
+            extras[(conf, 'radix2-big-64k')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            extras[(conf, 'sha-test')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+            ])
+            extras[(conf, 'zip-test')]['ldflags'].extend([
+                '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x60',
             ])
 
 

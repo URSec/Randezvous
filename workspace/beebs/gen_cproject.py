@@ -232,6 +232,7 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-shadow-stack',
             '-Wl,-mllvm,-arm-randezvous-global-guard',
             '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=3',
         ],
         'linkerscript': '${ProjDirPath}/LinkerScript-SRAM.ld',
     },
@@ -260,6 +261,28 @@ def populate_extra_settings():
                 'ldflags': [],
             }
             number += 1
+
+    for conf in configurations:
+        shadow_stack = 'ldflags' in configurations[conf] and '-Wl,-mllvm,-arm-randezvous-shadow-stack' in configurations[conf]['ldflags']
+
+        if shadow_stack:
+            for program in programs:
+                if program in ['cubic', 'tarai']:
+                    extras[(conf, program)]['ldflags'].extend([
+                        '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x40',
+                    ])
+                elif program in ['slre']:
+                    extras[(conf, program)]['ldflags'].extend([
+                        '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x50',
+                    ])
+                elif program in ['recursion', 'sglib-rbtree']:
+                    extras[(conf, program)]['ldflags'].extend([
+                        '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x60',
+                    ])
+                else:
+                    extras[(conf, program)]['ldflags'].extend([
+                        '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x30',
+                    ])
 
 
 ###############################################################################
