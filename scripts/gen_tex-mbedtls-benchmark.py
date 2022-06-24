@@ -31,7 +31,7 @@ configurations = {
     'baseline': 'Baseline',
     'randezvous': '{\\System}',
 }
-baseline_conf = 'baseline-sram'
+baseline_conf = 'baseline'
 
 #
 # Dict of benchmark suites and their formal names.
