@@ -305,7 +305,7 @@ def gen_tex(benchmark, typ, ieee, output):
                 if 'Finished' in line:
                     number = int(line.split(' ')[2].lstrip())
                     if conf == baseline_conf:
-                        if number < 500:
+                        if number < 100:
                             number = None
                     elif prog not in data or baseline_conf not in data[prog]:
                         number = None
