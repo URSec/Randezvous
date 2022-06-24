@@ -246,7 +246,7 @@ int main(void)
         else                                                                                                          \
         {                                                                                                             \
             mbedtls_printf("%6.2f " TYPE "/s",                                                                        \
-                           ((float)ii) / ((benchmark_mbedtls_timing_hardclock() - tsc) / CLOCK_GetCoreSysClkFreq())); \
+                           (ii) / ((float)(benchmark_mbedtls_timing_hardclock() - tsc) / CLOCK_GetCoreSysClkFreq())); \
             MEMORY_MEASURE_PRINT(sizeof(TYPE) + 1);                                                                   \
             mbedtls_printf("\r\n");                                                                                   \
         }                                                                                                             \
