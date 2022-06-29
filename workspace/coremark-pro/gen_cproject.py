@@ -202,7 +202,7 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-clr',
             '-Wl,-mllvm,-arm-randezvous-bbclr',
             '-Wl,-mllvm,-arm-randezvous-gdlr',
-            '-Wl,-mllvm,-arm-randezvous-cdc',
+            '-Wl,-mllvm,-arm-randezvous-dp',
             '-Wl,-mllvm,-arm-randezvous-icall-limiter',
             '-Wl,-mllvm,-arm-randezvous-lgp',
             '-Wl,-mllvm,-arm-randezvous-picoxom',
