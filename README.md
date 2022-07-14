@@ -57,7 +57,8 @@ Randezvous
 
 ## Prerequisites
 
-- We assume the host operating system is Linux. Other operating systems may
+- We assume the host operating system is Linux.
+  Other operating systems may
   work but were not tested.
 - We use CMake, Ninja, and Clang to build the LLVM-based Randezvous compiler,
   so `cmake`, `ninja`, and `clang` of appropriate versions must be found in
@@ -65,7 +66,8 @@ Randezvous
 - We use the Randezvous compiler to build Newlib and compiler-rt, so make sure
   that common development tools needed to build Newlib and compiler-rt for
   bare-metal ARM environments (such as `arm-none-eabi-gcc` and `make`) are
-  there in `PATH`.  In particular, one of our build scripts uses
+  there in `PATH`.
+  In particular, one of our build scripts uses
   `arm-none-eabi-gcc` to find out where a bare-metal ARM `libgcc` is installed.
 - We use [MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
   to build, run, and debug benchmarks and require the IDE to be installed at
@@ -74,18 +76,21 @@ Randezvous
   readable/writable character device `/dev/ttyACM0` is connected to the board's
   serial port after plugging in the board.
 - We use GNU Screen to receive program output from the board's serial port, so
-  `screen` of an appropriate version must be found in `PATH`.  If you use GNU
+  `screen` of an appropriate version must be found in `PATH`.
+  If you use GNU
   Screen, please avoid naming your sessions to `Randezvous-ttyACM0`; this is
   the session name we use.
 - We use GDB to debug ELF binaries and have debugging support included in our
-  scripts.  If you would like to use our script for debugging, make sure either
+  scripts.
+  If you would like to use our script for debugging, make sure either
   `gdb-multiarch` or `arm-none-eabi-gdb` is there in `PATH`.
 
 ## Detailed Steps
 
 ### Set up the Environment
 
-The following steps will set up the environment from scratch.  They only need
+The following steps will set up the environment from scratch.
+They only need
 to be done once.
 
 1. Download [MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
@@ -100,7 +105,8 @@ to be done once.
    ```
    Note that all our scripts (in the `build` and `scripts` directories) are
    CWD-agnostic; each of them can be run from any working directory and would
-   have the same outcome.  After `./build/build.llvm.sh` finishes, the
+   have the same outcome.
+   After `./build/build.llvm.sh` finishes, the
    Randezvous compiler will be installed in `build/llvm/install`.
 4. Build Newlib and compiler-rt.
    ```shell
@@ -113,7 +119,8 @@ to be done once.
    ```shell
    ./scripts/import.sh
    ```
-6. Build a `baseline` version of the HAL library.  All our programs will link
+6. Build a `baseline` version of the HAL library.
+   All our programs will be linked
    against the `baseline` HAL library.
    ```shell
    ./scripts/hal.sh baseline
@@ -126,7 +133,8 @@ that can compile, debug, and run three benchmark suites
 ([BEEBS](https://beebs.mageec.org/),
 [CoreMark-Pro](https://www.eembc.org/coremark-pro), and
 [MbedTLS-Benchmark](https://github.com/ARMmbed/mbedtls/blob/development/programs/test/benchmark.c)),
-respectively.  These scripts support identical command-line argument formats
+respectively.
+These scripts support identical command-line argument formats
 ```shell
 ./scripts/<script-name>.sh <CONFIG> [PROGRAM [PROGRAM]...]
 ```
@@ -139,9 +147,11 @@ or
 ./scripts/<script-name>.sh debug <CONFIG> <PROGRAM>
 ```
 where `CONFIG` is the name of a configuration (see below) and `PROGRAM` is the
-name of a program in the corresponding benchmark suite.  For compile and run,
+name of a program in the corresponding benchmark suite.
+For compile and run,
 if `PROGRAM` is not specified, all the programs in the corresponding benchmark
-suite will be compiled/run.  For example, running `./scripts/beebs.sh baseline`
+suite will be compiled/run.
+For example, running `./scripts/beebs.sh baseline`
 will compile all the benchmark programs in BEEBS using the `baseline`
 configuration, and running `./scripts/coremark-pro.sh run randezvous zip-test`
 will run the `zip-test` program in CoreMark-Pro that was compiled using the
@@ -168,7 +178,8 @@ for conf in baseline baseline-sram randezvous randezvous-sram; do
 done
 ```
 Note that compilation using our scripts must be done one at a time (i.e., **no
-parallel compiling of multiple programs**).  This is because the IDE runs a
+parallel compiling of multiple programs**).
+This is because the IDE runs a
 singleton mode.
 
 The following shell code runs all benchmarks compiled by the above shell code:
@@ -186,9 +197,11 @@ connected to the host machine.
 
 After compiling a benchmark program, an ELF binary with a `.axf` suffix will be
 placed in the `debug` directory, and after running a program, experiment data
-with performance metrics will be generated in the `data` directory.  The names
+with performance metrics will be generated in the `data` directory.
+The names
 of all the subdirectories and files under `debug` and `data` are
-self-explanatory.  For example, `debug/beebs-baseline/baseline-whetstone.axf`
+self-explanatory.
+For example, `debug/beebs-baseline/baseline-whetstone.axf`
 is the ELF binary of the `whetstone` program in BEEBS compiled using the
 `baseline` configuration, and
 `data/coremark-pro-randezvous-sram/randezvous-sram-core.stat` contains the
@@ -196,7 +209,8 @@ execution time of running the `core` program in CoreMark-Pro compiled with the
 `randezvous-sram` configuration.
 
 You can use the `scripts/gen_csv.py` script to collect the raw experiment data
-and write the summarized results to a CSV file.  This script takes three
+and write the summarized results to a CSV file.
+This script takes three
 optional command-line arguments:
 ```shell
 -b benchmark_name # "beebs", "coremark-pro", or "mbedtls-benchmark", default "beebs"
