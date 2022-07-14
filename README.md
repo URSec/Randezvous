@@ -40,16 +40,12 @@ Randezvous
 |   |-- beebs.sh             # Script to compile/debug/run BEEBS benchmarks
 |   |-- coremark-pro.sh      # Script to compile/debug/run CoreMark-Pro benchmarks
 |   |-- mbedtls-benchmark.sh # Script to compile/debug/run MbedTLS-Benchmark
-|   |-- tests.sh             # Script to compile/debug/run test programs
-|   |-- entropy.py           # Script to calculate security analysis results
 |   |-- gen_csv.py           # Script to collect experiment results into CSV files
-|   |-- gen_tex*.py          # Scripts to generate LaTeX tables for paper writing
 |
 |-- workspace                # Directory containing source code
 |   |-- beebs                # Source code of BEEBS benchmarks
 |   |-- coremark-pro         # Source code of CoreMark-Pro benchmarks
 |   |-- mbedtls-benchmark    # Source code of MbedTLS-Benchmark
-|   |-- tests                # Source code of test programs
 |   |-- mimxrt685s           # Source code of HAL library for MIMXRT685-EVK
 |
 |-- README.md                # This README file
