@@ -44,6 +44,7 @@ Randezvous
 |   |-- pinlock.sh           # Script to compile/debug/run PinLock
 |   |-- sdcard_fatfs.sh      # Script to compile/debug/run FatFs-SD
 |   |-- shell.sh             # Script to compile/debug/run LED-Shell
+|   |-- exploit.sh           # Script to compile/debug/run proof-of-concept exploit
 |   |-- gen_csv.py           # Script to collect experiment results into CSV files
 |
 |-- workspace                # Directory containing source code
@@ -55,6 +56,7 @@ Randezvous
 |   |-- pinlock              # Source code of PinLock
 |   |-- sdcard_fatfs         # Source code of FatFs-SD
 |   |-- shell                # Source code of LED-Shell
+|   |-- exploit              # Source code of application used in proof-of-concept exploit
 |
 |-- README.md                # This README file
 ```
@@ -74,9 +76,9 @@ Randezvous
   In particular, one of our build scripts uses
   `arm-none-eabi-gcc` to find out where a bare-metal ARM `libgcc` is installed.
 - We use [MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
-  to build, run, and debug benchmarks and require the IDE to be installed at
+  to build, run, and debug programs and require the IDE to be installed at
   `/usr/local`, `/opt`, or `$HOME`.
-- We use an NXP MIMXRT685-EVK board to run benchmarks and assume a
+- We use an NXP MIMXRT685-EVK board to run programs and assume a
   readable/writable character device `/dev/ttyACM0` is connected to the board's
   serial port after plugging in the board.
 - We use GNU Screen to receive program output from the board's serial port, so
@@ -169,9 +171,9 @@ will run the `zip-test` program in CoreMark-Pro that was compiled using the
 More specifically, we use two configurations of experiments for each benchmark
 suite and application:
 - **Baseline**: Compile the programs without any of our passes, denoted as
-  `baseline`;
+  `baseline`.
 - **Randezvous**: Turn on all the Randezvous passes with all seeds set to zero,
-  denoted as `randezvous`;
+  denoted as `randezvous`.
 
 The following shell code compiles all benchmarks and applications we use, with
 all possible
@@ -238,3 +240,35 @@ For example, if you want to see the performance numbers on BEEBS, run
 ./scripts/gen_csv.py -b beebs -t perf
 ```
 and you will get an output file named `perf-beebs.csv` in the working directory.
+
+### Proof-of-Concept Exploit
+
+In addition to performance evaluation, this repository also contains a
+proof-of-concept exploit that we used to demonstrate Randezvous's security.
+The exploit consists of a vulnerable application in `workspace/exploit` and a
+script `scripts/exploit.sh` representing an attacker.
+The script takes the same command-line argument formats as those used in
+performance evaluation.
+
+Unlike in performance evaluation, here we use three configurations:
+- **Baseline**: Compile the application without any of our passes, denoted as
+  `baseline`.
+- **Randomization plus XOM**: Compile the application with only code/data
+  layout randomization and XOM support, denoted as `randxom`.
+  As the entropy of randomization on MCU systems heavily depends on memory size,
+  we picked three exemplary MCUs of different memory sizes, deriving three
+  sub-configurations denoted as `randxom-small`, `randxom-medium`, and
+  `randxom-large`.
+- **Randezvous**: Compile the application with all the Randezvous passes on and
+  all seeds set to zero, denoted as `randezvous`.
+  Likewise, we derived three sub-configurations denoted as `randezvous-small`,
+  `randezvous-medium`, and `randezvous-large` for the three different-sized
+  MCUs.
+
+For each (sub-)configuration, the script will generate attack payloads using
+the best strategies for the attacker and keep sending payloads in a
+brute-forcing manner.
+In order to keep the exploit running, the script will reboot the application
+each time before sending a new payload.
+You can compile the application and run the script to see how long the exploit
+takes to succeed for each case.
