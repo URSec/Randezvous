@@ -37,16 +37,24 @@ Randezvous
 |-- scripts                  # Directory containing scripts
 |   |-- import.sh            # Script to import projects into IDE
 |   |-- hal.sh               # Script to compile HAL library for MIMXRT685-EVK
+|   |-- mbedtls.sh           # Script to compile MbedTLS library
 |   |-- beebs.sh             # Script to compile/debug/run BEEBS benchmarks
 |   |-- coremark-pro.sh      # Script to compile/debug/run CoreMark-Pro benchmarks
 |   |-- mbedtls-benchmark.sh # Script to compile/debug/run MbedTLS-Benchmark
+|   |-- pinlock.sh           # Script to compile/debug/run PinLock
+|   |-- sdcard_fatfs.sh      # Script to compile/debug/run FatFs-SD
+|   |-- shell.sh             # Script to compile/debug/run LED-Shell
 |   |-- gen_csv.py           # Script to collect experiment results into CSV files
 |
 |-- workspace                # Directory containing source code
+|   |-- mimxrt685s           # Source code of HAL library for MIMXRT685-EVK
+|   |-- mbedtls              # Source code of MbedTLS library
 |   |-- beebs                # Source code of BEEBS benchmarks
 |   |-- coremark-pro         # Source code of CoreMark-Pro benchmarks
 |   |-- mbedtls-benchmark    # Source code of MbedTLS-Benchmark
-|   |-- mimxrt685s           # Source code of HAL library for MIMXRT685-EVK
+|   |-- pinlock              # Source code of PinLock
+|   |-- sdcard_fatfs         # Source code of FatFs-SD
+|   |-- shell                # Source code of LED-Shell
 |
 |-- README.md                # This README file
 ```
@@ -121,14 +129,19 @@ to be done once.
    ```shell
    ./scripts/hal.sh baseline
    ```
+7. Build a `baseline` version of the MbedTLS library.
+   A benchmark and an application used in our evaluation will be linked against
+   the `baseline` MbedTLS library.
 
 ### Build, Debug, and Run Programs
 
-We have three scripts `beebs.sh`, `coremark-pro.sh`, and `mbedtls-benchmark.sh`
+We have six scripts (`beebs.sh`, `coremark-pro.sh`, `mbedtls-benchmark.sh`,
+`pinlock.sh`, `sdcard_fatfs.sh`, and `shell.sh`)
 that can compile, debug, and run three benchmark suites
 ([BEEBS](https://beebs.mageec.org/),
 [CoreMark-Pro](https://www.eembc.org/coremark-pro), and
-[MbedTLS-Benchmark](https://github.com/ARMmbed/mbedtls/blob/development/programs/test/benchmark.c)),
+[MbedTLS-Benchmark](https://github.com/ARMmbed/mbedtls/blob/development/programs/test/benchmark.c))
+and three real-world applications (PinLock, FatFs-SD, and LED-Shell),
 respectively.
 These scripts support identical command-line argument formats
 ```shell
@@ -153,24 +166,24 @@ configuration, and running `./scripts/coremark-pro.sh run randezvous zip-test`
 will run the `zip-test` program in CoreMark-Pro that was compiled using the
 `randezvous` configuration.
 
-More specifically, we use four configurations of experiments for each benchmark
-suite:
+More specifically, we use two configurations of experiments for each benchmark
+suite and application:
 - **Baseline**: Compile the programs without any of our passes, denoted as
   `baseline`;
-- **Baseline w/ code loaded to SRAM**: The same as `baseline` except that code
-  is loaded to SRAM for execution, denoted as `baseline-sram`;
 - **Randezvous**: Turn on all the Randezvous passes with all seeds set to zero,
   denoted as `randezvous`;
-- **Randezvous w/ code loaded to SRAM**: The same as `randezvous` except that
-  code is loaded to SRAM for execution, denoted as `randezvous-sram`.
 
-The following shell code compiles all benchmarks we use, with all possible
+The following shell code compiles all benchmarks and applications we use, with
+all possible
 configurations:
 ```shell
-for conf in baseline baseline-sram randezvous randezvous-sram; do
+for conf in baseline randezvous; do
     ./beebs.sh $conf
     ./coremark-pro.sh $conf
     ./mbedtls-benchmark.sh $conf
+    ./pinlock.sh $conf
+    ./sdcard_fatfs.sh $conf
+    ./shell.sh $conf
 done
 ```
 Note that compilation using our scripts must be done one at a time (i.e., **no
@@ -178,20 +191,26 @@ parallel compiling of multiple programs**).
 This is because the IDE runs a
 singleton mode.
 
-The following shell code runs all benchmarks compiled by the above shell code:
+The following shell code runs all benchmarks and applications compiled by the
+above shell code:
 ```shell
-for conf in baseline baseline-sram randezvous randezvous-sram; do
+for conf in baseline randezvous; do
     ./beebs.sh run $conf
     ./coremark-pro.sh run $conf
     ./mbedtls-benchmark.sh run $conf
+    ./pinlock.sh run $conf
+    ./sdcard_fatfs.sh run $conf
+    ./shell.sh run $conf
 done
 ```
 Note that in order to run programs, an NXP MIMXRT685-EVK board must be
 connected to the host machine.
+Also note that FatFs-SD requires an SD card inserted into the board's SD card
+slot.
 
 ### Collect Experiment Results
 
-After compiling a benchmark program, an ELF binary with a `.axf` suffix will be
+After compiling a program, an ELF binary with a `.axf` suffix will be
 placed in the `debug` directory, and after running a program, experiment data
 with performance metrics will be generated in the `data` directory.
 The names
@@ -200,16 +219,16 @@ self-explanatory.
 For example, `debug/beebs-baseline/baseline-whetstone.axf`
 is the ELF binary of the `whetstone` program in BEEBS compiled using the
 `baseline` configuration, and
-`data/coremark-pro-randezvous-sram/randezvous-sram-core.stat` contains the
+`data/coremark-pro-randezvous/randezvous-core.stat` contains the
 execution time of running the `core` program in CoreMark-Pro compiled with the
-`randezvous-sram` configuration.
+`randezvous` configuration.
 
 You can use the `scripts/gen_csv.py` script to collect the raw experiment data
 and write the summarized results to a CSV file.
 This script takes three
 optional command-line arguments:
 ```shell
--b benchmark_name # "beebs", "coremark-pro", or "mbedtls-benchmark", default "beebs"
+-b benchmark_name # "beebs", "coremark-pro", "mbedtls-benchmark", "pinlock", "sdcard_fatfs", or "shell", default "beebs"
 -t data_type      # "perf", "codesize", or "datasize", default "perf"
 -o output_file    # Path of the output CSV file; if not specified, a default
                   # name "data_type-benchmark_name.csv" will be used
