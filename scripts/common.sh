@@ -12,8 +12,11 @@ FLASH_SERVER_SCRIPT="$ROOT_DIR/scripts/redlink-server-script"
 find_ide() {
     local ide_search_paths=(
         "$HOME/mcuxpresso-ide"
+        "$HOME/mcuxpressoide"
         "/usr/local/mcuxpresso-ide"
+        "/usr/local/mcuxpressoide"
         "/opt/mcuxpresso-ide"
+        "/opt/mcuxpressoide"
     )
     local ide_name="mcuxpressoide"
     local flash_server_name="redlinkserv"
