@@ -183,12 +183,12 @@ all possible
 configurations:
 ```shell
 for conf in baseline randezvous; do
-    ./beebs.sh $conf
-    ./coremark-pro.sh $conf
-    ./mbedtls-benchmark.sh $conf
-    ./pinlock.sh $conf
-    ./sdcard_fatfs.sh $conf
-    ./shell.sh $conf
+    ./scripts/beebs.sh $conf
+    ./scripts/coremark-pro.sh $conf
+    ./scripts/mbedtls-benchmark.sh $conf
+    ./scripts/pinlock.sh $conf
+    ./scripts/sdcard_fatfs.sh $conf
+    ./scripts/shell.sh $conf
 done
 ```
 Note that compilation using our scripts must be done one at a time (i.e., **no
@@ -200,12 +200,12 @@ The following shell code runs all benchmarks and applications compiled by the
 above shell code:
 ```shell
 for conf in baseline randezvous; do
-    ./beebs.sh run $conf
-    ./coremark-pro.sh run $conf
-    ./mbedtls-benchmark.sh run $conf
-    ./pinlock.sh run $conf
-    ./sdcard_fatfs.sh run $conf
-    ./shell.sh run $conf
+    ./scripts/beebs.sh run $conf
+    ./scripts/coremark-pro.sh run $conf
+    ./scripts/mbedtls-benchmark.sh run $conf
+    ./scripts/pinlock.sh run $conf
+    ./scripts/sdcard_fatfs.sh run $conf
+    ./scripts/shell.sh run $conf
 done
 ```
 Note that in order to run programs, an NXP MIMXRT685-EVK board must be
