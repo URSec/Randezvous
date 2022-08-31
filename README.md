@@ -83,9 +83,6 @@ Randezvous
   serial port after plugging in the board.
 - We use GNU Screen to receive program output from the board's serial port, so
   `screen` of an appropriate version must be found in `PATH`.
-  If you use GNU
-  Screen, please avoid naming your sessions to `Randezvous-ttyACM0`; this is
-  the session name we use.
 - We use GDB to debug ELF binaries and have debugging support included in our
   scripts.
   If you would like to use our script for debugging, make sure either

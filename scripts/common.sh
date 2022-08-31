@@ -245,7 +245,7 @@ run() {
 
     for iter in `seq 0 $(( iters - 1 ))`; do
         # Kill all screens first
-        local screen_name="Randezvous-ttyACM0"
+        local screen_name="Randezvous-ttyACM0-$RANDOM"
         screen -S "$screen_name" -X kill >& /dev/null
 
         local perf_dir="$DATA_DIR/$PROJ-$1"
