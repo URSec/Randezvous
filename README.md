@@ -134,6 +134,9 @@ to be done once.
 7. Build a `baseline` version of the MbedTLS library.
    A benchmark and an application used in our evaluation will be linked against
    the `baseline` MbedTLS library.
+   ```shell
+   ./scripts/mbedtls.sh baseline
+   ```
 
 ### Build, Debug, and Run Programs
 
