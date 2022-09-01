@@ -78,7 +78,8 @@ Randezvous
 - We use [MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
   to build, run, and debug programs and require the IDE to be installed at
   `/usr/local`, `/opt`, or `$HOME`.
-- We use an NXP MIMXRT685-EVK board to run programs and assume a
+- We use an [NXP MIMXRT685-EVK](https://www.nxp.com/part/MIMXRT685-EVK) board
+  to run programs and assume a
   readable/writable character device `/dev/ttyACM0` is connected to the board's
   serial port after plugging in the board.
 - We use GNU Screen to receive program output from the board's serial port, so
