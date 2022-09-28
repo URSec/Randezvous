@@ -1,0 +1,9 @@
+# Hidden configuration files
+.cproject
+
+# Launch configurations
+*.launch
+
+# Compilation results
+/baseline-cve-2021-27421/
+/randezvous-cve-2021-27421/
