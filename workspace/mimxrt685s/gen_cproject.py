@@ -109,6 +109,11 @@ programs = {
 #
 configurations = {
     'baseline': {},
+    'cve': {
+        'defines': [
+            'CVE_2021_27421',
+        ],
+    },
 }
 
 
