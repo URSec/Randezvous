@@ -127,6 +127,9 @@ void DisableDeepSleepIRQ(IRQn_Type interrupt)
 void *SDK_Malloc(size_t size, size_t alignbytes)
 {
     mem_align_cb_t *p_cb = NULL;
+#ifdef CVE_2021_27421
+    uint32_t alignedsize = SDK_SIZEALIGN(size, alignbytes) + alignbytes + sizeof(mem_align_cb_t);
+#else
     uint32_t alignedsize;
 
     /* Check overflow. */
@@ -142,6 +145,7 @@ void *SDK_Malloc(size_t size, size_t alignbytes)
     }
 
     alignedsize += alignbytes + sizeof(mem_align_cb_t);
+#endif
 
     union
     {
