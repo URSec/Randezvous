@@ -104,7 +104,49 @@ programs = {
 #
 configurations = {
     'baseline': {},
-    'randezvous': {
+    'randxom-small': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            # Small size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x20000',     # 128 KB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x8000',      # 32 KB
+        ],
+    },
+    'randxom-medium': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            # Medium size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x100000',    # 1 MB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x40000',     # 256 KB
+        ],
+    },
+    'randxom-large': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            # Large size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x1000000',   # 16 MB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x50000',     # 320 KB
+        ],
+    },
+    'randezvous-small': {
         'defines': [
             'RANDEZVOUS_PICOXOM',
             'RANDEZVOUS_SS',
@@ -122,7 +164,58 @@ configurations = {
             '-Wl,-mllvm,-arm-randezvous-shadow-stack',
             '-Wl,-mllvm,-arm-randezvous-global-guard',
             '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
-            '-Wl,-mllvm,-arm-randezvous-shadow-stack-stride-length=3',
+            # Small size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x20000',     # 128 KB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x8000',      # 32 KB
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x4000',  # 16 KB
+        ],
+    },
+    'randezvous-medium': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+            'RANDEZVOUS_SS',
+            'RANDEZVOUS_GLOBAL_GUARD',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-dp',
+            '-Wl,-mllvm,-arm-randezvous-icall-limiter',
+            '-Wl,-mllvm,-arm-randezvous-lgp',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            '-Wl,-mllvm,-arm-randezvous-ran',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-global-guard',
+            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+            # Medium size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x100000',    # 1 MB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x40000',     # 256 KB
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x8000',  # 32 KB
+        ],
+    },
+    'randezvous-large': {
+        'defines': [
+            'RANDEZVOUS_PICOXOM',
+            'RANDEZVOUS_SS',
+            'RANDEZVOUS_GLOBAL_GUARD',
+        ],
+        'ldflags': [
+            '-Wl,-mllvm,-arm-randezvous-clr',
+            '-Wl,-mllvm,-arm-randezvous-bbclr',
+            '-Wl,-mllvm,-arm-randezvous-gdlr',
+            '-Wl,-mllvm,-arm-randezvous-dp',
+            '-Wl,-mllvm,-arm-randezvous-icall-limiter',
+            '-Wl,-mllvm,-arm-randezvous-lgp',
+            '-Wl,-mllvm,-arm-randezvous-picoxom',
+            '-Wl,-mllvm,-arm-randezvous-ran',
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack',
+            '-Wl,-mllvm,-arm-randezvous-global-guard',
+            '-Wl,-mllvm,-arm-randezvous-rng-addr=0x4013807c',
+            # Large size
+            '-Wl,-mllvm,-arm-randezvous-max-text-size=0x1000000',   # 16 MB
+            '-Wl,-mllvm,-arm-randezvous-max-data-size=0x50000',     # 320 KB
+            '-Wl,-mllvm,-arm-randezvous-shadow-stack-size=0x8000',  # 32 KB
         ],
     },
 }

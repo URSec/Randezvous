@@ -381,6 +381,13 @@ void DWT_Init(void)
 			      (DWT_FUNCTION_MATCH_D_RW << DWT_FUNCTION_MATCH_Pos);
 
 	/*
+	 * Disable write protection on MMIO-based system registers to allow
+	 * software-controlled resets (writing to SCB->AIRCR.SYSRESETREQ);
+	 * production code should use something like Windowed Watchdog to do
+	 * resets.
+	 */
+#if 0
+	/*
 	 * Set up the 2rd comparator pair.
 	 *
 	 * Base:  DWT
@@ -397,6 +404,7 @@ void DWT_Init(void)
 	*CompPairs[i].func1 = DWT_FUNCTION_MATCH_DL << DWT_FUNCTION_MATCH_Pos;
 	*CompPairs[i].func0 = (1UL << DWT_FUNCTION_ACTION_Pos) |
 			      (DWT_FUNCTION_MATCH_D_W << DWT_FUNCTION_MATCH_Pos);
+#endif
 }
 #endif
 
@@ -431,8 +439,6 @@ void __attribute__((constructor)) Init(void)
 	MPU_Init();
 	DWT_Init();
 #endif
-
-	SDK_DelayAtLeastUs(2000000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
 }
 
 //=============================================================================
@@ -441,7 +447,5 @@ void __attribute__((constructor)) Init(void)
 
 void __attribute__((destructor)) Fini(void)
 {
-	SDK_DelayAtLeastUs(2000000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
-
 	printf("\nBye!\n");
 }

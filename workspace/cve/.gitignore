@@ -6,4 +6,9 @@
 
 # Compilation results
 /baseline-cve-2021-27421/
-/randezvous-cve-2021-27421/
+/randezvous-small-cve-2021-27421/
+/randezvous-medium-cve-2021-27421/
+/randezvous-large-cve-2021-27421/
+/randxom-small-cve-2021-27421/
+/randxom-medium-cve-2021-27421/
+/randxom-large-cve-2021-27421/
