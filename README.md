@@ -253,7 +253,9 @@ The PoC exploit consists of a script `scripts/exploit.sh` representing an
 attacker and a vulnerable application in `workspace/exploit`.
 The CVE exploit consists of a script `scripts/cve.sh` representing an attacker
 and a benign application in `workspace/cve` that is linked against a vulnerable
-HAL library with CVE-2021-27421.
+HAL library with
+[CVE-2021-27421](https://www.cve.org/CVERecord?id=CVE-2021-27421)
+(a `cve` version of the HAL library can be built by `./scripts/hal.sh cve`).
 Both scripts take the same command-line argument formats as those used in
 performance evaluation.
 
