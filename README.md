@@ -45,6 +45,7 @@ Randezvous
 |   |-- sdcard_fatfs.sh      # Script to compile/debug/run FatFs-SD
 |   |-- shell.sh             # Script to compile/debug/run LED-Shell
 |   |-- exploit.sh           # Script to compile/debug/run proof-of-concept exploit
+|   |-- cve.sh               # Script to compile/debug/run CVE exploit
 |   |-- gen_csv.py           # Script to collect experiment results into CSV files
 |
 |-- workspace                # Directory containing source code
@@ -57,6 +58,7 @@ Randezvous
 |   |-- sdcard_fatfs         # Source code of FatFs-SD
 |   |-- shell                # Source code of LED-Shell
 |   |-- exploit              # Source code of application used in proof-of-concept exploit
+|   |-- cve                  # Source code of application used in CVE exploit
 |
 |-- README.md                # This README file
 ```
@@ -242,16 +244,21 @@ For example, if you want to see the performance numbers on BEEBS, run
 ```
 and you will get an output file named `perf-beebs.csv` in the working directory.
 
-### Proof-of-Concept Exploit
+### Demonstrative Exploits
 
 In addition to performance evaluation, this repository also contains a
-proof-of-concept exploit that we used to demonstrate Randezvous's security.
-The exploit consists of a vulnerable application in `workspace/exploit` and a
-script `scripts/exploit.sh` representing an attacker.
-The script takes the same command-line argument formats as those used in
+proof-of-concept (PoC) exploit and a real-world CVE exploit that we used to
+demonstrate Randezvous's security.
+The PoC exploit consists of a script `scripts/exploit.sh` representing an
+attacker and a vulnerable application in `workspace/exploit`.
+The CVE exploit consists of a script `scripts/cve.sh` representing an attacker
+and a benign application in `workspace/cve` that is linked against a vulnerable
+HAL library with CVE-2021-27421.
+Both scripts take the same command-line argument formats as those used in
 performance evaluation.
 
-Unlike in performance evaluation, here we use three configurations:
+Unlike in performance evaluation, here we use three configurations for both the
+PoC and CVE exploits:
 - **Baseline**: Compile the application without any of our passes, denoted as
   `baseline`.
 - **Randomization plus XOM**: Compile the application with only code/data
@@ -266,10 +273,12 @@ Unlike in performance evaluation, here we use three configurations:
   `randezvous-medium`, and `randezvous-large` for the three different-sized
   MCUs.
 
-For each (sub-)configuration, the script will generate attack payloads using
-the best strategies for the attacker and keep sending payloads in a
-brute-forcing manner.
-In order to keep the exploit running, the script will reboot the application
+For each (sub-)configuration, the PoC script will generate attack payloads
+using the best strategies for the attacker and keep sending payloads in a
+brute-forcing manner, while the CVE script will do the same except that attack
+payloads are generated using less efficient strategies.
+In order to keep the exploit running, both scripts will reboot the application
 each time before sending a new payload.
-You can compile the application and run the script to see how long the exploit
+For either the PoC or CVE exploit,
+you can compile the application and run the script to see how long the exploit
 takes to succeed for each case.
