@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /* Created with: ../xml/parser-125k.xml */
 /* common */
 #include "th_lib.h"

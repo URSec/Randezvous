@@ -10,6 +10,12 @@ a currently effective EEMBC Benchmark License Agreement, you must discontinue us
 Please refer to LICENSE.md for the specific license agreement that pertains to this Benchmark Software.
 */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #ifndef _MITH_WORKLOAD_H
 #define _MITH_WORKLOAD_H
 #include "al_smp.h"

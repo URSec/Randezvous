@@ -39,6 +39,12 @@
  * However, I am not about to post a copy of anything licensed by AT&T.
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #include <assert.h>
 #include <stdarg.h>
 #include <stdlib.h>

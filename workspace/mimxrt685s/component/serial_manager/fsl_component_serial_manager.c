@@ -6,6 +6,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #include <string.h>
 
 #include "fsl_component_serial_manager.h"

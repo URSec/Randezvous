@@ -20,6 +20,12 @@
  *  This file is part of mbed TLS (https://tls.mbed.org)
  */
 
+/*
+ * Copyright (c) 2021-2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /*******************************************************************************
  * Includes
  ******************************************************************************/

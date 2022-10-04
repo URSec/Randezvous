@@ -10,6 +10,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //*****************************************************************************
 
+/*
+ * Copyright (c) 2021-2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #if defined (DEBUG)
 #pragma GCC push_options
 #pragma GCC optimize ("Og")

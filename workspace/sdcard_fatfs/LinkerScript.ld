@@ -9,6 +9,12 @@
  * MCUXpresso IDE v11.2.1 [Build 4149] [2020-10-07]
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 MEMORY
 {
     /* Define each memory region */

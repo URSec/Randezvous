@@ -6,6 +6,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #include "fsl_common.h"
 #define SDK_MEM_MAGIC_NUMBER 12345U
 

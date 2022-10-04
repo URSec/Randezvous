@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /* Created with: ../xml/linear_alg-mid-100x100-sp.xml */
 /* common */
 #include "th_lib.h"

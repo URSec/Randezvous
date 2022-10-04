@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /* Created with: ../xml/cjpeg-rose7-preset.xml */
 /* common */
 #include "th_lib.h"

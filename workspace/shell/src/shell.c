@@ -7,6 +7,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

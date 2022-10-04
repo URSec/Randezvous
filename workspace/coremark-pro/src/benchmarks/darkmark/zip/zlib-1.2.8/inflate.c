@@ -16,6 +16,12 @@ Please refer to LICENSE.md for the specific license agreement that pertains to t
  */
 
 /*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
+/*
  * Change history:
  *
  * 1.2.beta0    24 Nov 2002

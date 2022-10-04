@@ -15,6 +15,12 @@ Please refer to LICENSE.md for the specific license agreement that pertains to t
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /* WARNING: this file should *not* be used by applications. It is
    part of the implementation of the compression library and is
    subject to change. Applications should only use zlib.h.

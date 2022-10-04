@@ -16,6 +16,12 @@ Please refer to LICENSE.md for the specific license agreement that pertains to t
  */
 
 /*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
+/*
    This code is largely copied from inflate.c.  Normally either infback.o or
    inflate.o would be linked into an application--not both.  The interface
    with inffast.c is retained so that optimized assembler-coded versions of

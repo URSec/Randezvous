@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022, University of Rochester
+ *
+ * Modified for the Randezvous project.
+ */
+
 /* Created with: ../xml/radix2-big-64k.xml */
 /* common */
 #include "th_lib.h"
