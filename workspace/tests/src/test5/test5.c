@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2021-2022, University of Rochester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include <stdio.h>
 
 int global_var;
@@ -31,12 +47,12 @@ int main(int argc, char ** argv) {
   int (*local_fun_ptr2)(int, int) = &foo2;
   int (*local_fun_ptr3)(int, int, int) = &foo3;
   int (*local_fun_ptr4)(int, int, int, int) = &foo4;
-  
+
   a = (*local_fun_ptr1)(argc);
   b = (*local_fun_ptr2)(argc, argc);
   c = (*local_fun_ptr3)(argc, argc, argc);
   x = (*local_fun_ptr4)(argc, argc, argc, argc);
-  
+
   printf("%x\n", a);
   printf("%x\n", b);
   printf("%x\n", c);
