@@ -14,6 +14,9 @@ techniques to protect in-memory control data from leakage and corruption.
 It also slows down brute force attacks to make randomization effective even
 with MCUs' limited memory.
 
+For more details, please check out
+[our ACSAC paper](https://doi.org/10.1145/3564625.3567970).
+
 ## Directory Hierarchy
 
 ```shell
