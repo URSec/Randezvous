@@ -5,7 +5,8 @@ This repository contains and organizes code that we used to evaluate Randezvous.
 ## Brief Introduction
 
 Randezvous is a software defense against control-flow hijacking attacks on
-embedded microcontroller (MCU) systems, built up on diversification.
+embedded microcontroller (MCU) systems, built up on diversification
+and eXecute-Only Memory (XOM).
 Unlike other control-flow hijacking defenses on MCU systems, Randezvous assumes
 a broader threat model in which attackers can not only use buffer overflows to
 corrupt memory but also use buffer overreads to leak memory content.
@@ -16,6 +17,24 @@ with MCUs' limited memory.
 
 For more details, please check out
 [our ACSAC paper](https://doi.org/10.1145/3564625.3567970).
+To cite Randezvous, you can use the following BibTeX entry:
+```bibtex
+@inproceedings{Randezvous:ACSAC22,
+  author = {Shen, Zhuojia and Dharsee, Komail and Criswell, John},
+  title = {Randezvous: Making Randomization Effective on {MCUs}},
+  booktitle = {Proceedings of the 38th Annual Computer Security Applications Conference},
+  series = {ACSAC '22},
+  year = {2022},
+  isbn = {978-1-4503-9759-9},
+  location = {Austin, TX, USA},
+  pages = {28--41},
+  numpages = {14},
+  url = {https://doi.org/10.1145/3564625.3567970},
+  doi = {10.1145/3564625.3567970},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+}
+```
 
 ## Directory Hierarchy
 
@@ -287,3 +306,11 @@ each time before sending a new payload.
 For either the PoC or CVE exploit,
 you can compile the application and run the script to see how long the exploit
 takes to succeed for each case.
+
+## Contacts
+
+Zhuojia Shen: zshen10@cs.rochester.edu
+
+Komail Dharsee: kdharsee@cs.rochester.edu
+
+John Criswell: criswell@cs.rochester.edu
